@@ -86,6 +86,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DROP_TABLE_TIMESLOT = "DROP TABLE IF EXISTS " + TABLE_TIMESLOT_NAME;
     //endregion
 
+    //region Table User
+    public static final String TABLE_USER = "Table_User";
+
+    public static final String USER_COLUMN_ID = "ID";
+    public static final String USER_COLUMN_USERNAME = "USERNAME";
+    public static final String USER_COLUMN_PASSWORD = "PASSWORD";
+    public static final String USER_COLUMN_CREDIT = "CREDIT";
+    public static final String USER_COLUMN_ROLE = "ROLE";
+    public static final String USER_COLUMN_ISBLOCKED = "ISBLOCKED";
+
+    private static final String SQL_CREATE_TABLE_USER = "create table if not exists " + TABLE_USER + " (" +
+            USER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            USER_COLUMN_USERNAME + " TEXT, " +
+            USER_COLUMN_PASSWORD + " TEXT," +
+            USER_COLUMN_CREDIT + " INTEGER, " +
+            USER_COLUMN_ROLE  + " INTEGER, " +
+            USER_COLUMN_ISBLOCKED + " INTEGER)";
+    private static final String SQL_DROP_TABLE_USER = "DROP TABLE IF EXISTS " + TABLE_USER;
+    //endregion
+
+    //region Table History
+    public static final String TABLE_LOG_HISTORY = "Table_Log_History";
+
+    public static final String HISTORY_COLUMN_ID = "HISTORY_ID";
+    public static final String HISTORY_COLUMN_USER_ID = "USER_ID";
+    public static final String HISTORY_COLUMN_PLACE_ID = "PLACE_ID";
+    public static final String HISTORY_COLUMN_SEAT_ID = "SEAT_ID";
+    public static final String HISTORY_COLUMN_BOOK_START_TIME = "BOOKSTARTTIME";
+    public static final String HISTORY_COLUMN_BOOK_END_TIME = "BOOKENDTIME";
+    public static final String HISTORY_COLUMN_ARRIVAL_TIME = "ARRIVALTIME";
+    public static final String HISTORY_COLUMN_SIGNOUTIME = "SIGNOUTTIME";
+    public static final String HISTORY_COLUMN_TEMPORARY_LEAVE_TIME = "TEMPORARY_LEAVE_TIME";
+    public static final String HISTORY_COLUMN_TEMPORARY_BACK_TIME = "TEMPORARY_BACK_TIME";
+    //public static final String HISTORY_COLUMN_CREDIT = "CREDIT";
+    public static final String HISTORY_COLUMN_BOOKING_STATE = "BOOKINGSTATE";
+
+    private static final String SQL_CREATE_TABLE_LOG_HISTORY = "create table if not exists " + TABLE_LOG_HISTORY + " (" +
+            HISTORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            HISTORY_COLUMN_USER_ID + " INTEGER, " +
+            HISTORY_COLUMN_PLACE_ID + " INTEGER, " +
+            HISTORY_COLUMN_SEAT_ID + " INTEGER, " +
+            HISTORY_COLUMN_BOOK_START_TIME + " INTEGER, " +
+            HISTORY_COLUMN_BOOK_END_TIME + " INTEGER, " +
+            HISTORY_COLUMN_ARRIVAL_TIME + " INTEGER, " +
+            HISTORY_COLUMN_SIGNOUTIME + " INTEGER, " +
+            HISTORY_COLUMN_TEMPORARY_LEAVE_TIME + " INTEGER, " +
+            HISTORY_COLUMN_TEMPORARY_BACK_TIME + " INTEGER, " +
+            HISTORY_COLUMN_BOOKING_STATE + " INTEGER)";
+    private static final String SQL_DROP_TABLE_LOG_HISTORY = "DROP TABLE IF EXISTS " + TABLE_LOG_HISTORY;
+    //endregion
 
     public DatabaseHelper(Context context, String strDBName) {
         super(context, strDBName, null, DB_VERSION);
@@ -93,6 +143,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(SQL_CREATE_TABLE_USER);
+        db.execSQL(SQL_CREATE_TABLE_LOG_HISTORY);
         db.execSQL(SQL_CREATE_TABLE_PLACE);
         db.execSQL(SQL_CREATE_TABLE_SEAT);
         db.execSQL(SQL_CREATE_TABLE_PROBREPORT);
@@ -101,6 +153,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(SQL_DROP_TABLE_USER);
+        db.execSQL(SQL_DROP_TABLE_LOG_HISTORY);
         db.execSQL(SQL_CREATE_TABLE_PLACE);
         db.execSQL(SQL_CREATE_TABLE_SEAT);
         db.execSQL(SQL_CREATE_TABLE_PROBREPORT);
