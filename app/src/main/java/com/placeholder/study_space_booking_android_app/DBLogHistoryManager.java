@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.Core.Beans.UserBean;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Bean.UserBean;
 
 public class DBLogHistoryManager {
@@ -59,7 +61,7 @@ public class DBLogHistoryManager {
             contentValues.put(DatabaseHelper.HISTORY_COLUMN_SIGNOUTIME, timeSlot.getOutTime());
             contentValues.put(DatabaseHelper.HISTORY_COLUMN_TEMPORARY_LEAVE_TIME, timeSlot.getTempLeaveTime());
             contentValues.put(DatabaseHelper.HISTORY_COLUMN_BOOK_START_TIME, timeSlot.getTempBackTime());
-            contentValues.put(DatabaseHelper.HISTORY_COLUMN_BOOKING_STATE, timeSlot.getBookingState());
+            contentValues.put(DatabaseHelper.HISTORY_COLUMN_BOOKING_STATE, timeSlot.getState());
             long result = db.insert(DatabaseHelper.TABLE_LOG_HISTORY, null, contentValues);
             if (result == -1) {
                 return false;
@@ -91,7 +93,7 @@ public class DBLogHistoryManager {
         contentValues.put(DatabaseHelper.HISTORY_COLUMN_SIGNOUTIME, timeSlot.getOutTime());
         contentValues.put(DatabaseHelper.HISTORY_COLUMN_TEMPORARY_LEAVE_TIME, timeSlot.getTempLeaveTime());
         contentValues.put(DatabaseHelper.HISTORY_COLUMN_BOOK_START_TIME, timeSlot.getTempBackTime());
-        contentValues.put(DatabaseHelper.HISTORY_COLUMN_BOOKING_STATE, timeSlot.getBookingState());
+        contentValues.put(DatabaseHelper.HISTORY_COLUMN_BOOKING_STATE, timeSlot.getState());
         db.update(
                 DatabaseHelper.TABLE_LOG_HISTORY, contentValues,
                 DatabaseHelper.HISTORY_COLUMN_ID + " = ?",

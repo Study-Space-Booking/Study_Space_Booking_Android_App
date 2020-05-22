@@ -16,8 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_PLACE_PlACE_ID = "Tab_Place_PlaceId";
 
     private static final String SQL_CREATE_TABLE_PLACE = "CREATE TABLE IF NOT EXISTS " + TABLE_PLACE_NAME + " (" +
-            TABLE_PLACE_PlACE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
-            TABLE_PLACE_PlACE_NAME + " Text " +
+            TABLE_PLACE_PlACE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TABLE_PLACE_PlACE_NAME + " TEXT " +
             ");";
     private static final String SQL_DROP_TABLE_PLACE = "DROP TABLE IF EXISTS " + TABLE_PLACE_NAME;
     // endregion
@@ -25,13 +25,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // region TABLE SEAT
     public static final String TABLE_SEAT_NAME = "Tab_Seat";
     public static final String TABLE_SEAT_SEAT_ID = "Tab_Seat_SeatId";
-    public static final String  TABLE_SEAT_SEAT_STATE = "Tab_Seat_SeatState";
+    public static final String TABLE_SEAT_PLACE_ID = "Tab_Seat_PlaceId";
 
     private static final String SQL_CREATE_TABLE_SEAT = "CREATE TABLE IF NOT EXISTS " + TABLE_SEAT_NAME + " (" +
             TABLE_SEAT_SEAT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            TABLE_SEAT_SEAT_STATE + " Integer " +   // ?? is this an integer
+            TABLE_SEAT_PLACE_ID + " INTEGER " +
             ");";
-    private static final String SQL_DROP_SEAT_PLACE = "DROP TABLE IF EXISTS " + TABLE_SEAT_NAME;
+    private static final String SQL_DROP_TABLE_SEAT = "DROP TABLE IF EXISTS " + TABLE_SEAT_NAME;
     // endregion
 
     // region TABLE ProbReport
@@ -49,12 +49,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_PROBREPORT = "CREATE TABLE IF NOT EXISTS " + TABLE_PROBREPORT_NAME + " (" +
             TABLE_PROBREPORT_REPORT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             TABLE_PROBREPORT_REPORT_TITLE + "Text, " +
-            TABLE_PROBREPORT_PLACE_ID + " Text, " +
-            TABLE_PROBREPORT_SEAT_ID + " Text, " +
+            TABLE_PROBREPORT_PLACE_ID + " INTEGER, " +
+            TABLE_PROBREPORT_SEAT_ID + " INTEGER, " +
             TABLE_PROBREPORT_DESC + " TEXT, " +
             TABLE_PROBREPORT_CONTENT + " Text, " + // using blob for images?
-            TABLE_PROBREPORT_TIME + " Integer, " +         // Use text for time?
-            TABLE_PROBREPORT_REPORTER_ID + " Integer, " +
+            TABLE_PROBREPORT_TIME + " INTEGER, " +         // Use text for time?
+            TABLE_PROBREPORT_REPORTER_ID + " INTEGER, " +
             TABLE_PROBREPORT_REMARKS + " TEXT " +
             ");";
     private static final String SQL_DROP_TABLE_PROBREPORT = "DROP TABLE IF EXISTS " + TABLE_PROBREPORT_NAME;
@@ -65,27 +65,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_TIMESLOT_ID = "Tab_Timeslot_ReportId";
     public static final String TABLE_TIMESLOT_PLACE_ID = "Tab_Timeslot_PlaceId";
     public static final String TABLE_TIMESLOT_SEAT_ID = "Tab_Timeslot_SeatId";
+    public static final String TABLE_TIMESLOT_USER_ID = "Tab_Timeslot_UserId";
     public static final String TABLE_TIMESLOT_BOOKSTART_TIME = "Tab_Timeslot_BookStartTime";
     public static final String TABLE_TIMESLOT_BOOKEND_TIME = "Tab_Timeslot_BookEndTime";
     public static final String TABLE_TIMESLOT_IN_TIME = "Tab_Timeslot_InTime"; // May contain pics
     public static final String TABLE_TIMESLOT_OUT_TIME = "Tab_Timeslot_OutTime";
     public static final String TABLE_TIMESLOT_TEMPLEAVE_TIME = "Tab_Timeslot_TempLeaveTime";
     public static final String TABLE_TIMESLOT_TEMPBACK_TIME = "Tab_Timeslot_TempBackTime";
+    public static final String TABLE_TIMESLOT_STATE = "Tab_Timeslot_State";
 
     private static final String SQL_CREATE_TABLE_TIMESLOT = "CREATE TABLE IF NOT EXISTS " + TABLE_TIMESLOT_NAME + " (" +
             TABLE_TIMESLOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            TABLE_TIMESLOT_PLACE_ID + " Text, " +
-            TABLE_TIMESLOT_SEAT_ID + " Text, " +
-            TABLE_TIMESLOT_BOOKSTART_TIME + " Integer, " +
-            TABLE_TIMESLOT_BOOKEND_TIME + " Integer, " +
-            TABLE_TIMESLOT_IN_TIME + " Integer, " +
-            TABLE_TIMESLOT_OUT_TIME + " Integer, " +
-            TABLE_TIMESLOT_TEMPLEAVE_TIME + " Integer, " +
-            TABLE_TIMESLOT_TEMPBACK_TIME + " Integer " +
+            TABLE_TIMESLOT_PLACE_ID + " INTEGER, " +
+            TABLE_TIMESLOT_SEAT_ID + " INTEGER, " +
+            TABLE_TIMESLOT_USER_ID + " INTEGER, " +
+            TABLE_TIMESLOT_BOOKSTART_TIME + " INTEGER, " +
+            TABLE_TIMESLOT_BOOKEND_TIME + " INTEGER, " +
+            TABLE_TIMESLOT_IN_TIME + " INTEGER, " +
+            TABLE_TIMESLOT_OUT_TIME + " INTEGER, " +
+            TABLE_TIMESLOT_TEMPLEAVE_TIME + " INTEGER, " +
+            TABLE_TIMESLOT_TEMPBACK_TIME + " INTEGER, " +
+            TABLE_TIMESLOT_STATE + " INTEGER " +
             ");";
     private static final String SQL_DROP_TABLE_TIMESLOT = "DROP TABLE IF EXISTS " + TABLE_TIMESLOT_NAME;
     //endregion
 
+    // region Table Admin
+
+    public static final String TABLE_ADMIN_NAME = "Tab_Admin";
+    public static final String TABLE_ADMIN_ID = "Tab_Admin_Id";
+    public static final String TABLE_ADMIN_PASSWORD = "Tab_Admin_Password";
+    public static final String TABLE_ADMIN_USERNAME = "Tab_Admin_Username";
+
+    private static final String SQL_CREATE_TABLE_ADMIN = "CREATE TABLE IF NOT EXISTS " + TABLE_ADMIN_NAME + " (" +
+            TABLE_ADMIN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TABLE_ADMIN_PASSWORD + " TEXT, " +
+            TABLE_ADMIN_USERNAME + " TEXT " +
+            ");";
+    private static final String SQL_DROP_TABLE_ADMIN = "DROP TABLE IF EXISTS " + TABLE_ADMIN_NAME;
+    // end region
     //region Table User
     public static final String TABLE_USER = "Table_User";
 
@@ -93,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String USER_COLUMN_USERNAME = "USERNAME";
     public static final String USER_COLUMN_PASSWORD = "PASSWORD";
     public static final String USER_COLUMN_CREDIT = "CREDIT";
-    public static final String USER_COLUMN_ROLE = "ROLE";
+    //public static final String USER_COLUMN_ROLE = "ROLE";
     public static final String USER_COLUMN_ISBLOCKED = "ISBLOCKED";
 
     private static final String SQL_CREATE_TABLE_USER = "create table if not exists " + TABLE_USER + " (" +
@@ -101,7 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             USER_COLUMN_USERNAME + " TEXT, " +
             USER_COLUMN_PASSWORD + " TEXT," +
             USER_COLUMN_CREDIT + " INTEGER, " +
-            USER_COLUMN_ROLE  + " INTEGER, " +
+            //USER_COLUMN_ROLE  + " INTEGER, " +
             USER_COLUMN_ISBLOCKED + " INTEGER)";
     private static final String SQL_DROP_TABLE_USER = "DROP TABLE IF EXISTS " + TABLE_USER;
     //endregion
@@ -155,10 +173,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DROP_TABLE_USER);
         db.execSQL(SQL_DROP_TABLE_LOG_HISTORY);
-        db.execSQL(SQL_CREATE_TABLE_PLACE);
-        db.execSQL(SQL_CREATE_TABLE_SEAT);
-        db.execSQL(SQL_CREATE_TABLE_PROBREPORT);
-        db.execSQL(SQL_CREATE_TABLE_TIMESLOT);
+        db.execSQL(SQL_DROP_TABLE_PLACE);
+        db.execSQL(SQL_DROP_TABLE_SEAT);
+        db.execSQL(SQL_DROP_TABLE_PROBREPORT);
+        db.execSQL(SQL_DROP_TABLE_TIMESLOT);
         onCreate(db);
     }
 

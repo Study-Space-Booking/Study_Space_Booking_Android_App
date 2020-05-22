@@ -5,7 +5,7 @@ public class UserBean {
     private Integer credit;
     private String userName;
     private String password;
-    private Integer isAdministrator;
+    //private Integer isAdministrator;
     private Integer isBlocked;
 
     public UserBean(Integer id, Integer credit, String userName,
@@ -14,7 +14,7 @@ public class UserBean {
         this.credit = credit;
         this.userName = userName;
         this.password = password;
-        this.isAdministrator = isAdministrator;
+        //this.isAdministrator = isAdministrator;
         this.isBlocked = isBlocked;
     }
 
@@ -34,9 +34,9 @@ public class UserBean {
         this.userName = userName;
     }
 
-    public void setRole(Integer isAdministrator) {
-        this.isAdministrator = isAdministrator;
-    }
+    //public void setRole(Integer isAdministrator) {
+    //    this.isAdministrator = isAdministrator;
+    //}
 
     public void setState(Integer state) {
         this.isBlocked = state;
@@ -58,9 +58,9 @@ public class UserBean {
         return password;
     }
 
-    public Integer isAdministrator() {
-        return isAdministrator;
-    }
+    //public Integer isAdministrator() {
+    //    return isAdministrator;
+    //}
 
     public Integer isBlocked() {
         return isBlocked;

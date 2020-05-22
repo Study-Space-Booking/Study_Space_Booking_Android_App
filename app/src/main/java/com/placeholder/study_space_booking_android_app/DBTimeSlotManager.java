@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+
+
 public class DBTimeSlotManager {
     public static final String TAG = DBTimeSlotManager.class.getSimpleName();
 
@@ -28,7 +31,7 @@ public class DBTimeSlotManager {
         return instance;
     } // get the instance of DBTimeSlotManager
 
-    public void initialize(Context context, String strLoginId) {
+    public void initialize(Context context) {
         tsContext = context.getApplicationContext();
         tsDbhelper = new DatabaseHelper(tsContext, DatabaseHelper.DB_NAME);
         tsInitialize = true;
@@ -36,27 +39,25 @@ public class DBTimeSlotManager {
 
     private boolean valid() {
         if (!tsInitialize) {
-            // ??? TLog.d("DB", "DB Manager Not Initialize.");
             return false;
         }
         return true;
     }
 
-    public Boolean setProbRepo(Integer placeId, Integer seatId,
-                               Integer bookStartTime, Integer bookEndTime, Integer inTime, Integer outTime,
-                               Integer tempLeaveTime, Integer tempBackTime) throws SQLiteException {
+    public Boolean setProbRepo(TimeSlot t) throws SQLiteException {
         if (!valid()) return false;
         SQLiteDatabase database = tsDbhelper.open();
         ContentValues contentValues = new ContentValues();
-
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_PLACE_ID, placeId);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_SEAT_ID, seatId);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME, bookStartTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKEND_TIME, bookEndTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_IN_TIME, inTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_OUT_TIME, outTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPLEAVE_TIME, tempLeaveTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPBACK_TIME, tempBackTime);
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_PLACE_ID, t.getPlaceId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_SEAT_ID, t.getSeatId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_USER_ID, t.getUserId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME, t.getBookStartTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKEND_TIME, t.getBookEndTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_IN_TIME, t.getInTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_OUT_TIME, t.getOutTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPLEAVE_TIME, t.getTempLeaveTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPBACK_TIME, t.getTempBackTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_STATE, t.getState());
         long result = database.insert(DatabaseHelper.TABLE_TIMESLOT_NAME, null, contentValues);
         if (result == -1) {
             return false;
@@ -65,40 +66,41 @@ public class DBTimeSlotManager {
         }
     }
 
-    public TimeSlot getTimeSlot(String tsId) {
+    public Cursor getTimeSlot(Integer tsId) {
         if (!valid()) return null;
 
+        TimeSlot t;
         SQLiteDatabase database = tsDbhelper.open();
         String strSQL = "select * from " + DatabaseHelper.TABLE_TIMESLOT_NAME + " where " +
-                DatabaseHelper.TABLE_TIMESLOT_ID.equals(tsId);
-        Cursor res = database.rawQuery(strSQL, null);
+                DatabaseHelper.TABLE_TIMESLOT_ID + "=?";
+        Cursor res = database.rawQuery(strSQL, new String[] { String.valueOf(tsId)});
 
         return res;
     }
 
-    public boolean updateProbRepo(String id, Integer placeId, Integer seatId,
-                                  Integer bookStartTime, Integer bookEndTime, Integer inTime, Integer outTime,
-                                  Integer tempLeaveTime, Integer tempBackTime) throws SQLiteException {
+    public boolean updateTimeSlot(TimeSlot t) throws SQLiteException {
         if (!valid()) return false;
         SQLiteDatabase database = tsDbhelper.open();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_ID, id);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_PLACE_ID, placeId);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_SEAT_ID, seatId);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME, bookStartTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKEND_TIME, bookEndTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_IN_TIME, inTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_OUT_TIME, outTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPLEAVE_TIME, tempLeaveTime);
-        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPBACK_TIME, tempBackTime);
-        database.update(DatabaseHelper.TABLE_TIMESLOT_NAME, contentValues, "Tab_Timeslot_ReportId = ?", new String[] { id });
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_ID, t.getId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_PLACE_ID, t.getPlaceId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_SEAT_ID, t.getSeatId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_USER_ID, t.getUserId());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME, t.getBookStartTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_BOOKEND_TIME, t.getBookEndTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_IN_TIME, t.getInTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_OUT_TIME, t.getOutTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPLEAVE_TIME, t.getTempLeaveTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPBACK_TIME, t.getTempBackTime());
+        contentValues.put(DatabaseHelper.TABLE_TIMESLOT_STATE, t.getState());
+        database.update(DatabaseHelper.TABLE_TIMESLOT_NAME, contentValues, "Tab_Timeslot_ReportId = ?", new String[] { String.valueOf(t.getId()) });
         return true;
     }
 
-    public Integer deleteTimeSlot(String id) {
+    public Integer deleteTimeSlot(Integer id) {
         if (!valid()) return 0;
         SQLiteDatabase database = tsDbhelper.open();
-        return database.delete(DatabaseHelper.TABLE_TIMESLOT_NAME, "Tab_Timeslot_ReportId = ?", new String[] {id});
+        return database.delete(DatabaseHelper.TABLE_TIMESLOT_NAME, "Tab_Timeslot_ReportId = ?", new String[] {String.valueOf(id)});
     }
 
 }
