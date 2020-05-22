@@ -50,29 +50,37 @@ public class LocalSourceImplementation implements Source {
             Cursor cursorTwo = dbAdminManager.getAdmin(userName, password, null);
             if ((cursorOne.getCount() + cursorTwo.getCount() == 0) ||
                     (cursorOne.getCount() + cursorTwo.getCount() >= 2)) {
-                return new Result.Handle(new IllegalArgumentException("No such user"));
+                return new Result.Handle(new IllegalArgumentException("No such user. Check user name or password"));
             } else {
-                if(cursorOne.getCount() == 1) {
+                if (cursorOne.getCount() == 1) {
+                    //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ID));
+                    //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_CREDIT));
+                    //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME));
+                    //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD));
+                    //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ISBLOCKED));
+                    cursorOne.moveToFirst();
                     return new Result.Accepted<User>(
                             new NormalUser(
-                                    cursorOne.getInt(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ID)),
-                                    cursorOne.getInt(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_CREDIT)),
-                                    cursorOne.getString(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME)),
-                                    cursorOne.getString(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD)),
-                                    cursorOne.getInt(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ISBLOCKED))
+                                    Integer.parseInt(cursorOne.getString(0)),
+                                    Integer.parseInt(cursorOne.getString(3)),
+                                    cursorOne.getString(1),
+                                    cursorOne.getString(2),
+                                    Integer.parseInt(cursorOne.getString(4))
                             )
                     );
                 } else {
+                    cursorTwo.moveToFirst();
                     return new Result.Accepted<User>(
                             new Admin(
                                     cursorTwo.getInt(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_ID)),
                                     cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_USERNAME)),
-                                    cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD))
+                                    cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_PASSWORD))
                             )
                     );
                 }
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new Result.Handle(e);
         }
     }

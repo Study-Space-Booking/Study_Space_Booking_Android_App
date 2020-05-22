@@ -29,10 +29,10 @@ public class RegisterLocalSource implements RegisterSource {
     }
 
     @Override
-    public boolean hasExistingUser(String userName, String password) {
+    public boolean hasExistingUser(String userName) {
         boolean check = false;
         Cursor cursorOne = dbUserInformationManager.getUserInformation(userName, null, null);
-        Cursor cursorTwo = dbAdminManager.getAdmin(userName, password, null);
+        Cursor cursorTwo = dbAdminManager.getAdmin(userName, null, null);
         if(cursorOne.getCount() + cursorTwo.getCount() > 0) {
             check = true;
         }

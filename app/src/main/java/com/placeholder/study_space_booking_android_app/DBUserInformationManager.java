@@ -30,7 +30,7 @@ public class DBUserInformationManager {
         return instance;
     }
 
-    public void Initialize(Context context) {
+    public void initialize(Context context) {
         tsContext = context.getApplicationContext();
         tsDbHelper = new DatabaseHelper(tsContext, DatabaseHelper.DB_NAME);
         tsInitialized = true;
@@ -55,7 +55,6 @@ public class DBUserInformationManager {
             contentValues.put(DatabaseHelper.USER_COLUMN_USERNAME, user.getUserName());
             contentValues.put(DatabaseHelper.USER_COLUMN_PASSWORD, user.getPassword());
             contentValues.put(DatabaseHelper.USER_COLUMN_CREDIT, user.getCredit());
-            //contentValues.put(DatabaseHelper.USER_COLUMN_ROLE, user.isAdministrator());
             contentValues.put(DatabaseHelper.USER_COLUMN_ISBLOCKED, user.isBlocked());
             long result = db.insert(DatabaseHelper.TABLE_USER, null, contentValues);
             if (result == -1) {
@@ -91,7 +90,6 @@ public class DBUserInformationManager {
         contentValues.put(DatabaseHelper.USER_COLUMN_USERNAME, user.getUserName());
         contentValues.put(DatabaseHelper.USER_COLUMN_PASSWORD, user.getPassword());
         contentValues.put(DatabaseHelper.USER_COLUMN_CREDIT, user.getCredit().toString());
-        //contentValues.put(DatabaseHelper.USER_COLUMN_ROLE, user.isAdministrator().toString());
         contentValues.put(DatabaseHelper.USER_COLUMN_ISBLOCKED, user.isBlocked().toString());
         db.update(
                 DatabaseHelper.TABLE_USER, contentValues,

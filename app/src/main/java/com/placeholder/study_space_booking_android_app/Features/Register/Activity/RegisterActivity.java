@@ -1,20 +1,17 @@
 package com.placeholder.study_space_booking_android_app.Features.Register.Activity;
 
-
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.placeholder.bookingapplication.R;
+
+import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.DBAdminManager;
@@ -23,9 +20,8 @@ import com.placeholder.study_space_booking_android_app.Features.Register.Data.Re
 import com.placeholder.study_space_booking_android_app.Features.Register.Data.Sources.RegisterLocalSource;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases.RegisterUseCases;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends AppCompatActivity {
     EditText editUserName;
     EditText editPassword;
     EditText editConfirmPassword;
@@ -40,6 +36,7 @@ public class RegisterActivity extends Activity {
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
         final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
+
         RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance(dbUserInformationManager, dbAdminManager);
         RegisterRepository registerRepository = RegisterRepositoryImplementation.getInstance(registerLocalSource, null);
         final RegisterUseCases registerUseCases = RegisterUseCases.getInstance(registerRepository);
@@ -77,6 +74,7 @@ public class RegisterActivity extends Activity {
         Result<NormalUser> result = registerUseCases.register(userName, password, confirmPassword);
         if(result instanceof Result.Handle) {
             Exception exception = ((Result.Handle) result).getException();
+
             Toast.makeText(RegisterActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(RegisterActivity.this, "register", Toast.LENGTH_LONG).show();
@@ -86,6 +84,7 @@ public class RegisterActivity extends Activity {
 
 
     public void showInformation(View v, DBUserInformationManager dbUserInformationManager) {
+        dbUserInformationManager.initialize(RegisterActivity.this);
         Cursor cursor = dbUserInformationManager.getAllUser();
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
@@ -97,7 +96,6 @@ public class RegisterActivity extends Activity {
                 stringBuffer.append("password: " + cursor.getString(2) + "\n");
                 stringBuffer.append("credit: " + cursor.getString(3) + "\n");
                 stringBuffer.append("role: " + cursor.getString(4) + "\n");
-                stringBuffer.append("isBlocked: " + cursor.getString(5) + "\n\n");
             }
             showInformation("Information", stringBuffer.toString());
         }

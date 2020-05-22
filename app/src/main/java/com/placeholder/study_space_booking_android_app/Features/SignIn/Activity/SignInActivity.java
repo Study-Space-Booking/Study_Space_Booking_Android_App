@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.placeholder.bookingapplication.R;
+import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.DBAdminManager;
@@ -36,7 +36,9 @@ public class SignInActivity extends Activity {
         //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
+        dbUserInformationManager.initialize(this);
         final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
+        dbAdminManager.initialize(this);
         LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
         SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
         final SignInUseCases signInUseCases = SignInUseCases.getInstance(repository);
@@ -99,6 +101,7 @@ public class SignInActivity extends Activity {
 
 
     public void showInformation(View v, DBUserInformationManager dbUserInformationManager) {
+        dbUserInformationManager.initialize(SignInActivity.this);
         Cursor cursor = dbUserInformationManager.getAllUser();
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
@@ -109,8 +112,7 @@ public class SignInActivity extends Activity {
                 stringBuffer.append("userName: " + cursor.getString(1) + "\n");
                 stringBuffer.append("password: " + cursor.getString(2) + "\n");
                 stringBuffer.append("credit: " + cursor.getString(3) + "\n");
-                stringBuffer.append("role: " + cursor.getString(4) + "\n");
-                stringBuffer.append("isBlocked: " + cursor.getString(5) + "\n\n");
+                stringBuffer.append("state: " + cursor.getString(4) + "\n");
             }
             showInformation("Information", stringBuffer.toString());
         }

@@ -1,6 +1,5 @@
 package com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Repository;
 
-import com.placeholder.bookingapplication.R;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;

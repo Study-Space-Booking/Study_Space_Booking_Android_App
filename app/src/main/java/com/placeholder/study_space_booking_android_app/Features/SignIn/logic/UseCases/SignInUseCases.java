@@ -23,7 +23,7 @@ public class SignInUseCases {
     }
 
     public Result<User> signIn(String userName, String password) {
-        if(userName == null || password == null) {
+        if(userName.equals("") || password.equals("")) {
             return new Result.Handle(new IllegalArgumentException("Check user information"));
         }
         Result<User> result = getUserInformation(userName, password);

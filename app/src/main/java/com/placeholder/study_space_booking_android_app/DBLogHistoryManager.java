@@ -29,7 +29,7 @@ public class DBLogHistoryManager {
         return instance;
     }
 
-    public void Initialize(Context context) {
+    public void initialize(Context context) {
         tsContext = context.getApplicationContext();
         tsDbHelper = new DatabaseHelper(tsContext, DatabaseHelper.DB_NAME);
         tsInitialized = true;

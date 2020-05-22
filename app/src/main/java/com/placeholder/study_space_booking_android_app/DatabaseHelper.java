@@ -119,7 +119,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             USER_COLUMN_USERNAME + " TEXT, " +
             USER_COLUMN_PASSWORD + " TEXT," +
             USER_COLUMN_CREDIT + " INTEGER, " +
-            //USER_COLUMN_ROLE  + " INTEGER, " +
             USER_COLUMN_ISBLOCKED + " INTEGER)";
     private static final String SQL_DROP_TABLE_USER = "DROP TABLE IF EXISTS " + TABLE_USER;
     //endregion

@@ -1,14 +1,10 @@
 package com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases;
 
-import android.os.ResultReceiver;
 
-import com.placeholder.bookingapplication.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
-import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
+
 
 public class RegisterUseCases {
     private final RegisterRepository registerRepository;
@@ -26,11 +22,11 @@ public class RegisterUseCases {
     }
 
     public Result<NormalUser> register(String userName, String password, String confirmPassword) {
-        if(userName == null || password == null || confirmPassword == null) {
+        if(userName.equals("") || password.equals("") || confirmPassword.equals("")) {
             return new Result.Handle(new IllegalArgumentException("Check user information"));
         } else if(!passwordMatch(password, confirmPassword)) {
             return new Result.Handle(new IllegalArgumentException("Confirm password"));
-        } else if(registerRepository.hasExistingUser(userName, password)) {
+        } else if(registerRepository.hasExistingUser(userName)) {
             return new Result.Handle(new IllegalArgumentException("Existing user"));
         } else {
             return registerRepository.register(userName, password);

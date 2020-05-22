@@ -28,8 +28,8 @@ public class RegisterRepositoryImplementation implements RegisterRepository {
 
 
     @Override
-    public boolean hasExistingUser(String userName, String password) {
-        return registerLocalSource.hasExistingUser(userName, password);
+    public boolean hasExistingUser(String userName) {
+        return registerLocalSource.hasExistingUser(userName);
     }
 
     @Override
