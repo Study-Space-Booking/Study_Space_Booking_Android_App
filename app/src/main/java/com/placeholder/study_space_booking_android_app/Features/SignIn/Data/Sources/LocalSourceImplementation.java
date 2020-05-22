@@ -6,11 +6,14 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 
-import com.placeholder.study_space_booking_android_app.Core.Beans.UserBean;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Admin;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 
+import com.placeholder.study_space_booking_android_app.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.DatabaseHelper;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Bean.Result;
 
 
 import java.util.Optional;
@@ -23,36 +26,51 @@ interface LocalSource {
 
 public class LocalSourceImplementation implements Source {
     private final DBUserInformationManager dbUserInformationManager;
+    private final DBAdminManager dbAdminManager;
     public static volatile LocalSourceImplementation instance;
 
-    public LocalSourceImplementation(DBUserInformationManager dbUserInformationManager) {
+    public LocalSourceImplementation(DBUserInformationManager dbUserInformationManager,
+                                     DBAdminManager dbAdminManager) {
         this.dbUserInformationManager = dbUserInformationManager;
+        this.dbAdminManager = dbAdminManager;
     }
 
-    public static LocalSourceImplementation getInstance(DBUserInformationManager dbUserInformationManager) {
+    public static LocalSourceImplementation getInstance(DBUserInformationManager dbUserInformationManager,
+                                                        DBAdminManager dbAdminManager) {
         if(instance == null) {
-            instance = new LocalSourceImplementation(dbUserInformationManager);
+            instance = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
         }
         return instance;
     }
 
     //@RequiresApi(api = Build.VERSION_CODES.N)
-    public Result getUserInformation(String userName, String password) {
+    public Result<User> getUserInformation(String userName, String password) {
         try {
-            Cursor cursor = dbUserInformationManager.getUserInformation(userName, password, null);
-            if (cursor.getCount() == 0 || cursor.getCount() >= 2) {
+            Cursor cursorOne = dbUserInformationManager.getUserInformation(userName, password, null);
+            Cursor cursorTwo = dbAdminManager.getAdmin(userName, password, null);
+            if ((cursorOne.getCount() + cursorTwo.getCount() == 0) ||
+                    (cursorOne.getCount() + cursorTwo.getCount() >= 2)) {
                 return new Result.Handle(new IllegalArgumentException("No such user"));
             } else {
-                return new Result.Accepted(
-                    new UserBean(
-                        cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ID)),
-                        cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_CREDIT)),
-                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME)),
-                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD)),
-                        cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ROLE)),
-                        cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ISBLOCKED))
-                    )
-                );
+                if(cursorOne.getCount() == 1) {
+                    return new Result.Accepted<User>(
+                            new NormalUser(
+                                    cursorOne.getInt(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ID)),
+                                    cursorOne.getInt(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_CREDIT)),
+                                    cursorOne.getString(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME)),
+                                    cursorOne.getString(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD)),
+                                    cursorOne.getInt(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ISBLOCKED))
+                            )
+                    );
+                } else {
+                    return new Result.Accepted<User>(
+                            new Admin(
+                                    cursorTwo.getInt(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_ID)),
+                                    cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_USERNAME)),
+                                    cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD))
+                            )
+                    );
+                }
             }
         } catch (Exception e) {
             return new Result.Handle(e);

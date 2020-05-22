@@ -167,6 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_SEAT);
         db.execSQL(SQL_CREATE_TABLE_PROBREPORT);
         db.execSQL(SQL_CREATE_TABLE_TIMESLOT);
+        db.execSQL(SQL_CREATE_TABLE_ADMIN);
     }
 
     @Override
@@ -177,6 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DROP_TABLE_SEAT);
         db.execSQL(SQL_DROP_TABLE_PROBREPORT);
         db.execSQL(SQL_DROP_TABLE_TIMESLOT);
+        db.execSQL(SQL_CREATE_TABLE_ADMIN);
         onCreate(db);
     }
 

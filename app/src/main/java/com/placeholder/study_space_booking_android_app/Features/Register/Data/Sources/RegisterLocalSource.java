@@ -2,23 +2,28 @@ package com.placeholder.study_space_booking_android_app.Features.Register.Data.S
 
 import android.database.Cursor;
 
-import com.placeholder.study_space_booking_android_app.Core.Beans.UserBean;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
-import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Bean.Result;
 
 
 public class RegisterLocalSource implements RegisterSource {
     public static final Integer INITIAL_CREDIT = 10;
     private final DBUserInformationManager dbUserInformationManager;
+    private final DBAdminManager dbAdminManager;
     public static volatile RegisterLocalSource instance;
 
-    private RegisterLocalSource(DBUserInformationManager dbUserInformationManager) {
+    private RegisterLocalSource(DBUserInformationManager dbUserInformationManager,
+                                DBAdminManager dbAdminManager) {
         this.dbUserInformationManager = dbUserInformationManager;
+        this.dbAdminManager = dbAdminManager;
     }
 
-    public static RegisterLocalSource getInstance(DBUserInformationManager dbUserInformationManager) {
+    public static RegisterLocalSource getInstance(DBUserInformationManager dbUserInformationManager,
+                                                  DBAdminManager dbAdminManager) {
         if(instance == null) {
-            instance = new RegisterLocalSource(dbUserInformationManager);
+            instance = new RegisterLocalSource(dbUserInformationManager, dbAdminManager);
         }
         return instance;
     }
@@ -26,23 +31,24 @@ public class RegisterLocalSource implements RegisterSource {
     @Override
     public boolean hasExistingUser(String userName, String password) {
         boolean check = false;
-        Cursor cursor = dbUserInformationManager.getUserInformation(userName, null, null);
-        if(cursor.getCount() > 0) {
+        Cursor cursorOne = dbUserInformationManager.getUserInformation(userName, null, null);
+        Cursor cursorTwo = dbAdminManager.getAdmin(userName, password, null);
+        if(cursorOne.getCount() + cursorTwo.getCount() > 0) {
             check = true;
         }
         return check;
     }
 
     @Override
-    public Result register(String userName, String password) {
+    public Result<NormalUser> register(String userName, String password) {
         try{
             boolean check = dbUserInformationManager.insertUserInformation(
-                    new UserBean(0, INITIAL_CREDIT, userName, password, 0, 0)
+                    new NormalUser(0, INITIAL_CREDIT, userName, password, 0)
             );
             if(check == false) {
                 return new Result.Handle(new Exception("check insertion"));
             } else {
-                return new Result.Accepted();
+                return new Result.Accepted<NormalUser>(null);
             }
         } catch (Exception e) {
             return new Result.Handle(e);

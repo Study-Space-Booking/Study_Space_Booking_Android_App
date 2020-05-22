@@ -6,9 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
-import com.placeholder.study_space_booking_android_app.Core.Beans.UserBean;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Bean.UserBean;
 
 public class DBLogHistoryManager {
     public static final String TAG = DBLogHistoryManager.class.getSimpleName();
@@ -71,7 +70,7 @@ public class DBLogHistoryManager {
         }
     }
 
-    public Cursor getUserHistory(UserBean user) {
+    public Cursor getUserHistory(NormalUser user) {
         SQLiteDatabase db = tsDbHelper.open();
         Cursor result = null;
         result = db.rawQuery("select * from " + DatabaseHelper.TABLE_LOG_HISTORY + " where " +
@@ -102,7 +101,7 @@ public class DBLogHistoryManager {
         return true;
     }
 
-    public int deleteUserHistory(UserBean user) {
+    public int deleteUserHistory(NormalUser user) {
         SQLiteDatabase db = tsDbHelper.open();
         return db.delete(
                 DatabaseHelper.TABLE_LOG_HISTORY,

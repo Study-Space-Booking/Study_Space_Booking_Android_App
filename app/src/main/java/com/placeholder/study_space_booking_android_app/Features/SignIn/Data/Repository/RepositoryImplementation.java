@@ -2,11 +2,13 @@ package com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Rep
 
 import com.placeholder.bookingapplication.R;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.RemoteSourceImplementation;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.Source;
 
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Bean.Result;
+
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 
 import java.util.Optional;
@@ -36,7 +38,7 @@ public class RepositoryImplementation implements SignInRepository {
     */
 
     @Override
-    public Result getUserInformation(String userName, String password) {
+    public Result<User> getUserInformation(String userName, String password) {
         return localSource.getUserInformation(userName, password);
     }
 }

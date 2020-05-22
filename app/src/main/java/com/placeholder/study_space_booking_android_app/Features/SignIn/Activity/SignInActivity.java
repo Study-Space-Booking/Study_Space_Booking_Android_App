@@ -12,11 +12,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.placeholder.bookingapplication.R;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.User;
+import com.placeholder.study_space_booking_android_app.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.Features.Register.Activity.RegisterActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Repository.RepositoryImplementation;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Bean.Result;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 
@@ -34,7 +36,8 @@ public class SignInActivity extends Activity {
         //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
-        LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager);
+        final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
+        LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
         SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
         final SignInUseCases signInUseCases = SignInUseCases.getInstance(repository);
 
@@ -80,9 +83,9 @@ public class SignInActivity extends Activity {
     public void signIn(View v, SignInUseCases signInUseCases) {
         String userName = editUserName.getText().toString();
         String password =  editPassword.getText().toString();
-        Result result = signInUseCases.signIn(userName, password);
+        Result<User> result = signInUseCases.signIn(userName, password);
         if(result instanceof Result.Handle) {
-            Exception exception = ((Result.Handle) result).getMessage();
+            Exception exception = ((Result.Handle) result).getException();
             Toast.makeText(SignInActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(SignInActivity.this, "sign in", Toast.LENGTH_LONG).show();

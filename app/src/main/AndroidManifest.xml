@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Features.SignIn.Activity.SignInActivity"
+            android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"></activity>
+        <activity
+            android:name=".Features.SignIn.Activity.SignInActivity"
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".Features.Register.Activity.RegisterActivity"
             android:label="@string/title_activity_sign_in" />

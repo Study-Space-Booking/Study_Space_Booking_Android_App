@@ -6,7 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.placeholder.study_space_booking_android_app.Core.Beans.UserBean;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 
 
 public class DBUserInformationManager {
@@ -45,7 +46,7 @@ public class DBUserInformationManager {
         return result;
     }
 
-    public boolean insertUserInformation(UserBean user) throws SQLException {
+    public boolean insertUserInformation(NormalUser user) throws SQLException {
         if(!valid()) {
             return false;
         } else {
@@ -84,7 +85,7 @@ public class DBUserInformationManager {
         return result;
     }
 
-    public boolean updateUserInformation(UserBean user) {
+    public boolean updateUserInformation(NormalUser user) {
         SQLiteDatabase db = tsDbHelper.open();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.USER_COLUMN_USERNAME, user.getUserName());
@@ -100,7 +101,7 @@ public class DBUserInformationManager {
         return true;
     }
 
-    public int deleteUser(UserBean user) {
+    public int deleteUser(NormalUser user) {
         SQLiteDatabase db = tsDbHelper.open();
         return db.delete(
                 DatabaseHelper.TABLE_USER,

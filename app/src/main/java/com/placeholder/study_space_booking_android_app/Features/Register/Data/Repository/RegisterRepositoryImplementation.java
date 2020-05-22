@@ -1,8 +1,9 @@
 package com.placeholder.study_space_booking_android_app.Features.Register.Data.Repository;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Features.Register.Data.Sources.RegisterLocalSource;
 import com.placeholder.study_space_booking_android_app.Features.Register.Data.Sources.RegisterRemoteSource;
-import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Bean.Result;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
 
@@ -32,7 +33,7 @@ public class RegisterRepositoryImplementation implements RegisterRepository {
     }
 
     @Override
-    public Result register(String userName, String password) {
+    public Result<NormalUser> register(String userName, String password) {
         return registerLocalSource.register(userName, password);
     }
 }

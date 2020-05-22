@@ -3,8 +3,9 @@ package com.placeholder.study_space_booking_android_app.Features.Register.Logic.
 import android.os.ResultReceiver;
 
 import com.placeholder.bookingapplication.R;
-import com.placeholder.study_space_booking_android_app.Core.Beans.UserBean;
-import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Bean.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
@@ -24,7 +25,7 @@ public class RegisterUseCases {
         return instance;
     }
 
-    public Result register(String userName, String password, String confirmPassword) {
+    public Result<NormalUser> register(String userName, String password, String confirmPassword) {
         if(userName == null || password == null || confirmPassword == null) {
             return new Result.Handle(new IllegalArgumentException("Check user information"));
         } else if(!passwordMatch(password, confirmPassword)) {

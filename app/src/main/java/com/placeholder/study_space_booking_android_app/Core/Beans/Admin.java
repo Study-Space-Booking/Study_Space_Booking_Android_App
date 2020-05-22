@@ -1,16 +1,15 @@
 package com.placeholder.study_space_booking_android_app.Core.Beans;
 
-public class Admin {
+public class Admin extends User{
+    /*
     Integer id;
     String name;
     String Password;
-
+    */
     public Admin(Integer id, String name, String password) {
-        this.id = id;
-        this.name = name;
-        Password = password;
+        super(id, name, password);
     }
-
+    /*
     public Integer getId() {
         return id;
     }
@@ -34,4 +33,5 @@ public class Admin {
     public void setPassword(String password) {
         Password = password;
     }
+    */
 }

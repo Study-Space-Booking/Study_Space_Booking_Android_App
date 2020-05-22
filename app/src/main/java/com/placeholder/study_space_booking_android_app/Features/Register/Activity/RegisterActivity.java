@@ -15,10 +15,12 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.placeholder.bookingapplication.R;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.Features.Register.Data.Repository.RegisterRepositoryImplementation;
 import com.placeholder.study_space_booking_android_app.Features.Register.Data.Sources.RegisterLocalSource;
-import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Bean.Result;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases.RegisterUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
@@ -37,7 +39,8 @@ public class RegisterActivity extends Activity {
         //Toolbar toolbar = findViewById(R.id.register_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
-        RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance(dbUserInformationManager);
+        final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
+        RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance(dbUserInformationManager, dbAdminManager);
         RegisterRepository registerRepository = RegisterRepositoryImplementation.getInstance(registerLocalSource, null);
         final RegisterUseCases registerUseCases = RegisterUseCases.getInstance(registerRepository);
 
@@ -71,9 +74,9 @@ public class RegisterActivity extends Activity {
         String userName = editUserName.getText().toString();
         String password =  editPassword.getText().toString();
         String confirmPassword = editConfirmPassword.getText().toString();
-        Result result = registerUseCases.register(userName, password, confirmPassword);
+        Result<NormalUser> result = registerUseCases.register(userName, password, confirmPassword);
         if(result instanceof Result.Handle) {
-            Exception exception = ((Result.Handle) result).getMessage();
+            Exception exception = ((Result.Handle) result).getException();
             Toast.makeText(RegisterActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(RegisterActivity.this, "register", Toast.LENGTH_LONG).show();

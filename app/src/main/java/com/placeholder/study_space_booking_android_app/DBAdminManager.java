@@ -52,7 +52,7 @@ public class DBAdminManager {
         } else {
             SQLiteDatabase db = tsDbHelper.open();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(DatabaseHelper.TABLE_ADMIN_USERNAME, a.getName());
+            contentValues.put(DatabaseHelper.TABLE_ADMIN_USERNAME, a.getUserName());
             contentValues.put(DatabaseHelper.TABLE_ADMIN_PASSWORD, a.getPassword());
 
             long result = db.insert(DatabaseHelper.TABLE_ADMIN_NAME, null, contentValues);
@@ -86,7 +86,7 @@ public class DBAdminManager {
     public boolean updateAdmin(Admin a) {
         SQLiteDatabase db = tsDbHelper.open();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.TABLE_ADMIN_USERNAME, a.getName());
+        contentValues.put(DatabaseHelper.TABLE_ADMIN_USERNAME, a.getUserName());
         contentValues.put(DatabaseHelper.TABLE_ADMIN_PASSWORD, a.getPassword());
         //contentValues.put(DatabaseHelper.USER_COLUMN_ROLE, user.isAdministrator().toString());
         db.update(
