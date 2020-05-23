@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -22,17 +25,20 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sour
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 
-public class SignInActivity extends Activity {
+public class SignInActivity extends AppCompatActivity {
     EditText editUserName;
     EditText editPassword;
-    Button registerButton;
     Button signInButton;
     Button showButton;
+    TextView textView;
+    //Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //toolbar = findViewById(R.id.toolbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        //setSupportActionBar(toolbar);
         //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
@@ -46,12 +52,11 @@ public class SignInActivity extends Activity {
 
         editUserName = (EditText)findViewById(R.id.username_sign_in);
         editPassword = (EditText)findViewById(R.id.password_sign_in);
-
+        textView = (TextView)findViewById(R.id.go_to_register);
         signInButton = (Button) findViewById(R.id.button_sign_in);
         showButton = (Button) findViewById(R.id.button_show);
-        registerButton = (Button) findViewById(R.id.button_register);
 
-        registerButton.setOnClickListener(
+        textView.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
