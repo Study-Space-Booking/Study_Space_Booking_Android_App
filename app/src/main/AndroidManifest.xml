@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.placeholder.study_space_booking_android_app">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Features.SignIn.Activity.SignInActivity"
-            android:label="@string/title_activity_login" />
+            android:label="Sign in" />
         <activity
             android:name=".Features.Register.Activity.RegisterActivity"
             android:label="Register" />
@@ -23,5 +22,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.placeholder.study_space_booking_android_app.R;
@@ -27,11 +28,14 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editConfirmPassword;
     Button registerButton;
     Button showButton;
+    //Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //toolbar = findViewById(R.id.toolbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        //setSupportActionBar(toolbar);
         //Toolbar toolbar = findViewById(R.id.register_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();

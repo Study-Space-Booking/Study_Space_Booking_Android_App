@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +12,12 @@ import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 
 public class MainActivity extends AppCompatActivity {
-
+    //private Toolbar toolbar;
     // private appApi mApi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button_go_to_sign_in);
