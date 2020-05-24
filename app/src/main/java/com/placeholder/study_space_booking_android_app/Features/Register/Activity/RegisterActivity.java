@@ -28,22 +28,22 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editConfirmPassword;
     Button registerButton;
     Button showButton;
-    //Toolbar toolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         //Toolbar toolbar = findViewById(R.id.register_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
         final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
 
-        RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance(dbUserInformationManager, dbAdminManager);
-        RegisterRepository registerRepository = RegisterRepositoryImplementation.getInstance(registerLocalSource, null);
-        final RegisterUseCases registerUseCases = RegisterUseCases.getInstance(registerRepository);
+        //RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance();
+        //RegisterRepository registerRepository = RegisterRepositoryImplementation.getInstance();
+        final RegisterUseCases registerUseCases = RegisterUseCases.getInstance();
 
         editUserName = (EditText)findViewById(R.id.username_register);
         editPassword = (EditText)findViewById(R.id.password_register);

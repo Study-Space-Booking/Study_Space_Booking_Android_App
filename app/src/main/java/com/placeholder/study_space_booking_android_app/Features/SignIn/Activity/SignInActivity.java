@@ -31,23 +31,23 @@ public class SignInActivity extends AppCompatActivity {
     Button signInButton;
     Button showButton;
     TextView textView;
-    //Toolbar toolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
         dbUserInformationManager.initialize(this);
         final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
         dbAdminManager.initialize(this);
-        LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
-        SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
-        final SignInUseCases signInUseCases = SignInUseCases.getInstance(repository);
+        //LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
+        //SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
+        final SignInUseCases signInUseCases = SignInUseCases.getInstance();
 
 
         editUserName = (EditText)findViewById(R.id.username_sign_in);

@@ -2,6 +2,7 @@ package com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Us
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
+import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Repository.RepositoryImplementation;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 
 import java.util.Optional;
@@ -15,9 +16,9 @@ public class SignInUseCases {
         this.signInRepository = signInRepository;
     }
 
-    public static SignInUseCases getInstance(SignInRepository signInRepository) {
+    public static SignInUseCases getInstance() {
         if(instance == null) {
-            instance = new SignInUseCases(signInRepository);
+            instance = new SignInUseCases(RepositoryImplementation.getInstance());
         }
         return instance;
     }

@@ -20,10 +20,9 @@ public class RegisterLocalSource implements RegisterSource {
         this.dbAdminManager = dbAdminManager;
     }
 
-    public static RegisterLocalSource getInstance(DBUserInformationManager dbUserInformationManager,
-                                                  DBAdminManager dbAdminManager) {
+    public static RegisterLocalSource getInstance() {
         if(instance == null) {
-            instance = new RegisterLocalSource(dbUserInformationManager, dbAdminManager);
+            instance = new RegisterLocalSource(DBUserInformationManager.getInstance(), DBAdminManager.getInstance());
         }
         return instance;
     }

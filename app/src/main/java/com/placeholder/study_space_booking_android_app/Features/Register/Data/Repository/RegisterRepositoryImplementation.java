@@ -18,10 +18,9 @@ public class RegisterRepositoryImplementation implements RegisterRepository {
         this.registerRemoteSource = registerRemoteSource;
     }
 
-    public static RegisterRepositoryImplementation getInstance(RegisterLocalSource registerLocalSource,
-                                                               RegisterRemoteSource registerRemoteSource) {
+    public static RegisterRepositoryImplementation getInstance() {
         if(instance == null) {
-            instance = new RegisterRepositoryImplementation(registerLocalSource, registerRemoteSource);
+            instance = new RegisterRepositoryImplementation(RegisterLocalSource.getInstance(), RegisterRemoteSource.getInstance());
         }
         return instance;
     }
