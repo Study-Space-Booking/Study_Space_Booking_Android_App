@@ -32,8 +32,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        toolbar = findViewById(R.id.toolbar);
+
         super.onCreate(savedInstanceState);
+        toolbar = findViewById(R.id.toolbar);
         setContentView(R.layout.activity_register);
         setSupportActionBar(toolbar);
         //Toolbar toolbar = findViewById(R.id.register_toolbar);

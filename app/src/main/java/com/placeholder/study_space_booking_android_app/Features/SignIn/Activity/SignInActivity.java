@@ -34,9 +34,9 @@ public class SignInActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        toolbar = findViewById(R.id.toolbar);
+    protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
+        toolbar = findViewById(R.id.toolbar);
         setContentView(R.layout.activity_sign_in);
         setSupportActionBar(toolbar);
         //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);

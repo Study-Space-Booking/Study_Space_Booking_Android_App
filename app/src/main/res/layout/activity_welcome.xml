@@ -13,8 +13,8 @@
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_above="@id/buttom_navigation"
-        app:layout_constraintBottom_toTopOf="@+id/buttom_navigation"
+        android:layout_above="@id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/include5" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/buttom_navigation"
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
