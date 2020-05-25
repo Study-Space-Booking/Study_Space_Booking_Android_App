@@ -3,19 +3,24 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.placeholder.study_space_booking_android_app.R;
 
 import java.util.Calendar;
 
-public class BookSeatActivity extends Activity implements
+public class MacBookSeatActivity extends AppCompatActivity implements
         View.OnClickListener {
 
 
+    private static String TAG = "BookSeatActivity";
     Button btnDatePicker, btnTimePicker, btnDatePickerTo, btnTimePickerTo;
     EditText txtDate, txtTime, txtDateTo, txtTimeTo;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -40,6 +45,8 @@ public class BookSeatActivity extends Activity implements
         btnTimePicker.setOnClickListener(this);
         btnDatePickerTo.setOnClickListener(this);
         btnTimePickerTo.setOnClickListener(this);
+
+        Log.d(TAG, "on Create method called"); // log
 
 
     }
