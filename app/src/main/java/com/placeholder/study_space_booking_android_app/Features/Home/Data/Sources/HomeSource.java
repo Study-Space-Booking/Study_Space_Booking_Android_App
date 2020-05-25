@@ -10,4 +10,5 @@ public interface HomeSource {
     Result<List<TimeSlot>> getAllBookings(NormalUser user);
     Result<List<TimeSlot>> getHistory(NormalUser user);
     Result<TimeSlot> callOffBooking(TimeSlot timeSlot);
+    Result<String> getPlaceName(Integer placeId);
 }

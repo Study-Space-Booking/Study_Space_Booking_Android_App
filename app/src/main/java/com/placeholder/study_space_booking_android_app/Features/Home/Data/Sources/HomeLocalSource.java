@@ -6,6 +6,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBLogHistoryManager;
+import com.placeholder.study_space_booking_android_app.DBPlaceManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.DatabaseHelper;
 
@@ -16,15 +17,22 @@ public class HomeLocalSource implements HomeSource{
     private static volatile HomeLocalSource instance;
     private final DBLogHistoryManager dbLogHistoryManager;
     private final DBTimeSlotManager dbTimeSlotManager;
+    private final DBPlaceManager dbPlaceManager;
 
 
-    private HomeLocalSource(DBLogHistoryManager dbLogHistoryManager, DBTimeSlotManager dbTimeSlotManager) {
+    private HomeLocalSource(DBLogHistoryManager dbLogHistoryManager,
+                            DBTimeSlotManager dbTimeSlotManager, DBPlaceManager dbPlaceManager) {
         this.dbLogHistoryManager = dbLogHistoryManager;
         this.dbTimeSlotManager = dbTimeSlotManager;
+        this.dbPlaceManager = dbPlaceManager;
     }
     public static HomeLocalSource getInstance() {
         if(instance == null) {
-            instance = new HomeLocalSource(DBLogHistoryManager.getInstance(), DBTimeSlotManager.getInstance());
+            instance = new HomeLocalSource(
+                    DBLogHistoryManager.getInstance(),
+                    DBTimeSlotManager.getInstance(),
+                    DBPlaceManager.getInstance()
+            );
         }
         return instance;
     }
@@ -102,6 +110,16 @@ public class HomeLocalSource implements HomeSource{
             } else {
                 return new Result.Accepted<>(timeSlot);
             }
+        } catch (Exception exception) {
+            return new Result.Handle(exception);
+        }
+    }
+
+    @Override
+    public Result<String> getPlaceName(Integer placeId) {
+        try{
+            String result = dbPlaceManager.getPlaceName(placeId);
+            return new Result.Accepted<String>(result);
         } catch (Exception exception) {
             return new Result.Handle(exception);
         }

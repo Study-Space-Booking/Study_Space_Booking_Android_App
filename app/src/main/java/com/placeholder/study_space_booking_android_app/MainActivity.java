@@ -12,14 +12,17 @@ import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //private Toolbar toolbar;
+    private Toolbar toolbar;
     // private appApi mApi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.include);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Welcome");
+
         Button button = (Button) findViewById(R.id.button_go_to_sign_in);
         button.setOnClickListener(
                 new View.OnClickListener() {

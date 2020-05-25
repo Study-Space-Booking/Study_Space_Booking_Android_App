@@ -1,9 +1,9 @@
 package com.placeholder.study_space_booking_android_app.Features.SignIn.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +14,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.placeholder.study_space_booking_android_app.Features.BookSeat.MacBookSeatActivity;
-import com.placeholder.study_space_booking_android_app.Features.Place.PlaceActivity;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.Features.Register.Activity.RegisterActivity;
+import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Repository.RepositoryImplementation;
+import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
+import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 
 public class SignInActivity extends AppCompatActivity {
@@ -31,14 +34,16 @@ public class SignInActivity extends AppCompatActivity {
     Button showButton;
     TextView textView;
     Toolbar toolbar;
-    private final String TAG = "SignInActivity";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolbar = findViewById(R.id.toolbar);
         setContentView(R.layout.activity_sign_in);
+        toolbar = findViewById(R.id.include3);
+
+
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.title_activity_sign_in);
         //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
@@ -96,7 +101,12 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(SignInActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(SignInActivity.this, "sign in", Toast.LENGTH_LONG).show();
-            Log.d(TAG, "successfully signed in");
+
+            if(((Result.Accepted<User>)result).getModel() instanceof NormalUser) {
+                Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
+                startActivity(intent);
+            }
+
         }
     }
 
