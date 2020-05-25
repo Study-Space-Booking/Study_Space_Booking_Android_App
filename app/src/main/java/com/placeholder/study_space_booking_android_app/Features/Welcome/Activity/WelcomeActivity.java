@@ -7,22 +7,19 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
 import com.placeholder.study_space_booking_android_app.R;
 
 public class WelcomeActivity extends AppCompatActivity {
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-
-    }
+    public FragmentManager fragmentManager = getSupportFragmentManager();
+    public FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    private Toolbar toolbar;
 
     private BottomNavigationView.OnNavigationItemReselectedListener navigationItemReselectedListener =
             new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -34,7 +31,29 @@ public class WelcomeActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).commit();
                 }
             };
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
+
+        toolbar = findViewById(R.id.include5);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Welcome");
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        if(findViewById(R.id.fragment_container) != null) {
+            if(savedInstanceState == null) {
+                BottomNavigationView bottomNavigationView = findViewById(R.id.buttom_navigation);
+                bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
+                HomeFragment homeFragment = new HomeFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+            }
+        }
+    }
 }

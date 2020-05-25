@@ -36,4 +36,8 @@ public class HomeUseCases {
     public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
         return homeEepository.callOffBooking(timeSlot);
     }
+
+    public Result<String> getPlaceName(Integer placeId) {
+        return homeEepository.getPlaceName(placeId);
+    }
 }

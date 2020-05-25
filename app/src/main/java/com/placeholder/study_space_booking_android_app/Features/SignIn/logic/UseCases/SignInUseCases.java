@@ -10,7 +10,7 @@ import java.util.Optional;
 public class SignInUseCases {
     private static volatile SignInUseCases instance;
     private final SignInRepository signInRepository;
-    public User user = null;
+    public static User user = null;
 
     private SignInUseCases(SignInRepository signInRepository) {
         this.signInRepository = signInRepository;

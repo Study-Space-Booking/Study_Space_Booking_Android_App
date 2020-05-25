@@ -1,5 +1,6 @@
 package com.placeholder.study_space_booking_android_app.Features.Register.Activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -12,14 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
-import com.placeholder.study_space_booking_android_app.Features.Register.Data.Repository.RegisterRepositoryImplementation;
-import com.placeholder.study_space_booking_android_app.Features.Register.Data.Sources.RegisterLocalSource;
-import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases.RegisterUseCases;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -32,11 +31,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        toolbar = findViewById(R.id.toolbar);
         setContentView(R.layout.activity_register);
+        toolbar = findViewById(R.id.include2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.action_register);
         //Toolbar toolbar = findViewById(R.id.register_toolbar);
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
@@ -83,6 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(RegisterActivity.this, "register", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RegisterActivity.this, SignInActivity.class);
+            startActivity(intent);
         }
     }
 

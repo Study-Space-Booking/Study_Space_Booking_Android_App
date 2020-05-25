@@ -39,4 +39,9 @@ public class HomeRepositoryImplementation implements HomeRepository {
     public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
         return homeLocalSource.callOffBooking(timeSlot);
     }
+
+    @Override
+    public Result<String> getPlaceName(Integer placeId) {
+        return homeLocalSource.getPlaceName(placeId);
+    }
 }

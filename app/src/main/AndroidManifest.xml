@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Features.Welcome.Activity.WelcomeActivity"
+            android:label="Welcome" />
+        <activity
             android:name=".Features.SignIn.Activity.SignInActivity"
             android:label="Sign in" />
         <activity
