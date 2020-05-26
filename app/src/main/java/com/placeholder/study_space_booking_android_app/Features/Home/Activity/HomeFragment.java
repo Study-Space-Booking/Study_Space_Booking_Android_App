@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment {
         currentCredit = (TextView) view.findViewById(R.id.current_credit);
         history = (TextView) view.findViewById(R.id.go_to_history);
         showBookings = (TextView)view.findViewById(R.id.show_bookings);
-
         currentCredit.setText(((NormalUser)SignInUseCases.user).getCredit().toString());
         /*
         List<TimeSlot> bookings = new ArrayList<>();
@@ -70,14 +69,14 @@ public class HomeFragment extends Fragment {
         bookings.add(new TimeSlot(
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
         );
-        */
 
-        //list = Arrays.asList(getResources().getStringArray(R.array.list));
 
-        Result<List<TimeSlot>> result = HOME_USE_CASES.getAllBookings((NormalUser) SignInUseCases.user);
+        List list = Arrays.asList(getResources().getStringArray(R.array.list)); */
+
+        Result<List<TimeSlot>> result = HOME_USE_CASES.getAllBookings((NormalUser) SignInUseCases.user); // get all bookings of a normal user
 
         if(result instanceof Result.Handle) {
-            showBookings.setText(((Result.Handle) result).getException().getMessage());
+            showBookings.setText(((Result.Handle) result).getException().getMessage()); // show the exception in the textbox
             homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(new ArrayList<TimeSlot>());
             //recyclerView.setAdapter(homeRecyclerViewAdapter);
         } else {

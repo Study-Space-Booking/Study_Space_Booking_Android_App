@@ -30,7 +30,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booking, parent, false);
+        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(parent.getContext()).
+                        inflate(R.layout.item_booking, parent, false);
         HomeViewHolder homeViewHolder = new HomeViewHolder(linearLayout);
         return homeViewHolder;
     }

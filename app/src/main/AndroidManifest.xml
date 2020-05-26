@@ -17,6 +17,12 @@
         <activity
             android:name=".Features.Register.Activity.RegisterActivity"
             android:label="Register" />
+        <activity
+            android:name=".Features.BookSeat.MacBookSeatActivity"
+            android:label="Mac Commons Book" />
+        <activity
+            android:name=".Features.BookSeat.PCBookSeatActivity"
+            android:label="PC Commons Book" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

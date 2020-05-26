@@ -29,16 +29,16 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookseat);
+        setContentView(R.layout.activity_pcbookseat);
 
-        btnDatePicker = (Button) findViewById(R.id.btn_date);
-        btnTimePicker = (Button) findViewById(R.id.btn_time);
-        txtDate = (EditText) findViewById(R.id.in_date);
-        txtTime = (EditText) findViewById(R.id.in_time);
-        btnDatePickerTo = (Button) findViewById(R.id.btn_dateto);
-        btnTimePickerTo = (Button) findViewById(R.id.btn_timeto);
-        txtDateTo = (EditText) findViewById(R.id.in_dateto);
-        txtTimeTo = (EditText) findViewById(R.id.in_timeto);
+        btnDatePicker = (Button) findViewById(R.id.btn_datepc);
+        btnTimePicker = (Button) findViewById(R.id.btn_timepc);
+        txtDate = (EditText) findViewById(R.id.in_datepc);
+        txtTime = (EditText) findViewById(R.id.in_timepc);
+        btnDatePickerTo = (Button) findViewById(R.id.btn_datetopc);
+        btnTimePickerTo = (Button) findViewById(R.id.btn_timetopc);
+        txtDateTo = (EditText) findViewById(R.id.in_datetopc);
+        txtTimeTo = (EditText) findViewById(R.id.in_timetopc);
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);

@@ -1,5 +1,4 @@
 package com.placeholder.study_space_booking_android_app.Features.BookSeat;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -30,7 +29,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookseat);
+        setContentView(R.layout.activity_macbookseat);
 
         btnDatePicker = (Button) findViewById(R.id.btn_date);
         btnTimePicker = (Button) findViewById(R.id.btn_time);
