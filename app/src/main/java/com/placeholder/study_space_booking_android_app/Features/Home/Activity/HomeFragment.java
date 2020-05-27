@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.Home.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +58,16 @@ public class HomeFragment extends Fragment {
         currentCredit = (TextView) view.findViewById(R.id.current_credit);
         history = (TextView) view.findViewById(R.id.go_to_history);
         showBookings = (TextView)view.findViewById(R.id.show_bookings);
-        currentCredit.setText(((NormalUser)SignInUseCases.user).getCredit().toString());
+        currentCredit.setText("credit: " + ((NormalUser)SignInUseCases.user).getCredit().toString());
+        history.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, HistoryActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
         /*
         List<TimeSlot> bookings = new ArrayList<>();
         bookings.add(new TimeSlot(
@@ -70,8 +80,9 @@ public class HomeFragment extends Fragment {
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
         );
 
+        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(bookings);
+        */
 
-        List list = Arrays.asList(getResources().getStringArray(R.array.list)); */
 
         Result<List<TimeSlot>> result = HOME_USE_CASES.getAllBookings((NormalUser) SignInUseCases.user); // get all bookings of a normal user
 
@@ -83,7 +94,6 @@ public class HomeFragment extends Fragment {
             homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(((Result.Accepted<List<TimeSlot>>) result).getModel());
             //homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(bookings);
         }
-
         recyclerView.setAdapter(homeRecyclerViewAdapter);
         return view;
     }

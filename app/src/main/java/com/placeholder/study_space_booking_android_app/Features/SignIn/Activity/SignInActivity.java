@@ -39,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        toolbar = findViewById(R.id.include3);
+        toolbar = findViewById(R.id.toolbar_sign_in);
 
 
         setSupportActionBar(toolbar);

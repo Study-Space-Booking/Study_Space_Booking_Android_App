@@ -40,8 +40,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
         final String bookingSeat = "seat: " + bookings.get(position).getSeatId().toString();
-        final String bookingTime = "time: " + bookings.get(position).getBookStartTime().toString() +
-                " to " + bookings.get(position).getBookEndTime().toString();
+        final String bookingTime = "time: " + bookings.get(position).getBookStartTime() +
+                " to " + bookings.get(position).getBookEndTime();
         String bookingState = "status: future";
 
         if(result instanceof Result.Handle) {
@@ -49,6 +49,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
         } else {
             ((HomeViewHolder) holder).title.setText(((Result.Accepted<String>)result).getModel());
         }
+
+
         final TimeSlot timeSlot = bookings.get(position);
         //((HomeViewHolder) holder).title.setText("place");
         ((HomeViewHolder) holder).seat.setText(bookingSeat);
@@ -88,7 +90,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
             this.linearLayout = linearLayout;
             title = (TextView) linearLayout.findViewById(R.id.item_booking_title);
             seat = (TextView) linearLayout.findViewById(R.id.item_booking_seat);
-            time = (TextView) linearLayout.findViewById(R.id.item_booking_state);
+            time = (TextView) linearLayout.findViewById(R.id.item_booking_time);
             state = (TextView) linearLayout.findViewById(R.id.item_booking_state);
             callOffBooking = (Button) linearLayout.findViewById(R.id.call_off_booking_button);
         }

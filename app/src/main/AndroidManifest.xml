@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Features.Home.Activity.HistoryActivity"
+            android:label="History"/>
+        <activity
             android:name=".Features.Welcome.Activity.WelcomeActivity"
             android:label="Welcome" />
         <activity

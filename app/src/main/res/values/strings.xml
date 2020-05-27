@@ -23,4 +23,5 @@
         <item>item 4</item>
         <item>item 5</item>
     </string-array>>
+    <string name="history">history</string>
 </resources>

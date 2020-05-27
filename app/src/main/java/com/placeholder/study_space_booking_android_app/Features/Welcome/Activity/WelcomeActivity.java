@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             selectedFragment = new PlaceFragment();
                             break;
                     }
-                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).commit();
+                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
                 }
             };
 
@@ -44,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        toolbar = findViewById(R.id.include5);
+        toolbar = findViewById(R.id.toolbar_welcome);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Welcome");
 
@@ -53,7 +53,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         if(findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState == null) {
-                BottomNavigationView bottomNavigationView = findViewById(R.id.buttom_navigation);
+                BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
                 bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
                 HomeFragment homeFragment = new HomeFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
