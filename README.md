@@ -9,3 +9,4 @@ Project hours:
 | 4. | Learning Android Studio and SQlite | 16/5 | 8 | 8 | Geting familiar of the documentations |
 | 5. | Implementing database | 17/5-19/5 | 12 | 12 | Implementing database helper and database manager |
 | 6. | Starting to implement UI design | 20/5 | 4 | 4 | Using Material Design open-source package |
+| 7. |  /Implementing the sign in and register features | 21/5- 22/5 |  | 6 | Implementing the interfaces |
