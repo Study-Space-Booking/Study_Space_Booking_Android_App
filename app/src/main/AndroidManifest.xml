@@ -21,10 +21,10 @@
             android:name=".Features.Register.Activity.RegisterActivity"
             android:label="Register" />
         <activity
-            android:name=".Features.BookSeat.MacBookSeatActivity"
+            android:name=".Features.BookSeat.Activity.MacBookSeatActivity"
             android:label="Mac Commons Book" />
         <activity
-            android:name=".Features.BookSeat.PCBookSeatActivity"
+            android:name=".Features.BookSeat.Activity.PCBookSeatActivity"
             android:label="PC Commons Book" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.placeholder.study_space_booking_android_app.Features.BookSeat;
+package com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;

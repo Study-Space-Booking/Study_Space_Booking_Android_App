@@ -2,7 +2,6 @@ package com.placeholder.study_space_booking_android_app.Features.Place.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,8 +10,8 @@ import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
-import com.placeholder.study_space_booking_android_app.Features.BookSeat.MacBookSeatActivity;
-import com.placeholder.study_space_booking_android_app.Features.BookSeat.PCBookSeatActivity;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity.MacBookSeatActivity;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity.PCBookSeatActivity;
 import com.placeholder.study_space_booking_android_app.R;
 
 
