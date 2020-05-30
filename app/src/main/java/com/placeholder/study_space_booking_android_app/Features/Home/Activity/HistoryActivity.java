@@ -22,6 +22,7 @@ public class HistoryActivity extends AppCompatActivity {
     private ListView listView;
     private HistoryAdapter historyAdapter;
     private TextView historyInformation;
+    private static final String TAG = "HistoryActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

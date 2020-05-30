@@ -88,6 +88,18 @@ public class DBTimeSlotManager {
         return result;
     }
 
+    public Cursor getInBetweenTimeSlot(Integer startTime, Integer endTime, Integer placeId) {
+        if(!valid()) return null;
+
+        SQLiteDatabase database = tsDbhelper.open();
+        String strSQL = "select * from " + DatabaseHelper.TABLE_TIMESLOT_NAME + " where " +
+                DatabaseHelper.TABLE_TIMESLOT_PLACE_ID + " =? " + " and " +
+                DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME + " <?" + " and " +
+                DatabaseHelper.TABLE_TIMESLOT_BOOKEND_TIME + " >?";
+        Cursor result = database.rawQuery(strSQL, new String[]{placeId.toString(), endTime.toString(), startTime.toString()});
+        return result;
+    }
+
     public boolean updateTimeSlot(TimeSlot t) throws SQLiteException {
         if (!valid()) return false;
         SQLiteDatabase database = tsDbhelper.open();

@@ -34,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
     Button showButton;
     TextView textView;
     Toolbar toolbar;
+    private static final String TAG = "SignInActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

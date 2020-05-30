@@ -1,19 +1,30 @@
 package com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases.BookSeatUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.zip.Inflater;
 
 public class MacBookSeatActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -25,6 +36,11 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     private int mYear, mMonth, mDay, mHour, mMinute;
     private int mYearTo, mMonthTo, mDayTo, mHourTo, mMinuteTo;
 
+    private Map<FloatingActionButton, Integer> seatMap;
+    private Map<Integer, FloatingActionButton> buttonMap;
+    private BookSeatUseCases bookSeatUseCases;
+    private FloatingActionButton[] seatButtons;
+    private Button buttonConfirmTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +63,21 @@ public class MacBookSeatActivity extends AppCompatActivity implements
 
         Log.d(TAG, "on Create method called"); // log
 
+        bookSeatUseCases = BookSeatUseCases.getInstance();
 
+        seatButtons = new FloatingActionButton[]{
+                findViewById(R.id.floating_action_button1),
+                findViewById(R.id.floating_action_button2),
+                findViewById(R.id.floating_action_button3),
+                findViewById(R.id.floating_action_button4)
+        };
+
+        for(int i = 0; i < seatButtons.length; i = i + 1) {
+            seatButtons[i].setOnClickListener(this);
+        }
+
+        buttonConfirmTime = (Button) findViewById(R.id.button_confirm_time);
+        buttonConfirmTime.setOnClickListener(this);
     }
 
     @Override
@@ -141,6 +171,61 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                     }, mHourTo, mMinuteTo, false);
             timePickerDialog.show();
         }
+
+        if(v == buttonConfirmTime) {
+            final LoadDialogue loadDialogue = new LoadDialogue(this, R.layout.dialogue_loading);
+            loadDialogue.startDialogue();
+
+            Result<List<Integer>> result = bookSeatUseCases.getOccupiedSeat(startTime, endTime, placeId);
+
+            if(result instanceof Result.Accepted) {
+                List<Integer> seatsOccupied = ((Result.Accepted<List<Integer>>) result).getModel();
+                for(int i = 0; i < seatsOccupied.size(); i = i + 1) {
+                    FloatingActionButton floatingActionButton = buttonMap.get(seatsOccupied.get(i));
+                    floatingActionButton.setBackgroundColor(Color.RED);
+                }
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadDialogue.stopDialogue();
+                    }
+                }, 1000);
+            }
+        }
+        if(v instanceof FloatingActionButton) {
+            Integer seatId = seatMap.get(v);
+            if(bookSeatUseCases.isOccupied(seatId)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setTitle("Seat" + seatId.toString());
+                builder.setMessage("The seat is occupied");
+                builder.show();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                LayoutInflater inflater = this.getLayoutInflater();
+                builder.setView(inflater.inflate(R.layout.dialogue_confirm_booking, null));
+
+                builder.show();
+            }
+        }
     }
+
+    public void getSeats() {
+        Result<List<Integer>> result = bookSeatUseCases.getAllSeatId(bookSeatUseCases.getPlaceId());
+        if(result instanceof Result.Accepted) {
+            List<Integer> seats = ((Result.Accepted<List<Integer>>) result).getModel();
+            seatMap = new HashMap<FloatingActionButton, Integer>();
+            buttonMap = new HashMap<Integer, FloatingActionButton>();
+            for(int i = 0; i < seatButtons.length; i = i + 1) {
+                seatMap.put(seatButtons[i], seats.get(i));
+                buttonMap.put(seats.get(i), seatButtons[i]);
+            }
+
+        }
+    }
+
+
 }
 

@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerButton;
     Button showButton;
     Toolbar toolbar;
+    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

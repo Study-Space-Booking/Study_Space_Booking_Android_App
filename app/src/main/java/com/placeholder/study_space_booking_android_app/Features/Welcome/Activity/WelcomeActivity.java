@@ -21,6 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public FragmentManager fragmentManager = getSupportFragmentManager();
     public FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     private Toolbar toolbar;
+    private static final String TAG = "WelcomeActivity";
 
     private BottomNavigationView.OnNavigationItemReselectedListener navigationItemReselectedListener =
             new BottomNavigationView.OnNavigationItemReselectedListener() {
