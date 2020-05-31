@@ -1,5 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.BookSeat.Data.Repository;
 
+import android.util.Log;
+
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Data.Sources.BookSeatLocalSource;
@@ -42,7 +44,8 @@ public class BookSeatRepositoryImplementation implements BookSeatRepository {
 
     @Override
     public Result<List<TimeSlot>> getAllBooking(Integer startTime, Integer endTime, Integer placeId) {
-        return null;
+        //Log.d("debug", "debgug can see?");
+        return bookSeatLocalSource.getAllBooking(startTime, endTime, placeId);
     }
 
     @Override

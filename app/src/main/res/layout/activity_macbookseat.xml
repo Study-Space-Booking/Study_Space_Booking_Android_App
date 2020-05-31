@@ -157,7 +157,7 @@
         app:layout_constraintVertical_bias="0.748"
         app:srcCompat="@drawable/table" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/floating_action_button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.388" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/floating_action_button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.865" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/floating_action_button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.877" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/floating_action_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

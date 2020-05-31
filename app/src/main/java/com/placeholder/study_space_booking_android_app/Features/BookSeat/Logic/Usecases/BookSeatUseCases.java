@@ -1,6 +1,8 @@
 package com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases;
 
 
+import android.util.Log;
+
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
@@ -39,14 +41,16 @@ public class BookSeatUseCases {
 
     public Result<List<Integer>> getOccupiedSeat(Integer startTime, Integer endTime, Integer placeId) {
         Result<List<TimeSlot>> result = bookSeatRepository.getAllBooking(startTime, endTime, placeId);
-
+        //Log.d("debug", "debgug can see?");
         if(result instanceof Result.Handle) {
+            //Log.d("debug", "debgug can see?");
             return new Result.Handle(new Exception("cannot find booking information"));
         } else {
             List<TimeSlot> bookings = ((Result.Accepted<List<TimeSlot>>) result).getModel();
             List<Integer> seats = new ArrayList<>();
             for(int i = 0; i < bookings.size(); i = i + 1) {
-                seats.add(bookings.get(i).getSeatId());
+                if (bookings.get(i).getBookEndTime() > startTime || bookings.get(i).getBookStartTime() < endTime)
+                    seats.add(bookings.get(i).getSeatId());
             }
             this.seats = seats;
             return new Result.Accepted<>(seats);
@@ -70,5 +74,4 @@ public class BookSeatUseCases {
             return result;
         }
     }
-
 }

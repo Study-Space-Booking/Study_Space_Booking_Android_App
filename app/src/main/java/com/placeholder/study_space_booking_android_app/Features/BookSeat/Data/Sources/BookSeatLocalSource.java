@@ -6,6 +6,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.DatabaseHelper;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity.MacBookSeatActivity;
 
 import java.sql.Time;
 import java.util.ArrayList;
