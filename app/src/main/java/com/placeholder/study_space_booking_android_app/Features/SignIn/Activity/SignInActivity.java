@@ -122,6 +122,8 @@ public class SignInActivity extends AppCompatActivity {
         d.initialize(SignInActivity.this);
         userDB.initialize(SignInActivity.this);
 
+        seatM.initialize(SignInActivity.this);
+
 
         int minutes1 = 5;
         long millis1 = minutes1 * 60 * 1000;
@@ -157,6 +159,10 @@ public class SignInActivity extends AppCompatActivity {
 
         userDB.insertUserInformation(demo);
 
+        seatM.setSeat(s1);
+        seatM.setSeat(s2);
+        seatM.setSeat(s3);
+        seatM.setSeat(s4);
 
         d.setTimeSlot(tmp1);
         d.setTimeSlot(tmp2);
@@ -169,7 +175,7 @@ public class SignInActivity extends AppCompatActivity {
     public void showDB(View v, DBTimeSlotManager d) {
         d.initialize(SignInActivity.this);
 
-        Cursor cursor = d.getTimeSlot(1);
+        Cursor cursor = d.getTimeSlot(4);
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
         } else {

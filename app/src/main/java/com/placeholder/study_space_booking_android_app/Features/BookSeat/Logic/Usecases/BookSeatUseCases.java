@@ -49,7 +49,7 @@ public class BookSeatUseCases {
             List<TimeSlot> bookings = ((Result.Accepted<List<TimeSlot>>) result).getModel();
             List<Integer> seats = new ArrayList<>();
             for(int i = 0; i < bookings.size(); i = i + 1) {
-                if (bookings.get(i).getBookEndTime() > startTime || bookings.get(i).getBookStartTime() < endTime)
+                if (bookings.get(i).getBookEndTime() > startTime && bookings.get(i).getBookStartTime() < endTime)
                     seats.add(bookings.get(i).getSeatId());
             }
             this.seats = seats;

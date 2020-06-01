@@ -3,6 +3,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
+import android.media.DeniedByServerException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateFormat;
@@ -21,6 +22,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases.BookSeatUseCases;
 import com.placeholder.study_space_booking_android_app.R;
@@ -45,14 +47,17 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     EditText txtDate, txtTime, txtDateTo, txtTimeTo;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private int mYearTo, mMonthTo, mDayTo, mHourTo, mMinuteTo;
+
     public DBTimeSlotManager dbTimeSlotManager = DBTimeSlotManager.getInstance();
+    public DBSeatManager dbSeatManager = DBSeatManager.getInstance();
+
     private int mYearc, mMonthc, mDayc, mHourc, mMinutec;
     private int mYearToc, mMonthToc, mDayToc, mHourToc, mMinuteToc;
 
     private int placeId = 1;
 
-    private Map<Button, Integer> seatMap;
-    private Map<Integer, Button> buttonMap;
+    private Map<Button, Integer> seatMap = new HashMap<>();
+    private Map<Integer, Button> buttonMap = new HashMap<>();
     private BookSeatUseCases bookSeatUseCases;
     private Button[] seatButtons = new Button[4];
     private Button buttonConfirmTime;
@@ -77,6 +82,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         btnTimePickerTo.setOnClickListener(this);
 
         dbTimeSlotManager.initialize(this);
+        dbSeatManager.initialize(this);
         Log.d(TAG, "on Create method called"); // log
 
         bookSeatUseCases = BookSeatUseCases.getInstance();
@@ -95,6 +101,8 @@ public class MacBookSeatActivity extends AppCompatActivity implements
 
         buttonConfirmTime = (Button) findViewById(R.id.button_confirm_time);
         buttonConfirmTime.setOnClickListener(this);
+
+        this.getSeats();
     }
 
     @Override
@@ -281,12 +289,15 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     }
 
     public void getSeats() {
+        //Log.d("debug", "get all seats debugging");
         Result<List<Integer>> result = bookSeatUseCases.getAllSeatId(this.placeId);
+        //Log.d("debug", "get all seats debugging");
         if(result instanceof Result.Accepted) {
+
             List<Integer> seats = ((Result.Accepted<List<Integer>>) result).getModel();
-            seatMap = new HashMap<Button, Integer>();
-            buttonMap = new HashMap<Integer, Button>();
+            Log.d("debug", "MAC Activity: the size of the seats" + String.valueOf(seats.size()));
             for(int i = 0; i < seatButtons.length; i = i + 1) {
+                Log.d("debug", "get all seats debugging");
                 seatMap.put(seatButtons[i], seats.get(i));
                 buttonMap.put(seats.get(i), seatButtons[i]);
             }

@@ -39,7 +39,8 @@ public class BookSeatRepositoryImplementation implements BookSeatRepository {
 
     @Override
     public Result<List<Integer>> getAllSeatId(Integer placeId) {
-        return null;
+        //Log.d("debug", "debug at repo implementation");
+        return bookSeatLocalSource.getAllSeatId(placeId);
     }
 
     @Override
