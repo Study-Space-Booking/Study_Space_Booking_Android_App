@@ -126,4 +126,15 @@ public class DBTimeSlotManager {
         return database.delete(DatabaseHelper.TABLE_TIMESLOT_NAME, "Tab_Timeslot_ReportId = ?", new String[] {String.valueOf(id)});
     }
 
+    public Cursor getTimeSlotToUpdate(Integer startTime, Integer gap) { // gap is in minute
+        if(!valid()) return null;
+        //Log.d("debug", "debgug can see?");
+        SQLiteDatabase database = tsDbhelper.open();
+        String strSQL = "select * from " + DatabaseHelper.TABLE_TIMESLOT_NAME + " where " +
+                DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME + " >?";
+        Cursor result = database.rawQuery(strSQL, new String[]{ String.valueOf(startTime - gap * 60)});
+        return result;
+    }
+
+
 }

@@ -32,6 +32,7 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sour
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity {
     EditText editUserName;
@@ -95,6 +96,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         signIn(v, signInUseCases);
+                        startService(new Intent(SignInActivity.this, TSService.class));
                     }
                 }
         );
@@ -125,16 +127,16 @@ public class SignInActivity extends AppCompatActivity {
         seatM.initialize(SignInActivity.this);
 
 
-        int minutes1 = 5;
+        int minutes1 = 0;
         long millis1 = minutes1 * 60 * 1000;
 
-        int minutes2 = 0;
+        int minutes2 = 1;
         long millis2 = minutes2 * 60 * 1000;
 
-        int minutes3 = 20;
+        int minutes3 = 2;
         long millis3 = minutes3 * 60 * 1000;
 
-        int minutes4 = 30;
+        int minutes4 = 3;
         long millis4 = minutes4 * 60 * 1000;
         // define the state of the seat, 0--available, 1--not available, 2--under maintainence
         // 1, 1, 1, 2, System.currentTimeMillis(), System.currentTimeMillis()+millis, null, null, null, null, 0

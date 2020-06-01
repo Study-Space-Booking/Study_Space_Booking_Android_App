@@ -8,6 +8,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".Services.RefreshTS"
+            android:label="Refresh TimeSlot"/>
+
         <activity
             android:name=".Features.Home.Activity.HistoryActivity"
             android:label="History"/>
@@ -33,5 +38,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".Services.TSService"
+            android:enabled="true"/>
     </application>
 </manifest>
