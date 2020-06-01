@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 15;
     public static final String DB_NAME = "SSB.db";
 
     // region TABLE PLACE
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // region TABLE TIMESLOT
     public static final String TABLE_TIMESLOT_NAME = "Tab_Timeslot";
-    public static final String TABLE_TIMESLOT_ID = "Tab_Timeslot_ReportId";
+    public static final String TABLE_TIMESLOT_ID = "Tab_Timeslot_Id";
     public static final String TABLE_TIMESLOT_PLACE_ID = "Tab_Timeslot_PlaceId";
     public static final String TABLE_TIMESLOT_SEAT_ID = "Tab_Timeslot_SeatId";
     public static final String TABLE_TIMESLOT_USER_ID = "Tab_Timeslot_UserId";

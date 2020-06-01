@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 
@@ -44,7 +45,7 @@ public class DBTimeSlotManager {
         return true;
     }
 
-    public Boolean setProbRepo(TimeSlot t) throws SQLiteException {
+    public Boolean setTimeSlot(TimeSlot t) throws SQLiteException {
         if (!valid()) return false;
         SQLiteDatabase database = tsDbhelper.open();
         ContentValues contentValues = new ContentValues();
@@ -78,6 +79,28 @@ public class DBTimeSlotManager {
         return res;
     }
 
+    public Cursor getUserTimeSlot(Integer userId) {
+        if(!valid()) return null;
+
+        SQLiteDatabase database = tsDbhelper.open();
+        String stringSQL = "select * from " + DatabaseHelper.TABLE_TIMESLOT_NAME + " where " +
+                DatabaseHelper.TABLE_TIMESLOT_USER_ID + " =?";
+        Cursor result = database.rawQuery(stringSQL, new String[]{userId.toString()});
+        return result;
+    }
+
+    public Cursor getInBetweenTimeSlot(Integer startTime, Integer endTime, Integer placeId) {
+        if(!valid()) return null;
+        //Log.d("debug", "debgug can see?");
+        SQLiteDatabase database = tsDbhelper.open();
+        String strSQL = "select * from " + DatabaseHelper.TABLE_TIMESLOT_NAME + " where " +
+                DatabaseHelper.TABLE_TIMESLOT_PLACE_ID + " =? " + " and " +
+                DatabaseHelper.TABLE_TIMESLOT_BOOKSTART_TIME + " <?" + " and " +
+                DatabaseHelper.TABLE_TIMESLOT_BOOKEND_TIME + " >?";
+        Cursor result = database.rawQuery(strSQL, new String[]{placeId.toString(), endTime.toString(), startTime.toString()});
+        return result;
+    }
+
     public boolean updateTimeSlot(TimeSlot t) throws SQLiteException {
         if (!valid()) return false;
         SQLiteDatabase database = tsDbhelper.open();
@@ -93,7 +116,7 @@ public class DBTimeSlotManager {
         contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPLEAVE_TIME, t.getTempLeaveTime());
         contentValues.put(DatabaseHelper.TABLE_TIMESLOT_TEMPBACK_TIME, t.getTempBackTime());
         contentValues.put(DatabaseHelper.TABLE_TIMESLOT_STATE, t.getState());
-        database.update(DatabaseHelper.TABLE_TIMESLOT_NAME, contentValues, "Tab_Timeslot_ReportId = ?", new String[] { String.valueOf(t.getId()) });
+        database.update(DatabaseHelper.TABLE_TIMESLOT_NAME, contentValues, "Tab_Timeslot_Id = ?", new String[] { String.valueOf(t.getId()) });
         return true;
     }
 

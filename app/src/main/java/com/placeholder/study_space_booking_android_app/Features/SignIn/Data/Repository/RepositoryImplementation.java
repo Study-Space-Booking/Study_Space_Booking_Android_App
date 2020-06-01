@@ -22,9 +22,9 @@ public class RepositoryImplementation implements SignInRepository {
         this.remoteSource = remoteSource;
     }
 
-    public SignInRepository getInstance(LocalSourceImplementation localSource, RemoteSourceImplementation remoteSource) {
+    public static SignInRepository getInstance() {
         if(instance == null) {
-            instance = new RepositoryImplementation(localSource, remoteSource);
+            instance = new RepositoryImplementation(LocalSourceImplementation.getInstance(), RemoteSourceImplementation.getInstance());
         }
         return instance;
     }

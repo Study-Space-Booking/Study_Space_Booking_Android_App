@@ -35,10 +35,9 @@ public class LocalSourceImplementation implements Source {
         this.dbAdminManager = dbAdminManager;
     }
 
-    public static LocalSourceImplementation getInstance(DBUserInformationManager dbUserInformationManager,
-                                                        DBAdminManager dbAdminManager) {
+    public static LocalSourceImplementation getInstance() {
         if(instance == null) {
-            instance = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
+            instance = new LocalSourceImplementation(DBUserInformationManager.getInstance(), DBAdminManager.getInstance());
         }
         return instance;
     }

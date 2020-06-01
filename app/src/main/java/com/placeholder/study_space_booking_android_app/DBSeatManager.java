@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
 
@@ -62,7 +63,7 @@ public class DBSeatManager {
         Integer placeId = 0;
         try {
             SQLiteDatabase database = sDbhelper.open();
-            String strSQL = "select * from " + DatabaseHelper.TABLE_SEAT_PLACE_ID + " where " +
+            String strSQL = "select * from " + DatabaseHelper.TABLE_SEAT_NAME + " where " +
                     DatabaseHelper.TABLE_SEAT_SEAT_ID + "=?";
             Cursor res = database.rawQuery(strSQL, new String[] {String.valueOf(seatId)});
             if (res.moveToFirst()) {
@@ -71,11 +72,19 @@ public class DBSeatManager {
             res.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            sDbhelper.close();
         }
 
         return placeId;
+    }
+
+    public Cursor getSeatId(Integer placeId) {
+        if (!valid()) return null;
+        Log.d("null", "seatmanager not null");
+        SQLiteDatabase database = sDbhelper.open();
+        String strSQL = "select * from " + DatabaseHelper.TABLE_SEAT_NAME + " where " +
+                DatabaseHelper.TABLE_SEAT_PLACE_ID + " =? ";
+        Cursor result = database.rawQuery(strSQL, new String[]{placeId.toString()});
+        return result;
     }
 
     public boolean updateSeatState(Integer id, Seat s) {
