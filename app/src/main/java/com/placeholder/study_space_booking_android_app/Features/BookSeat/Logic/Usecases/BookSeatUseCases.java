@@ -57,9 +57,9 @@ public class BookSeatUseCases {
         }
     }
 
-    public Result<TimeSlot> confirmBooking(TimeSlot timeSlot) {
-        return bookSeatRepository.insertBooking(timeSlot);
-    }
+//    public Result<TimeSlot> confirmBooking(TimeSlot timeSlot) {
+//        return bookSeatRepository.insertBooking(timeSlot);
+//    }
 
     public boolean isOccupied(Integer seatId) {
         if(seats == null) {
@@ -73,5 +73,9 @@ public class BookSeatUseCases {
             }
             return result;
         }
+    }
+
+    public void bookSeat(TimeSlot t) {
+        bookSeatRepository.insertBooking(t);
     }
 }

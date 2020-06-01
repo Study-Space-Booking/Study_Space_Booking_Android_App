@@ -2,6 +2,7 @@ package com.placeholder.study_space_booking_android_app.Features.BookSeat.Activi
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.DeniedByServerException;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases.BookSeatUseCases;
@@ -53,8 +55,10 @@ public class MacBookSeatActivity extends AppCompatActivity implements
 
     private int mYearc, mMonthc, mDayc, mHourc, mMinutec;
     private int mYearToc, mMonthToc, mDayToc, mHourToc, mMinuteToc;
+    private Integer startTime, endTime;
 
     private int placeId = 1;
+
 
     private Map<Button, Integer> seatMap = new HashMap<>();
     private Map<Integer, Button> buttonMap = new HashMap<>();
@@ -230,7 +234,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             calendar.set(Calendar.HOUR_OF_DAY, mHourc);
             calendar.set(Calendar.MINUTE, mMinutec);
             Date date = calendar.getTime();
-            Integer startTime = (int) (date.getTime()/ 1000);
+            startTime = (int) (date.getTime()/ 1000);
             Log.d("StartTime", String.valueOf(startTime));
 
             // calculating endTime
@@ -242,7 +246,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             calendarTo.set(Calendar.HOUR_OF_DAY, mHourToc);
             calendarTo.set(Calendar.MINUTE, mMinuteToc);
             Date dateTo = calendarTo.getTime();
-            Integer endTime = (int) (dateTo.getTime()/ 1000);
+            endTime = (int) (dateTo.getTime()/ 1000);
             Log.d("EndTime", String.valueOf(endTime));
 
             //
@@ -271,7 +275,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             //Log.d("debug", "debgug can see?");
         }
         else if(v instanceof Button) {
-            Integer seatId = seatMap.get(v);
+            final Integer seatId = seatMap.get(v);
             if(bookSeatUseCases.isOccupied(seatId)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
@@ -280,8 +284,23 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                 builder.show();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                LayoutInflater inflater = this.getLayoutInflater();
-                builder.setView(inflater.inflate(R.layout.dialogue_confirm_booking, null));
+//                LayoutInflater inflater = this.getLayoutInflater();
+//                builder.setView(inflater.inflate(R.layout.dialogue_confirm_booking, null));
+
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        MacBookSeatActivity.this.bookSeat(seatId);
+                        buttonConfirmTime.performClick();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.dismiss();
+                    }
+                });
+                builder.setMessage("Please confirm your booking");
 
                 builder.show();
             }
@@ -303,6 +322,12 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             }
 
         }
+    }
+
+    public void bookSeat(Integer seatId) {
+        TimeSlot book = new TimeSlot(0, this.placeId, seatId, 1, startTime, endTime, 0,0,0,0,1);
+        bookSeatUseCases.bookSeat(book);
+
     }
 
 }

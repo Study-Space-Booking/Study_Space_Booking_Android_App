@@ -13,6 +13,6 @@ public interface BookSeatRepository {
     public Result<TimeSlot> chooseTimeSlot(Integer bookTime, Integer UserId, Integer SeatId, Integer PlaceId);
     Result<List<Integer>> getAllSeatId(Integer placeId);
     Result<List<TimeSlot>> getAllBooking(Integer startTime, Integer endTime, Integer placeId);
-    Result<TimeSlot> insertBooking(TimeSlot timeSlot);
+    void insertBooking(TimeSlot timeSlot);
 
 }

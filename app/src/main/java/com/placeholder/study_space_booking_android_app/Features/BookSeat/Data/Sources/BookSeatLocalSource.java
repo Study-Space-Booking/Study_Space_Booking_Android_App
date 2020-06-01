@@ -80,4 +80,8 @@ public class BookSeatLocalSource {
                 return new Result.Handle(exception);
             }
     }
+
+    public void insertBooking(TimeSlot ts) {
+        dbTimeSlotManager.setTimeSlot(ts);
+    }
 }

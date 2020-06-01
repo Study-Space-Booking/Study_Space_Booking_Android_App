@@ -50,7 +50,7 @@ public class BookSeatRepositoryImplementation implements BookSeatRepository {
     }
 
     @Override
-    public Result<TimeSlot> insertBooking(TimeSlot timeSlot) {
-        return null;
+    public void insertBooking(TimeSlot timeSlot) {
+        bookSeatLocalSource.insertBooking(timeSlot);
     }
 }

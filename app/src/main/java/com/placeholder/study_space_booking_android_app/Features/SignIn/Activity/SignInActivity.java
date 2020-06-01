@@ -128,7 +128,7 @@ public class SignInActivity extends AppCompatActivity {
         int minutes1 = 5;
         long millis1 = minutes1 * 60 * 1000;
 
-        int minutes2 = -10;
+        int minutes2 = 0;
         long millis2 = minutes2 * 60 * 1000;
 
         int minutes3 = 20;
@@ -139,16 +139,16 @@ public class SignInActivity extends AppCompatActivity {
         // define the state of the seat, 0--available, 1--not available, 2--under maintainence
         // 1, 1, 1, 2, System.currentTimeMillis(), System.currentTimeMillis()+millis, null, null, null, null, 0
         TimeSlot tmp1 = new TimeSlot(1, 1, 1, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
-                1, 2, 3, 3, 0);
+                1, 2, 3, 3, 1);
 
         TimeSlot tmp2 = new TimeSlot(2, 1, 2, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
-                1, 2, 3, 3, 0);
+                1, 2, 3, 3, 1);
 
         TimeSlot tmp3 = new TimeSlot(3, 1, 3, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
-                1, 2, 3, 3, 0);
+                1, 2, 3, 3, 1);
 
         TimeSlot tmp4 = new TimeSlot(4, 1, 4, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 0);
+                1, 2, 3, 3, 1);
 
         Seat s1 = new Seat(1, 1);
         Seat s2 = new Seat(2, 1);
