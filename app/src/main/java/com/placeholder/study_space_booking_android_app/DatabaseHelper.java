@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final int DB_VERSION = 17;
+    public static final int DB_VERSION = 20;
     public static final String DB_NAME = "SSB.db";
 
     // region TABLE PLACE

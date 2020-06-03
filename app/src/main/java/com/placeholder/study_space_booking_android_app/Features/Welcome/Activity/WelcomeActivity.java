@@ -1,5 +1,6 @@
 package com.placeholder.study_space_booking_android_app.Features.Welcome.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
 import com.placeholder.study_space_booking_android_app.Features.Place.Activity.PlaceFragment;
+import com.placeholder.study_space_booking_android_app.Features.ScanOption.Activity.ScanOptionActivity;
 import com.placeholder.study_space_booking_android_app.R;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -78,8 +80,10 @@ public class WelcomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_toolbar_camera:
+                startActivity(new Intent(this, ScanOptionActivity.class));
                 break;
             case R.id.item_toolbar_home:
+
                 break;
             case R.id.item_toolbar_booking:
                 break;

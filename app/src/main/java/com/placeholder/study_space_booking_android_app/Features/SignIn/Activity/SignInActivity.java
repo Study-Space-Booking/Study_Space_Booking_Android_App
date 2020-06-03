@@ -182,7 +182,7 @@ public class SignInActivity extends AppCompatActivity {
     public void showDB(View v, DBTimeSlotManager d) {
         d.initialize(SignInActivity.this);
 
-        Cursor cursor = d.getTimeSlot(0);
+        Cursor cursor = d.getTimeSlot(3);
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
         } else {
