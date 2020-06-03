@@ -9,6 +9,8 @@ import com.placeholder.study_space_booking_android_app.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.DatabaseHelper;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity.MacBookSeatActivity;
+import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
+import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class BookSeatLocalSource {
 
     public Result<List<TimeSlot>> getAllBooking(Integer startTime, Integer endTime, Integer placeId) {
         try {
+            //dbTimeSlotManager.initialize();
             Cursor cursor = dbTimeSlotManager.getInBetweenTimeSlot(startTime, endTime, placeId);
             List<TimeSlot> list = new ArrayList<>();
             int i = 1;

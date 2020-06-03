@@ -41,7 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
         final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
-
+        dbUserInformationManager.initialize(this);
+        dbAdminManager.initialize(this);
         //RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance();
         //RegisterRepository registerRepository = RegisterRepositoryImplementation.getInstance();
         final RegisterUseCases registerUseCases = RegisterUseCases.getInstance();

@@ -35,5 +35,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        //Injection injection = new Injection();
+        //injection.inject(this);
     }
 }

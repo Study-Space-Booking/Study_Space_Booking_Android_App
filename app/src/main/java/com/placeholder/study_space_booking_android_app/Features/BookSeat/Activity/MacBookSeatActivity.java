@@ -325,7 +325,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     }
 
     public void bookSeat(Integer seatId) {
-        TimeSlot book = new TimeSlot(0, this.placeId, seatId, 1, startTime, endTime, 0,0,0,0,1);
+        TimeSlot book = new TimeSlot(0, this.placeId, seatId, 2, startTime, endTime, 0,0,0,0,1);
         bookSeatUseCases.bookSeat(book);
 
     }

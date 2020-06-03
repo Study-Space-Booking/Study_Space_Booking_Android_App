@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -71,7 +72,11 @@ public class HomeLocalSource implements HomeSource{
 
     @Override
     public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
+        Log.d("in home local source", " create a new cursor");
         Cursor cursor = dbTimeSlotManager.getUserTimeSlot(user.getId());
+        boolean check = cursor == null;
+        Log.d("in home local source", " check if cursor is null: " + check);
+
         try {
             if (cursor.getCount() == 0) {
                 return new Result.Handle(new IllegalArgumentException("No booking"));

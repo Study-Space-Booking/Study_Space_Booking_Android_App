@@ -21,6 +21,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
+import com.placeholder.study_space_booking_android_app.Injection;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
@@ -32,7 +33,7 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sour
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
-import com.placeholder.study_space_booking_android_app.Services.TSService;
+//import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity {
     EditText editUserName;
@@ -54,12 +55,16 @@ public class SignInActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.title_activity_sign_in);
-        //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
-        //setSupportActionBar(toolbar);
-        final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
-        dbUserInformationManager.initialize(this);
-        final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
-        dbAdminManager.initialize(this);
+
+
+
+        Injection injection = new Injection();
+        injection.inject(this);
+
+        //final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
+        //dbUserInformationManager.initialize(this);
+        //final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
+        //dbAdminManager.initialize(this);
         //LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
         //SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
         final SignInUseCases signInUseCases = SignInUseCases.getInstance();
@@ -86,7 +91,7 @@ public class SignInActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showInformation(v, dbUserInformationManager);
+                        showInformation(v, DBUserInformationManager.getInstance());
                     }
                 }
         );
@@ -96,7 +101,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         signIn(v, signInUseCases);
-                        startService(new Intent(SignInActivity.this, TSService.class));
+                        //startService(new Intent(SignInActivity.this, TSService.class));
                     }
                 }
         );
@@ -177,7 +182,7 @@ public class SignInActivity extends AppCompatActivity {
     public void showDB(View v, DBTimeSlotManager d) {
         d.initialize(SignInActivity.this);
 
-        Cursor cursor = d.getTimeSlot(4);
+        Cursor cursor = d.getTimeSlot(0);
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
         } else {
@@ -202,6 +207,8 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
+
+
     public void showDBInfo(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -209,7 +216,6 @@ public class SignInActivity extends AppCompatActivity {
         builder.setMessage(message);
         builder.show();
     }
-
 
 
     public void signIn(View v, SignInUseCases signInUseCases) {

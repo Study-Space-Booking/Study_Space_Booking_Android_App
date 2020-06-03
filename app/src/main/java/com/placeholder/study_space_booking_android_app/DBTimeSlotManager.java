@@ -123,7 +123,7 @@ public class DBTimeSlotManager {
     public Integer deleteTimeSlot(Integer id) {
         if (!valid()) return 0;
         SQLiteDatabase database = tsDbhelper.open();
-        return database.delete(DatabaseHelper.TABLE_TIMESLOT_NAME, "Tab_Timeslot_ReportId = ?", new String[] {String.valueOf(id)});
+        return database.delete(DatabaseHelper.TABLE_TIMESLOT_NAME, "Tab_Timeslot_Id = ?", new String[] {String.valueOf(id)});
     }
 
     public Cursor getTimeSlotToUpdate(Integer startTime, Integer gap) { // gap is in minute

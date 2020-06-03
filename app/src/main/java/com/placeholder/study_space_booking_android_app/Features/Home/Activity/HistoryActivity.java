@@ -11,6 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.DBLogHistoryManager;
+import com.placeholder.study_space_booking_android_app.DBPlaceManager;
+import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
@@ -32,7 +35,12 @@ public class HistoryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("History");
 
-
+        //DBLogHistoryManager dbLogHistoryManager = DBLogHistoryManager.getInstance();
+        //DBTimeSlotManager dbTimeSlotManager = DBTimeSlotManager.getInstance();
+        //DBPlaceManager dbPlaceManager = DBPlaceManager.getInstance();
+        //dbLogHistoryManager.initialize(this);
+        //dbTimeSlotManager.initialize(this);
+        //dbPlaceManager.initialize(this);
         historyInformation = (TextView) findViewById(R.id.history);
 
 

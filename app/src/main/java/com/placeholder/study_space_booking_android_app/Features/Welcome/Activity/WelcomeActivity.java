@@ -27,6 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemReselectedListener() {
                 @Override
                 public void onNavigationItemReselected(@NonNull MenuItem item) {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Fragment selectedFragment = null;
                     switch(item.getItemId()) {
                         case R.id.navigation_main_page:
@@ -36,7 +37,9 @@ public class WelcomeActivity extends AppCompatActivity {
                             selectedFragment = new PlaceFragment();
                             break;
                     }
-                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
             };
 
@@ -50,14 +53,15 @@ public class WelcomeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Welcome");
 
         fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        //fragmentTransaction = fragmentManager.beginTransaction();
+
 
         if(findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState == null) {
                 BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
                 bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
                 HomeFragment homeFragment = new HomeFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, homeFragment).addToBackStack(null).commit();
             }
         }
     }
