@@ -1,7 +1,8 @@
 package com.placeholder.study_space_booking_android_app.Features.Welcome.Activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -64,5 +65,25 @@ public class WelcomeActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, homeFragment).addToBackStack(null).commit();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_toolbar_camera:
+                break;
+            case R.id.item_toolbar_home:
+                break;
+            case R.id.item_toolbar_booking:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
