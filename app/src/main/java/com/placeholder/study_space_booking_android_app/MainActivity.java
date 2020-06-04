@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
+import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Welcome");
 
+
         Button button = (Button) findViewById(R.id.button_go_to_sign_in);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -33,5 +35,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        //Injection injection = new Injection();
+        //injection.inject(this);
     }
 }

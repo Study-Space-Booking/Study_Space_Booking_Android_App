@@ -1,7 +1,9 @@
 package com.placeholder.study_space_booking_android_app.Features.Welcome.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
 import com.placeholder.study_space_booking_android_app.Features.Place.Activity.PlaceFragment;
+import com.placeholder.study_space_booking_android_app.Features.ScanOption.Activity.ScanOptionActivity;
 import com.placeholder.study_space_booking_android_app.R;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -27,6 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemReselectedListener() {
                 @Override
                 public void onNavigationItemReselected(@NonNull MenuItem item) {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Fragment selectedFragment = null;
                     switch(item.getItemId()) {
                         case R.id.navigation_main_page:
@@ -36,7 +40,9 @@ public class WelcomeActivity extends AppCompatActivity {
                             selectedFragment = new PlaceFragment();
                             break;
                     }
-                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).addToBackStack(null).commit();
+                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
             };
 
@@ -50,15 +56,40 @@ public class WelcomeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Welcome");
 
         fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        //fragmentTransaction = fragmentManager.beginTransaction();
+
 
         if(findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState == null) {
                 BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
                 bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
                 HomeFragment homeFragment = new HomeFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, homeFragment).addToBackStack(null).commit();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_toolbar_camera:
+                startActivity(new Intent(this, ScanOptionActivity.class));
+                break;
+            case R.id.item_toolbar_home:
+                Intent intent = new Intent(this, WelcomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                break;
+            case R.id.item_toolbar_booking:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -21,6 +21,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
+import com.placeholder.study_space_booking_android_app.Injection;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
@@ -32,6 +33,7 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sour
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
+//import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity {
     EditText editUserName;
@@ -53,12 +55,16 @@ public class SignInActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.title_activity_sign_in);
-        //Toolbar toolbar = findViewById(R.id.sign_in_toolbar);
-        //setSupportActionBar(toolbar);
-        final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
-        dbUserInformationManager.initialize(this);
-        final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
-        dbAdminManager.initialize(this);
+
+
+
+        Injection injection = new Injection();
+        injection.inject(this);
+
+        //final DBUserInformationManager dbUserInformationManager = DBUserInformationManager.getInstance();
+        //dbUserInformationManager.initialize(this);
+        //final DBAdminManager dbAdminManager = DBAdminManager.getInstance();
+        //dbAdminManager.initialize(this);
         //LocalSourceImplementation localSourceImplementation = new LocalSourceImplementation(dbUserInformationManager, dbAdminManager);
         //SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
         final SignInUseCases signInUseCases = SignInUseCases.getInstance();
@@ -85,7 +91,7 @@ public class SignInActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showInformation(v, dbUserInformationManager);
+                        showInformation(v, DBUserInformationManager.getInstance());
                     }
                 }
         );
@@ -95,6 +101,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         signIn(v, signInUseCases);
+                        //startService(new Intent(SignInActivity.this, TSService.class));
                     }
                 }
         );
@@ -125,29 +132,29 @@ public class SignInActivity extends AppCompatActivity {
         seatM.initialize(SignInActivity.this);
 
 
-        int minutes1 = 5;
+        int minutes1 = 0;
         long millis1 = minutes1 * 60 * 1000;
 
-        int minutes2 = 0;
+        int minutes2 = 1;
         long millis2 = minutes2 * 60 * 1000;
 
-        int minutes3 = 20;
+        int minutes3 = 2;
         long millis3 = minutes3 * 60 * 1000;
 
-        int minutes4 = 30;
+        int minutes4 = 3;
         long millis4 = minutes4 * 60 * 1000;
         // define the state of the seat, 0--available, 1--not available, 2--under maintainence
         // 1, 1, 1, 2, System.currentTimeMillis(), System.currentTimeMillis()+millis, null, null, null, null, 0
-        TimeSlot tmp1 = new TimeSlot(1, 1, 1, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
+        TimeSlot tmp1 = new TimeSlot(1, 1, 1, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp2 = new TimeSlot(2, 1, 2, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
+        TimeSlot tmp2 = new TimeSlot(2, 1, 2, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp3 = new TimeSlot(3, 1, 3, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
+        TimeSlot tmp3 = new TimeSlot(3, 1, 3, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
                 1, 2, 3, 3, 1);
 
         Seat s1 = new Seat(1, 1);
@@ -175,7 +182,7 @@ public class SignInActivity extends AppCompatActivity {
     public void showDB(View v, DBTimeSlotManager d) {
         d.initialize(SignInActivity.this);
 
-        Cursor cursor = d.getTimeSlot(4);
+        Cursor cursor = d.getTimeSlot(1);
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
         } else {
@@ -200,6 +207,8 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
+
+
     public void showDBInfo(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -207,7 +216,6 @@ public class SignInActivity extends AppCompatActivity {
         builder.setMessage(message);
         builder.show();
     }
-
 
 
     public void signIn(View v, SignInUseCases signInUseCases) {
