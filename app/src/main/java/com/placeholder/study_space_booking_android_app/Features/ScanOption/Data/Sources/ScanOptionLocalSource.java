@@ -1,16 +1,21 @@
 package com.placeholder.study_space_booking_android_app.Features.ScanOption.Data.Sources;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.DatabaseHelper;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ScanOptionLocalSource {
@@ -31,17 +36,75 @@ public class ScanOptionLocalSource {
         return instance;
     }
 
-    public TimeSlot getCurrentTimeSlot(NormalUser user) {
-        List<TimeSlot> list = new ArrayList<>();
-        list = this.getAllBookings(user);
-        Integer time = (int) (System.currentTimeMillis()/1000);
+    @SuppressLint("NewApi")
+    public TimeSlot getSigninTimeSlot(NormalUser user) {
+        List<TimeSlot> list = getAllBookings(user);
+        if (list.isEmpty()) {
+            Log.d("debug", "local source is null");
+            return null;
+        }
+
+        list.sort(new Comparator<TimeSlot>() {
+            @Override
+            public int compare(TimeSlot a, TimeSlot b) {
+                return a.getBookStartTime() - b.getBookStartTime();
+            }
+        });
+
         for (TimeSlot t : list) {
-            if (((time - t.getBookStartTime()) <= 15*60) && ((t.getBookStartTime() - time) <= 15*60)) {
+            if (t.getState() == State.BOOKED) {
                 return t;
             }
         }
         return null;
     }
+
+    public TimeSlot getSignOutTimeSlot(NormalUser user) {
+        List<TimeSlot> list = getAllBookings(user);
+        if (list.isEmpty()) {
+            Log.d("debug", "local source is null");
+            return null;
+        }
+
+        for (TimeSlot t : list) {
+            if (t.getState() == State.SIGNIN) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public TimeSlot getTmpBackTimeSlot(NormalUser user) {
+        List<TimeSlot> list = getAllBookings(user);
+        if (list.isEmpty()) {
+            Log.d("debug", "local source is null");
+            return null;
+        }
+
+        for (TimeSlot t : list) {
+            if (t.getState() == State.TMPLEAVE) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public TimeSlot getTmpLeaveTimeSlot(NormalUser user) {
+        List<TimeSlot> list = getAllBookings(user);
+        if (list.isEmpty()) {
+            Log.d("debug", "local source is null");
+            return null;
+        }
+
+        for (TimeSlot t : list) {
+            if (t.getState() == State.SIGNIN) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+
 
     public List<TimeSlot> getAllBookings(NormalUser user) {
         Log.d("in scan local source", " create a new cursor");
@@ -50,7 +113,8 @@ public class ScanOptionLocalSource {
         Log.d("in scan local source", " check if cursor is null: " + check);
 
         if (cursor.getCount() == 0) {
-            throw new IllegalArgumentException("No booking");
+            Log.d("debug", "no booking found");
+            return Collections.emptyList();
         } else {
             List<TimeSlot> list = new ArrayList<>();
             while (cursor.moveToNext()) {

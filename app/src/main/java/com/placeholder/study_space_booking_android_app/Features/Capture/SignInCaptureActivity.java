@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.Capture;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Build;
@@ -15,10 +16,13 @@ import androidx.core.content.ContextCompat;
 
 import com.google.zxing.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.Features.ScanOption.Activity.ScanOptionActivity;
 import com.placeholder.study_space_booking_android_app.Features.ScanOption.Logic.UseCases.ScanOptionUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
+import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -148,9 +152,7 @@ public class SignInCaptureActivity extends AppCompatActivity implements ZXingSca
         builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
-
+                scanSignIn(myResult);
             }
         });
         builder.setMessage(result.getText());
@@ -159,13 +161,43 @@ public class SignInCaptureActivity extends AppCompatActivity implements ZXingSca
     }
 
     public void scanSignIn(String result) {
-        TimeSlot t = scanOptionUseCases.getCurrentBooking((NormalUser) SignInUseCases.user);
-        if (t.getPlaceId() == (result.charAt(0) - '0')) {
-            Toast.makeText(this, "place is correct", Toast.LENGTH_SHORT).show();
-            if (t.getSeatId() == (result.charAt(1) - '0')) {
-                Toast.makeText(this,"seat is correct", Toast.LENGTH_SHORT).show();
-                t.setInTime((int) (System.currentTimeMillis()/1000));
-                dbTimeSlotManager.updateTimeSlot(t);
+//        Log.d("debug", "scan sign in ");
+//        Log.d("debug", SignInUseCases.user.getId().toString());
+
+        TimeSlot t = scanOptionUseCases.getSigninTimeSlot((NormalUser) SignInUseCases.user);
+
+        if (t == null) {
+            Toast.makeText(this, "No booking is found for the user", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ScanOptionActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+        } else { // check if the place and seat id is correct to match the user
+            if (t.getPlaceId() == (result.charAt(0) - '0')) {
+                Toast.makeText(this, "place is correct", Toast.LENGTH_SHORT).show();
+
+                if (t.getSeatId() == (result.charAt(1) - '0')) {
+                    Toast.makeText(this, "seat is correct", Toast.LENGTH_SHORT).show();
+                    Log.d("debug","seat is correct");
+                    t.setInTime((int) (System.currentTimeMillis() / 1000)); // update the sign in time;
+                    t.setState(State.SIGNIN); // update the state
+                    dbTimeSlotManager.updateTimeSlot(t);
+                    Toast.makeText(this,"Sign in successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, WelcomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+
+                } else { // if seat is incorrect, toast
+                    Toast.makeText(this, "No booking for this seat is found for the user", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, ScanOptionActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+                }
+
+            } else { // if place is incorrect, toast
+                Toast.makeText(this, "No booking in this place is found for the user", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ScanOptionActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
             }
         }
     }

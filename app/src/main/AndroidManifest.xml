@@ -19,8 +19,12 @@
 
 
         <activity android:name=".Features.Capture.SignInCaptureActivity"/>
+        <activity android:name=".Features.Capture.SignOutCaptureActivity"/>
+
         <activity android:name=".Features.ScanOption.Activity.ScanOptionActivity"/>
+
         <activity android:name=".Features.Capture.TempInCaptureActivity"/>
+        <activity android:name=".Features.Capture.TempOutCaptureActivity"/>
 
         <activity
             android:name=".Services.RefreshTS"

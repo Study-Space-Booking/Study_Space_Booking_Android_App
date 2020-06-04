@@ -145,16 +145,16 @@ public class SignInActivity extends AppCompatActivity {
         long millis4 = minutes4 * 60 * 1000;
         // define the state of the seat, 0--available, 1--not available, 2--under maintainence
         // 1, 1, 1, 2, System.currentTimeMillis(), System.currentTimeMillis()+millis, null, null, null, null, 0
-        TimeSlot tmp1 = new TimeSlot(1, 1, 1, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
+        TimeSlot tmp1 = new TimeSlot(1, 1, 1, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp2 = new TimeSlot(2, 1, 2, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
+        TimeSlot tmp2 = new TimeSlot(2, 1, 2, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp3 = new TimeSlot(3, 1, 3, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
+        TimeSlot tmp3 = new TimeSlot(3, 1, 3, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 2, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
                 1, 2, 3, 3, 1);
 
         Seat s1 = new Seat(1, 1);
@@ -182,7 +182,7 @@ public class SignInActivity extends AppCompatActivity {
     public void showDB(View v, DBTimeSlotManager d) {
         d.initialize(SignInActivity.this);
 
-        Cursor cursor = d.getTimeSlot(3);
+        Cursor cursor = d.getTimeSlot(1);
         if(cursor.getCount() == 0) {
             showInformation("Information", "No information found");
         } else {

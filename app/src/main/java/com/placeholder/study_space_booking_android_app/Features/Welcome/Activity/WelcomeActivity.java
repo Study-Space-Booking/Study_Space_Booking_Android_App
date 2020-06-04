@@ -83,7 +83,9 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ScanOptionActivity.class));
                 break;
             case R.id.item_toolbar_home:
-
+                Intent intent = new Intent(this, WelcomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
                 break;
             case R.id.item_toolbar_booking:
                 break;
