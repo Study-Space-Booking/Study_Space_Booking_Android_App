@@ -43,7 +43,7 @@ public class HistoryAdapter extends ArrayAdapter {
         String stateString = "state: " + history.get(position).getState();
         String arrivalString = "arrival at " + history.get(position).getInTime();
         String signOutString = "sign out at " + history.get(position).getOutTime();
-        //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(history.get(position).getPlaceId());
+        Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(history.get(position).getPlaceId());
 
         //LinearLayout view;
         ViewHolder holder;
@@ -58,12 +58,12 @@ public class HistoryAdapter extends ArrayAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //if(result instanceof Result.Handle) {
-        //    holder.place.setText("place not found");
-        //} else {
-        //    holder.place.setText(((Result.Accepted<String>) result).getModel());
-        //}
-        holder.place.setText("place");
+        if(result instanceof Result.Handle) {
+            holder.place.setText("place not found");
+        } else {
+            holder.place.setText(((Result.Accepted<String>) result).getModel());
+        }
+        //holder.place.setText("place");
         holder.seat.setText(seatString);
         holder.time.setText(timeString);
         holder.state.setText(stateString);

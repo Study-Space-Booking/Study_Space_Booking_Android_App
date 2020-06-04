@@ -22,15 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
-import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases.BookSeatUseCases;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
 import java.text.ParseException;
@@ -318,9 +314,9 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         if(result instanceof Result.Accepted) {
 
             List<Integer> seats = ((Result.Accepted<List<Integer>>) result).getModel();
-
+            Log.d("debug", "MAC Activity: the size of the seats" + String.valueOf(seats.size()));
             for(int i = 0; i < seatButtons.length; i = i + 1) {
-
+                Log.d("debug", "get all seats debugging");
                 seatMap.put(seatButtons[i], seats.get(i));
                 buttonMap.put(seats.get(i), seatButtons[i]);
             }
@@ -329,9 +325,9 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     }
 
     public void bookSeat(Integer seatId) {
-        TimeSlot book = new TimeSlot(0, this.placeId, seatId, SignInUseCases.user.getId(), startTime, endTime,
-                0,0,0,0, State.BOOKED); // state is turned to 1;
+        TimeSlot book = new TimeSlot(0, this.placeId, seatId, 1, startTime, endTime, 0,0,0,0,1);
         bookSeatUseCases.bookSeat(book);
+
     }
 
 }

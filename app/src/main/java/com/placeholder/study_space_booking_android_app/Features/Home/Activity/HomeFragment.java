@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
-import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.UseCases.HomeUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
@@ -60,10 +59,6 @@ public class HomeFragment extends Fragment {
         history = (TextView) view.findViewById(R.id.go_to_history);
         showBookings = (TextView)view.findViewById(R.id.show_bookings);
         currentCredit.setText("credit: " + ((NormalUser)SignInUseCases.user).getCredit().toString());
-
-        //DBTimeSlotManager dbTimeSlotManager = DBTimeSlotManager.getInstance();
-        //dbTimeSlotManager.initialize(getActivity().getApplicationContext());
-
         history.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

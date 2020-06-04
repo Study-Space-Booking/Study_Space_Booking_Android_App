@@ -38,21 +38,21 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
+        Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
         final String bookingSeat = "seat: " + bookings.get(position).getSeatId().toString();
         final String bookingTime = "time: " + bookings.get(position).getBookStartTime() +
                 " to " + bookings.get(position).getBookEndTime();
         String bookingState = "status: future";
 
-        //if(result instanceof Result.Handle) {
-        //    ((HomeViewHolder) holder).title.setText("place not found");
-        //} else {
-        //    ((HomeViewHolder) holder).title.setText(((Result.Accepted<String>)result).getModel());
-        //}
+        if(result instanceof Result.Handle) {
+            ((HomeViewHolder) holder).title.setText("place not found");
+        } else {
+            ((HomeViewHolder) holder).title.setText(((Result.Accepted<String>)result).getModel());
+        }
 
 
         final TimeSlot timeSlot = bookings.get(position);
-        ((HomeViewHolder) holder).title.setText("place");
+        //((HomeViewHolder) holder).title.setText("place");
         ((HomeViewHolder) holder).seat.setText(bookingSeat);
         ((HomeViewHolder) holder).time.setText(bookingTime);
         ((HomeViewHolder) holder).state.setText(bookingState);

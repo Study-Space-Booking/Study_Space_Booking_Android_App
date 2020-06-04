@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.placeholder.study_space_booking_android_app">
-
-
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,20 +8,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <activity android:name=".Features.Capture.SignInCaptureActivity"/>
-        <activity android:name=".Features.Capture.SignOutCaptureActivity"/>
-
-        <activity android:name=".Features.ScanOption.Activity.ScanOptionActivity"/>
-
-        <activity android:name=".Features.Capture.TempInCaptureActivity"/>
-        <activity android:name=".Features.Capture.TempOutCaptureActivity"/>
-
-        <activity
-            android:name=".Services.RefreshTS"
-            android:label="Refresh TimeSlot"/>
-
         <activity
             android:name=".Features.Home.Activity.HistoryActivity"
             android:label="History"/>
@@ -55,13 +33,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".Services.TSService"
-            android:enabled="true"/>
-        <meta-data
-            android:name="com.google.android.gms.vision.DEPENDENCIES"
-            android:value="barcode">
-        </meta-data>
     </application>
 </manifest>
