@@ -1,9 +1,6 @@
 package com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources;
 
 import android.database.Cursor;
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Admin;
@@ -11,12 +8,9 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 
-import com.placeholder.study_space_booking_android_app.DBAdminManager;
-import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
-import com.placeholder.study_space_booking_android_app.DatabaseHelper;
-
-
-import java.util.Optional;
+import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
+import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
+import com.placeholder.study_space_booking_android_app.db.DatabaseHelper;
 
 /*
 interface LocalSource {

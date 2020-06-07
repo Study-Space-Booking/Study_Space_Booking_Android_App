@@ -18,7 +18,7 @@ import com.google.zxing.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
-import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.ScanOption.Activity.ScanOptionActivity;
 import com.placeholder.study_space_booking_android_app.Features.ScanOption.Logic.UseCases.ScanOptionUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;

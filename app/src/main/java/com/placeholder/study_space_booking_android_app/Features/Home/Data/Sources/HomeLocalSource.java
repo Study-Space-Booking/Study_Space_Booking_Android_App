@@ -6,10 +6,10 @@ import android.util.Log;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
-import com.placeholder.study_space_booking_android_app.DBLogHistoryManager;
-import com.placeholder.study_space_booking_android_app.DBPlaceManager;
-import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
-import com.placeholder.study_space_booking_android_app.DatabaseHelper;
+import com.placeholder.study_space_booking_android_app.db.DBLogHistoryManager;
+import com.placeholder.study_space_booking_android_app.db.DBPlaceManager;
+import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.db.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;

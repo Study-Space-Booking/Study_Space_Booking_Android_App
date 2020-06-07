@@ -1,6 +1,14 @@
-package com.placeholder.study_space_booking_android_app;
+package com.placeholder.study_space_booking_android_app.db;
 
 import android.content.Context;
+
+import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
+import com.placeholder.study_space_booking_android_app.db.DBLogHistoryManager;
+import com.placeholder.study_space_booking_android_app.db.DBPlaceManager;
+import com.placeholder.study_space_booking_android_app.db.DBProbRepoManager;
+import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
+import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
 
 public class Injection {
     public static void inject(Context context) {

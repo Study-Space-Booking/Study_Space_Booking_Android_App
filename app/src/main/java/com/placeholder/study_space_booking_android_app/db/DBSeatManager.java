@@ -1,4 +1,4 @@
-package com.placeholder.study_space_booking_android_app;
+package com.placeholder.study_space_booking_android_app.db;
 
 import android.content.ContentValues;
 import android.content.Context;

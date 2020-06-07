@@ -1,10 +1,8 @@
 package com.placeholder.study_space_booking_android_app.Features.SignIn.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,23 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
-import com.placeholder.study_space_booking_android_app.DBSeatManager;
-import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
-import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
-import com.placeholder.study_space_booking_android_app.Injection;
-import com.placeholder.study_space_booking_android_app.R;
-import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
-import com.placeholder.study_space_booking_android_app.DBAdminManager;
-import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.Features.Register.Activity.RegisterActivity;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Repository.RepositoryImplementation;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.LocalSourceImplementation;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
-import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
+import com.placeholder.study_space_booking_android_app.R;
+import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
+import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
+import com.placeholder.study_space_booking_android_app.db.Injection;
 //import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity {
@@ -264,6 +257,35 @@ public class SignInActivity extends AppCompatActivity {
     public void signIn(View v, SignInUseCases signInUseCases) {
         String userName = editUserName.getText().toString();
         String password =  editPassword.getText().toString();
+
+        /*
+        // showLoading()...
+        ApiService.getInstance().login(userName, password, new ApiService.Callback<Result<User>>() {
+            @Override
+            public void callback(final Result<User> result) {
+                // dismissLoading();
+                if (result.isSuccess()){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
+                            // to trans some data to next activity
+                            intent.putExtra("userName", result.getData().getUserName());
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(SignInActivity.this, result.getMsg(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        });
+         */
+
         Result<User> result = signInUseCases.signIn(userName, password);
         if(result instanceof Result.Handle) {
             Exception exception = ((Result.Handle) result).getException();

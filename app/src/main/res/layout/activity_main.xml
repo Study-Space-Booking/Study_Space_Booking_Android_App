@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Features.MainActivity">
 
     <include
         android:id="@+id/toolbar_main"
@@ -14,9 +14,8 @@
         android:id="@+id/button_go_to_sign_in"
         android:layout_width="134dp"
         android:layout_height="53dp"
-        android:background="@drawable/button_background"
         android:text="GO TO SIGN IN"
-        android:textColor="@color/textSecondary"
+        style="@style/ButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

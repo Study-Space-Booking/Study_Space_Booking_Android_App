@@ -48,7 +48,7 @@
         <activity
             android:name=".Features.BookSeat.Activity.PCBookSeatActivity"
             android:label="PC Commons Book" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Features.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

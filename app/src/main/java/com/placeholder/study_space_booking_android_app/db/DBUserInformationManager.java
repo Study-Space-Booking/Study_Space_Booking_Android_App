@@ -1,4 +1,4 @@
-package com.placeholder.study_space_booking_android_app;
+package com.placeholder.study_space_booking_android_app.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
-import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 
 
 public class DBUserInformationManager {
