@@ -24,4 +24,11 @@
         <item>item 5</item>
     </string-array>>
     <string name="history">history</string>
+    <string name="problem_report_date">Date</string>
+    <string name="problem_report_time">Time</string>
+    <string name="problem_report_place">Place</string>
+    <string name="problem_report_seat">Seat</string>
+    <string name="problem_report_photo">Photo</string>
+    <string name="problem_report_submit">Submit</string>
+    <string name="problem_report_description">Description</string>
 </resources>
