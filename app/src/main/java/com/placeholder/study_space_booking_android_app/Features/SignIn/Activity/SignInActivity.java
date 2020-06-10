@@ -162,47 +162,9 @@ public class SignInActivity extends AppCompatActivity {
         Seat s3 = new Seat(3, 1);
         Seat s4 = new Seat(4, 1);
 
-
-
-        //  place 2
-        int minutes1p = 0;
-        long millis1p = minutes1p * 60 * 1000;
-
-        int minutes2p = 1;
-        long millis2p = minutes2p * 60 * 1000;
-
-        int minutes3p = 2;
-        long millis3p = minutes3p * 60 * 1000;
-
-        int minutes4p = 3;
-        long millis4p = minutes4p * 60 * 1000;
-        // define the state of the seat, 0--available, 1--not available, 2--under maintainence
-        // 1, 1, 1, 2, System.currentTimeMillis(), System.currentTimeMillis()+millis, null, null, null, null, 0
-        TimeSlot tmp1p = new TimeSlot(5, 2, 1, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1p)/1000),
-                1, 2, 3, 3, 1);
-
-        TimeSlot tmp2p = new TimeSlot(6, 2, 2, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2p)/1000),
-                1, 2, 3, 3, 1);
-
-        TimeSlot tmp3p = new TimeSlot(7, 2, 3, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3p)/1000),
-                1, 2, 3, 3, 1);
-
-        TimeSlot tmp4p = new TimeSlot(8, 2, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4p)/1000),
-                1, 2, 3, 3, 1);
-
-        Seat s1p = new Seat(5, 2);
-        Seat s2p = new Seat(6, 2);
-        Seat s3p = new Seat(7, 2);
-        Seat s4p = new Seat(8, 2);
-
         NormalUser demo = new NormalUser(1, 10, "demo", "123", 0);
 
         userDB.insertUserInformation(demo);
-
-        seatM.setSeat(s1p);
-        seatM.setSeat(s2p);
-        seatM.setSeat(s3p);
-        seatM.setSeat(s4p);
 
         seatM.setSeat(s1);
         seatM.setSeat(s2);
@@ -213,11 +175,6 @@ public class SignInActivity extends AppCompatActivity {
         d.setTimeSlot(tmp2);
         d.setTimeSlot(tmp3);
         d.setTimeSlot(tmp4);
-
-        d.setTimeSlot(tmp1p);
-        d.setTimeSlot(tmp2p);
-        d.setTimeSlot(tmp3p);
-        d.setTimeSlot(tmp4p);
 
 
     }

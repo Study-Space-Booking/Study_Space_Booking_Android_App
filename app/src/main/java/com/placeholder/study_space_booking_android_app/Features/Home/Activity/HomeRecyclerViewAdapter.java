@@ -18,6 +18,8 @@ import com.placeholder.study_space_booking_android_app.R;
 import org.w3c.dom.Text;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -38,10 +40,15 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(bookings.get(position).getBookStartTime() * 1000);
+        String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        calendar.setTimeInMillis(bookings.get(position).getBookEndTime() * 1000);
+        String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
         final String bookingSeat = "seat: " + bookings.get(position).getSeatId().toString();
-        final String bookingTime = "time: " + bookings.get(position).getBookStartTime() +
-                " to " + bookings.get(position).getBookEndTime();
+        final String bookingTime = "time: " + startTimeString +
+                " to " + endTimeString;
         String bookingState = "status: future";
 
         //if(result instanceof Result.Handle) {
