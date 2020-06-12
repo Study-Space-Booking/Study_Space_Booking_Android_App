@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.firebase.storage.StorageReference;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -83,7 +84,7 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
             arrayAdapter = new ArrayAdapter<>(ViewReportDetailActivity.this, android.R.layout.simple_list_item_1, commentList);
 
             comments.setAdapter(arrayAdapter);
-            Picasso.get()
+            Picasso.with(this)
                     .load(submission.getImageUrl())
                     .fit()
                     .centerCrop()

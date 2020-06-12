@@ -1,5 +1,6 @@
 package com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model;
 
+import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
@@ -8,6 +9,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Submission implements Parcelable {
     String selectedDate;
@@ -19,6 +23,16 @@ public class Submission implements Parcelable {
     String userName;
     String key;
     String comment;
+    String state;
+
+    public static Map<String, Integer> stateMap = new HashMap<>();
+
+    static {
+        stateMap.put("Pending", Color.YELLOW);
+        stateMap.put("Invalid", Color.RED);
+        stateMap.put("Solved", Color.BLUE);
+    }
+
 
     public Submission() {
 
@@ -34,6 +48,15 @@ public class Submission implements Parcelable {
         this.userName = userName;
         this.description = description;
         this.comment = "";
+        this.state = "Pending";
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     protected Submission(Parcel in) {
@@ -46,6 +69,7 @@ public class Submission implements Parcelable {
         userName = in.readString();
         key = in.readString();
         comment = in.readString();
+        state = in.readString();
     }
 
     public static final Creator<Submission> CREATOR = new Creator<Submission>() {
@@ -101,7 +125,8 @@ public class Submission implements Parcelable {
     }
 
     public void addComment(String userName, String comment, Date date) {
-        this.comment = this.comment + userName + ": " + comment + " on " + DateFormat.getDateTimeInstance().format(date) + ", divider, ";
+        this.comment = this.comment + userName + ": " +
+                "\n" + comment + "\non " + DateFormat.getDateTimeInstance().format(date) + ", divider, ";
     }
 
     @Override
@@ -124,6 +149,7 @@ public class Submission implements Parcelable {
         dest.writeString(userName);
         dest.writeString(key);
         dest.writeString(comment);
+        dest.writeString(state);
     }
 
     public ArrayList<String> getCommentList() {

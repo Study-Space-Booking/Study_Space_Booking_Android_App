@@ -12,4 +12,5 @@ public interface ViewReportRepository {
     Result<Submission> deleteSubmission(Submission submission, ViewReportListener viewReportListener);
     Result<Submission> removeListener();
     Result<Submission> addComment(Submission submission, ViewReportDetailListener viewReportDetailListener);
+    Result<Submission> changeState(Submission submission, ViewReportListener viewReportListener);
 }

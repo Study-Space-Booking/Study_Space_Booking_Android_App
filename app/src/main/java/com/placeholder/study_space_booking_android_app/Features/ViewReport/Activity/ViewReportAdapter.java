@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.ViewReport.Activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Admin;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
@@ -39,8 +41,10 @@ public class ViewReportAdapter extends RecyclerView.Adapter<ViewReportAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewReportHolder holder, int position) {
         Submission submission = submissions.get(position);
+        String currentState = submission.getState();
         holder.description.setText(submission.getDescription());
-
+        holder.state.setText(currentState);
+        holder.state.setTextColor(Submission.stateMap.get(currentState));
     }
 
     @Override
@@ -53,17 +57,24 @@ public class ViewReportAdapter extends RecyclerView.Adapter<ViewReportAdapter.Vi
         public TextView description;
         public TextView detail;
         public TextView delete;
+        public TextView mark;
+        public TextView state;
         public ViewReportHolder(@NonNull View itemView) {
             super(itemView);
             description = (TextView) itemView.findViewById(R.id.view_report_description);
             detail = (TextView) itemView.findViewById(R.id.view_report_detail);
             delete = (TextView) itemView.findViewById(R.id.view_report_delete);
+            mark = (TextView) itemView.findViewById(R.id.view_report_mark);
+            state = (TextView) itemView.findViewById(R.id.view_report_state);
             detail.setOnClickListener(this);
             if(SignInUseCases.user instanceof Admin) {
                 delete.setOnClickListener(this);
+                mark.setOnClickListener(this);
             } else {
                 delete.setVisibility(View.INVISIBLE);
+                mark.setVisibility(View.INVISIBLE);
             }
+
             itemView.setOnCreateContextMenuListener(this);
         }
 
@@ -77,6 +88,8 @@ public class ViewReportAdapter extends RecyclerView.Adapter<ViewReportAdapter.Vi
                     //startActivity(intent);
                 } else if (v == delete) {
                     reportOnItemClickListener.onDeleteClick(position);
+                } else if (v == mark) {
+                    reportOnItemClickListener.onMarkClick(position, v);
                 }
             }
         }
@@ -111,6 +124,7 @@ public class ViewReportAdapter extends RecyclerView.Adapter<ViewReportAdapter.Vi
     public interface ReportOnItemClickListener {
         void onDetailClick(int position);
         void onDeleteClick(int position);
+        void onMarkClick(int position, View view);
     }
 
     public void setReportOnItemClickListener(ReportOnItemClickListener reportOnItemClickListener) {

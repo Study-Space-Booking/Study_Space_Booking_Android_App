@@ -2,7 +2,9 @@ package com.placeholder.study_space_booking_android_app.Features.ViewReport.Acti
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseError;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
+
 import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic.Model.ViewReportListener;
 import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic.UseCases.ViewReportUseCases;
 import com.placeholder.study_space_booking_android_app.R;
@@ -120,6 +123,30 @@ public class ViewReportActivity extends AppCompatActivity implements ViewReportA
     }
 
     @Override
+    public void onMarkClick(final int position, View view) {
+        PopupMenu popupMenu = new PopupMenu(ViewReportActivity.this, view);
+        popupMenu.setOnMenuItemClickListener(
+                new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Submission submission = submissions.get(position);
+                        submission.setState(item.getTitle().toString());
+                        Result<Submission> result = viewReportUseCases.changeState(submission, ViewReportActivity.this);
+
+                        if(result instanceof Result.Handle) {
+                            Toast.makeText(ViewReportActivity.this, "Check", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                        }
+                        return true;
+                    }
+                }
+        );
+        popupMenu.inflate(R.menu.state_menu);
+        popupMenu.show();
+    }
+
+    @Override
     public void onDeleteClick(int position) {
         final Submission submission = submissions.get(position);
         Result<Submission> result = viewReportUseCases.deleteSubmission(submission, ViewReportActivity.this);
@@ -155,5 +182,13 @@ public class ViewReportActivity extends AppCompatActivity implements ViewReportA
         Toast.makeText(ViewReportActivity.this, "item deleted", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onChangeStateFailure() {
+        Toast.makeText(ViewReportActivity.this, "Check", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onChangeStateSuccess() {
+        Toast.makeText(ViewReportActivity.this, "State", Toast.LENGTH_SHORT).show();
+    }
 }

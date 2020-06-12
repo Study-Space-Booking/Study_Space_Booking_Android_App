@@ -28,6 +28,11 @@ public class ViewReportLocalSource implements ViewReportSource {
     }
 
     @Override
+    public Result<Submission> changeState(Submission submission, ViewReportListener viewReportListener) {
+        return null;
+    }
+
+    @Override
     public Result<Submission> deleteSubmission(Submission submission, ViewReportListener viewReportListener) {
         return null;
     }

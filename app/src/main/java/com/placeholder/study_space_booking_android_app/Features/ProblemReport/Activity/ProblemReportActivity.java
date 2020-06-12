@@ -129,15 +129,15 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
         });
 
 
-    }
+     }
 
 
-    private void openFile() {
+     private void openFile() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, CHOOSE_PHOTO_REQUEST);
-    }
+     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -145,7 +145,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
 
         if(requestCode == CHOOSE_PHOTO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            Picasso.get().load(imageUri).into(imageView);
+            Picasso.with(this).load(imageUri).into(imageView);
 
         }
     }

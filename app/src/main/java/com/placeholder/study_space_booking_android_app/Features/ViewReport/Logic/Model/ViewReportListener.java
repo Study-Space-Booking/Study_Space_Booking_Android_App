@@ -6,4 +6,6 @@ public interface ViewReportListener {
     void onGetSubmissionFailure(DatabaseError databaseError);
     void onGetSubmissionSuccess();
     void onDeleteSubmissionSuccess();
+    void onChangeStateFailure();
+    void onChangeStateSuccess();
 }

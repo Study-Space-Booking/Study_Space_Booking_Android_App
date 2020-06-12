@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_report_state_pending"
+        android:title="Pending"/>
+    <item
+        android:id="@+id/item_report_state_invalid"
+        android:title="Invalid"/>
+    <item
+        android:id="@+id/item_report_state_solved"
+        android:title="Solved"/>
+</menu>

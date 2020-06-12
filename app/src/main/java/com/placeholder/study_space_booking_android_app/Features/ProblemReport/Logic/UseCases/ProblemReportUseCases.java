@@ -7,9 +7,11 @@ import android.webkit.MimeTypeMap;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Activity.ProblemReportActivity;
-import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Data.Repository.ProblemReportRepositoryImplementation;
+import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.ProblemReportListener;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
+import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Data.Repository.ProblemReportRepositoryImplementation;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Repository.ProblemReportRepository;
+import com.placeholder.study_space_booking_android_app.Features.ViewReport.Activity.ViewReportActivity;
 
 public class ProblemReportUseCases {
     final ProblemReportRepository problemReportRepository;

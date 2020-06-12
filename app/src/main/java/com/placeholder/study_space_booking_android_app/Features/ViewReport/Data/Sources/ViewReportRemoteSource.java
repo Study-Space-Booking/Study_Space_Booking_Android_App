@@ -116,6 +116,34 @@ public class ViewReportRemoteSource implements ViewReportSource {
     }
 
     @Override
+    public Result<Submission> changeState(Submission submission, final ViewReportListener viewReportListener) {
+        try {
+            Map<String, Object> update = new HashMap<>();
+            update.put(submission.getKey() + "/state", submission.getState());
+            databaseReference.updateChildren(update).addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            viewReportListener.onChangeStateFailure();
+                        }
+                    }
+            )
+            .addOnSuccessListener(
+                    new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            viewReportListener.onChangeStateSuccess();
+                        }
+                    }
+            )
+            ;
+            return new Result.Accepted<>(submission);
+        } catch (Exception exception) {
+            return new Result.Handle(exception);
+        }
+    }
+
+    @Override
     public Result<Submission> addComment(Submission submission, final ViewReportDetailListener viewReportDetailListener) {
         try {
             Map<String, Object> update = new HashMap<>();

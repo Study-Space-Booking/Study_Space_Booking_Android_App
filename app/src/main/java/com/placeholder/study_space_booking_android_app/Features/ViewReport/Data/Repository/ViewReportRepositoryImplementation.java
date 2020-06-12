@@ -36,6 +36,11 @@ public class ViewReportRepositoryImplementation implements ViewReportRepository 
     }
 
     @Override
+    public Result<Submission> changeState(Submission submission, ViewReportListener viewReportListener) {
+        return viewReportRemoteSource.changeState(submission, viewReportListener);
+    }
+
+    @Override
     public Result<Submission> addComment(Submission submission, ViewReportDetailListener viewReportDetailListener) {
         return viewReportRemoteSource.addComment(submission, viewReportDetailListener);
     }

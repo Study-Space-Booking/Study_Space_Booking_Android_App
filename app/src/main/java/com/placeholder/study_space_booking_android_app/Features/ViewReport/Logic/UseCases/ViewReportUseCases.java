@@ -39,4 +39,8 @@ public class ViewReportUseCases {
     public Result<Submission> addComment(Submission submission, ViewReportDetailListener viewReportDetailListener) {
         return viewReportRepository.addComment(submission, viewReportDetailListener);
     }
+
+    public Result<Submission> changeState(Submission submission, ViewReportListener viewReportListener) {
+        return viewReportRepository.changeState(submission, viewReportListener);
+    }
 }
