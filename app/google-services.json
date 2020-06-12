@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "796984705099",
+    "firebase_url": "https://study-space-f07b0.firebaseio.com",
+    "project_id": "study-space-f07b0",
+    "storage_bucket": "study-space-f07b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796984705099:android:e9c37e1e6432751a84cdce",
+        "android_client_info": {
+          "package_name": "com.placeholder.study_space_booking_android_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796984705099-5da7n6s8h0gv01snibgl92s2utcein09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_xRbqzGXtcCO4hQi6nNMjF5Deh-Yhoxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796984705099-5da7n6s8h0gv01snibgl92s2utcein09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

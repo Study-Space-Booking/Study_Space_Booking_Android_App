@@ -18,6 +18,15 @@
         android:theme="@style/AppTheme">
 
 
+        <activity
+            android:name=".Features.ProblemReport.Activity.ProblemReportActivity"
+            android:label="Problem report"/>
+        <activity
+            android:name=".Features.ViewReport.Activity.ViewReportActivity"
+            android:label="View report"/>
+        <activity
+            android:name=".Features.ViewReport.Activity.ViewReportDetailActivity"
+            android:label="View report detail"/>
         <activity android:name=".Features.Capture.SignInCaptureActivity"/>
         <activity android:name=".Features.Capture.SignOutCaptureActivity"/>
 

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,9 +39,14 @@ public class HistoryAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(history.get(position).getBookStartTime() * 1000);
+        String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        calendar.setTimeInMillis(history.get(position).getBookEndTime() * 1000);
+        String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+
         String seatString = "seat: " +  history.get(position).getSeatId();
-        String timeString = "from " + history.get(position).getBookStartTime().toString() +
-                " to " + history.get(position).getBookEndTime().toString();
+        String timeString = "from " + startTimeString + " to " + endTimeString;
         String stateString = "state: " + history.get(position).getState();
         String arrivalString = "arrival at " + history.get(position).getInTime();
         String signOutString = "sign out at " + history.get(position).getOutTime();
