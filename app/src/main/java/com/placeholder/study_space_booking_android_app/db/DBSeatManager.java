@@ -87,6 +87,15 @@ public class DBSeatManager {
         return result;
     }
 
+    public Cursor getAllSeats() {
+        if (!valid()) return null;
+        Log.d("null", "seatmanager not null");
+        SQLiteDatabase database = sDbhelper.open();
+        String strSQL = "select * from " + DatabaseHelper.TABLE_SEAT_NAME;
+        Cursor result = database.rawQuery(strSQL, new String[]{});
+        return result;
+    }
+
     public boolean updateSeatState(Integer id, Seat s) {
         if (!valid()) return false;
         SQLiteDatabase database = sDbhelper.open();

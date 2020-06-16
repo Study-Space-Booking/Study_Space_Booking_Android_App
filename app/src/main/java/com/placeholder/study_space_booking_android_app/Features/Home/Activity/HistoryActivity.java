@@ -39,6 +39,7 @@ public class HistoryActivity extends AppCompatActivity {
     private NormalUser user;
     private static final String TAG = "HistoryActivity";
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 

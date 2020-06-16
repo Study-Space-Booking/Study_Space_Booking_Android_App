@@ -58,6 +58,8 @@
         <activity
             android:name=".Features.BookSeat.Activity.PCBookSeatActivity"
             android:label="PC Commons Book" />
+        <activity android:name=".Features.AdminSeat.Activity.AdminSeatActivity"/>
+        <activity android:name=".Features.AdminSeat.Activity.SeatHistoryActivity"/>
         <activity android:name=".Features.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

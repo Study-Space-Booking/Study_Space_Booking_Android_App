@@ -80,6 +80,17 @@ public class DBLogHistoryManager {
         return result;
     }
 
+    public Cursor getSeatTimeSlot(Integer id) {
+        SQLiteDatabase db = tsDbHelper.open();
+        Cursor result = null;
+        result = db.rawQuery("select * from " + DatabaseHelper.TABLE_LOG_HISTORY + " where " +
+                        DatabaseHelper.HISTORY_COLUMN_SEAT_ID + " = ?",
+                new String[]{id.toString()});
+
+        return result;
+    }
+
+
     public boolean updateHistory(TimeSlot timeSlot) {
         SQLiteDatabase db = tsDbHelper.open();
         ContentValues contentValues = new ContentValues();

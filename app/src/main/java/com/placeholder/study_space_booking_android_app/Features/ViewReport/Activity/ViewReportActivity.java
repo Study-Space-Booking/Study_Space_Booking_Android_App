@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseError;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Features.AdminSeat.Activity.AdminSeatActivity;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
 
@@ -76,8 +77,8 @@ public class ViewReportActivity extends AppCompatActivity implements ViewReportA
                         startActivity(a);
                         break;
                     case R.id.navigation_seat:
-//                        Intent b = new Intent(AdminHistoryActivity.this,ActivityTwo.class);
-//                        startActivity(b);
+                        Intent b = new Intent(ViewReportActivity.this, AdminSeatActivity.class);
+                        startActivity(b);
                         break;
                 }
                 return false;
