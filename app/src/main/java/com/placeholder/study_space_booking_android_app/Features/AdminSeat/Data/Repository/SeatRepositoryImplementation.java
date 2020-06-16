@@ -38,6 +38,11 @@ public class SeatRepositoryImplementation implements SeatRepository {
         return seatLocalSource.getSeatTimeSlot(id);
     }
 
+    @Override
+    public Result<NormalUser> getUserInfo(String id) {
+        return seatLocalSource.getUserInfo(id);
+    }
+
 //    @Override
 //    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
 //        return seatLocalSource.getAllBookings(user);

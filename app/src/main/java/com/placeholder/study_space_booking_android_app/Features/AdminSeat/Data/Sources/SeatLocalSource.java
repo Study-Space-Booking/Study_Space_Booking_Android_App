@@ -105,5 +105,34 @@ public class SeatLocalSource {
         }
     }
 
+    public Result<NormalUser> getUserInfo(String id) {
+        NormalUser user = new NormalUser();
+        try {
+            Cursor cursor = dbUserInformationManager.getUserInformation(null, null, id);
+
+            if (cursor.getCount() == 0) {
+                return new Result.Handle(new IllegalArgumentException("No user"));
+            } else {
+
+                while (cursor.moveToNext()) {
+                    user = new NormalUser(
+                            cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ID)),
+                            cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_CREDIT)),
+                            cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME)),
+                            cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD)),
+                            cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ISBLOCKED))
+                    );
+                }
+                return new Result.Accepted<>(user);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result.Handle(e);
+        }
+
+    }
+
 
 }

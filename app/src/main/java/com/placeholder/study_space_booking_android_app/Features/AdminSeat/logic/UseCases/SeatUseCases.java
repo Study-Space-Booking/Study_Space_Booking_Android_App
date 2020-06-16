@@ -34,6 +34,10 @@ public class SeatUseCases {
     public Result<List<TimeSlot>> getSeatTimeSlot(Integer id) {
         return seatRepository.getSeatTimeSlot(id);
     }
+
+    public Result<NormalUser> getUserInfo(String id) {
+        return seatRepository.getUserInfo(id);
+    }
 //    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
 //
 //        return homeEepository.getAllBookings(user);
