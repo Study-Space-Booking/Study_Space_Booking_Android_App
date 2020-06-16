@@ -17,8 +17,8 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
-import com.placeholder.study_space_booking_android_app.DBAdminManager;
-import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
+import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
+import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases.RegisterUseCases;
 
 public class RegisterActivity extends AppCompatActivity {

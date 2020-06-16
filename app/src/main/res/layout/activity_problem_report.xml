@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar_problem_report"
+        layout="@layout/toolbar"/>
+
+    <TextView
+        android:id="@+id/problem_report_chosen_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="Choose date"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_problem_report" />
+
+    <TextView
+        android:id="@+id/problem_report_chosen_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Choose time"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_date"
+        app:layout_constraintTop_toBottomOf="@+id/problem_report_chosen_date" />
+
+    <TextView
+        android:id="@+id/problem_report_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/problem_report_place"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_place"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_time" />
+
+    <TextView
+        android:id="@+id/problem_report_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/problem_report_time"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_time"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_date" />
+
+    <TextView
+        android:id="@+id/problem_report_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="150dp"
+        android:layout_marginRight="150dp"
+        android:textColor="@color/colorWhite"
+        android:text="@string/problem_report_date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_date"
+        app:layout_constraintEnd_toStartOf="@+id/problem_report_chosen_date" />
+
+    <TextView
+        android:id="@+id/problem_report_chosen_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Choose place"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_time"
+        app:layout_constraintTop_toBottomOf="@+id/problem_report_chosen_time" />
+
+    <TextView
+        android:id="@+id/problem_report_seat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/problem_report_seat"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_seat"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_place" />
+
+    <TextView
+        android:id="@+id/problem_report_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/problem_report_photo"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_submit_photo"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_seat" />
+
+    <Button
+        android:id="@+id/button_submit_photo"
+        android:layout_width="122dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_background"
+        android:text="submit photo"
+        android:textColor="@color/textSecondary"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_seat"
+        app:layout_constraintTop_toBottomOf="@+id/problem_report_chosen_seat" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_background"
+        android:text="@string/problem_report_submit"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problem_report_add_description" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_photo"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_view_photo" />
+
+    <ImageView
+        android:id="@+id/image_view_photo"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/problem_report_photo" />
+
+    <Button
+        android:id="@+id/button_show_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_background"
+        android:text="show"
+        android:textColor="@color/textSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_submit" />
+
+    <TextView
+        android:id="@+id/problem_report_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/problem_report_description"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_photo"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_photo" />
+
+    <EditText
+        android:id="@+id/problem_report_add_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Add description"
+        android:textColorHint="@color/colorWhite"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/problem_report_description"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_photo" />
+
+    <EditText
+        android:id="@+id/problem_report_chosen_seat"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Choose seat"
+        android:textColorHint="@color/colorWhite"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_place"
+        app:layout_constraintTop_toBottomOf="@+id/problem_report_chosen_place" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

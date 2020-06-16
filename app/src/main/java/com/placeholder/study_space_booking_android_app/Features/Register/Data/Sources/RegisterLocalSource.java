@@ -4,8 +4,8 @@ import android.database.Cursor;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
-import com.placeholder.study_space_booking_android_app.DBAdminManager;
-import com.placeholder.study_space_booking_android_app.DBUserInformationManager;
+import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
+import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
 
 
 public class RegisterLocalSource implements RegisterSource {

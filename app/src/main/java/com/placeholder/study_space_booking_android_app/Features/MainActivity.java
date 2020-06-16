@@ -1,4 +1,4 @@
-package com.placeholder.study_space_booking_android_app;
+package com.placeholder.study_space_booking_android_app.Features;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
-import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;

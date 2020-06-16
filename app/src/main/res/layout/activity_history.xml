@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <include
     android:id="@+id/toolbar_history"
     layout="@layout/toolbar"/>
+
+
+    <EditText
+        android:id="@+id/creditEditText"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:gravity="left|start"
+        android:text="Current Credit"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"/>
+
+
+    <Button
+        android:id="@+id/changeCreditButtion"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:gravity="center|start"
+        android:text="ChangeCredit" />
 
     <TextView
         android:id="@+id/history"
@@ -13,11 +32,16 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="@string/history"
+        style="@style/LabelTextViewStyle"
         android:textSize="20sp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/show_history_list_view"/>
+
+
+
+
 
 </LinearLayout>

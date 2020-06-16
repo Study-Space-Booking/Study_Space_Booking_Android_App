@@ -29,6 +29,7 @@
         android:layout_marginTop="30dp"
         android:text="please focus on the code"
         android:textSize="20sp"
+        style="@style/LabelTextViewStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_view" />

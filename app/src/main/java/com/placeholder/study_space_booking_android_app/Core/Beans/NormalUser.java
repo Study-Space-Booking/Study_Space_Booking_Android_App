@@ -8,6 +8,7 @@ public class NormalUser extends User{
     //private Integer isAdministrator;
     private Integer isBlocked;
 
+    public NormalUser() {}
     public NormalUser(Integer id, Integer credit, String userName,
              String password, Integer isBlocked) {
         super(id, userName, password);

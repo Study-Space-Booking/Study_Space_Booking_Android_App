@@ -1,11 +1,10 @@
-package com.placeholder.study_space_booking_android_app;
+package com.placeholder.study_space_booking_android_app.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 

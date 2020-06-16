@@ -8,15 +8,12 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
-import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Features.Capture.SignInCaptureActivity;
 import com.placeholder.study_space_booking_android_app.Features.Capture.SignOutCaptureActivity;
 import com.placeholder.study_space_booking_android_app.Features.Capture.TempInCaptureActivity;
 import com.placeholder.study_space_booking_android_app.Features.Capture.TempOutCaptureActivity;
 import com.placeholder.study_space_booking_android_app.Features.ScanOption.Logic.UseCases.ScanOptionUseCases;
-import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
-import com.placeholder.study_space_booking_android_app.Injection;
+import com.placeholder.study_space_booking_android_app.db.Injection;
 import com.placeholder.study_space_booking_android_app.R;
 
 public class ScanOptionActivity extends AppCompatActivity {

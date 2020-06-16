@@ -1,4 +1,4 @@
-package com.placeholder.study_space_booking_android_app;
+package com.placeholder.study_space_booking_android_app.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -84,6 +84,15 @@ public class DBSeatManager {
         String strSQL = "select * from " + DatabaseHelper.TABLE_SEAT_NAME + " where " +
                 DatabaseHelper.TABLE_SEAT_PLACE_ID + " =? ";
         Cursor result = database.rawQuery(strSQL, new String[]{placeId.toString()});
+        return result;
+    }
+
+    public Cursor getAllSeats() {
+        if (!valid()) return null;
+        Log.d("null", "seatmanager not null");
+        SQLiteDatabase database = sDbhelper.open();
+        String strSQL = "select * from " + DatabaseHelper.TABLE_SEAT_NAME;
+        Cursor result = database.rawQuery(strSQL, new String[]{});
         return result;
     }
 

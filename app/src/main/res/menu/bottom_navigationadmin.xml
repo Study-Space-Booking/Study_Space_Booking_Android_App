@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_pr_page"
+        android:icon="@drawable/ic_view_list_black_24dp"
+        android:title="@string/navigation_report"/>
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/ic_account_circle_24px"
+        android:title="@string/navigation_user"/>
+    <item
+        android:id="@+id/navigation_seat"
+        android:icon="@drawable/ic_event_seat_24px"
+        android:title="@string/navigation_seat"/>
+</menu>

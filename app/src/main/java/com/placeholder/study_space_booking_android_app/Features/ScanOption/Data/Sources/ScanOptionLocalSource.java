@@ -3,16 +3,13 @@ package com.placeholder.study_space_booking_android_app.Features.ScanOption.Data
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
-import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
-import com.placeholder.study_space_booking_android_app.DBTimeSlotManager;
-import com.placeholder.study_space_booking_android_app.DatabaseHelper;
+import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
+import com.placeholder.study_space_booking_android_app.db.DatabaseHelper;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

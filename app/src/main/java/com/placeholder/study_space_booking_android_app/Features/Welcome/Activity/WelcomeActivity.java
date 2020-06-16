@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.placeholder.study_space_booking_android_app.Features.Report.Activity.ReportFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
 import com.placeholder.study_space_booking_android_app.Features.Place.Activity.PlaceFragment;
@@ -38,6 +39,9 @@ public class WelcomeActivity extends AppCompatActivity {
                             break;
                         case R.id.navigation_booking:
                             selectedFragment = new PlaceFragment();
+                            break;
+                        case R.id.navigation_report:
+                            selectedFragment = new ReportFragment();
                             break;
                     }
                     fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
