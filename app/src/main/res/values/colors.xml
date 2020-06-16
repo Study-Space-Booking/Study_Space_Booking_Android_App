@@ -3,8 +3,8 @@
     <color name="colorPrimary">#23232d</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#fff</color>
-    <color name="textPrimary">#fffafa</color>
-    <color name="textSecondary">#000000</color>
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#fffafa</color>
     <color name="windowsBackground">#23232d</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorGrey">#757575</color>

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final int DB_VERSION = 44;
+    public static final int DB_VERSION = 46;
     public static final String DB_NAME = "SSB.db";
 
     // region TABLE PLACE
@@ -90,20 +90,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DROP_TABLE_TIMESLOT = "DROP TABLE IF EXISTS " + TABLE_TIMESLOT_NAME;
     //endregion
 
-    // region Table Admin
-
-    public static final String TABLE_ADMIN_NAME = "Tab_Admin";
-    public static final String TABLE_ADMIN_ID = "Tab_Admin_Id";
-    public static final String TABLE_ADMIN_PASSWORD = "Tab_Admin_Password";
-    public static final String TABLE_ADMIN_USERNAME = "Tab_Admin_Username";
-
-    private static final String SQL_CREATE_TABLE_ADMIN = "CREATE TABLE IF NOT EXISTS " + TABLE_ADMIN_NAME + " (" +
-            TABLE_ADMIN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            TABLE_ADMIN_PASSWORD + " TEXT, " +
-            TABLE_ADMIN_USERNAME + " TEXT " +
-            ");";
-    private static final String SQL_DROP_TABLE_ADMIN = "DROP TABLE IF EXISTS " + TABLE_ADMIN_NAME;
-    // end region
     //region Table User
     public static final String TABLE_USER = "Table_User";
 
@@ -123,6 +109,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DROP_TABLE_USER = "DROP TABLE IF EXISTS " + TABLE_USER;
     //endregion
 
+    // region Table Admin
+    public static final String TABLE_ADMIN_NAME = "Tab_Admin";
+    public static final String TABLE_ADMIN_ID = "Tab_Admin_Id";
+    public static final String TABLE_ADMIN_PASSWORD = "Tab_Admin_Password";
+    public static final String TABLE_ADMIN_USERNAME = "Tab_Admin_Username";
+
+    private static final String SQL_CREATE_TABLE_ADMIN = "CREATE TABLE IF NOT EXISTS " + TABLE_ADMIN_NAME + " (" +
+            TABLE_ADMIN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TABLE_ADMIN_PASSWORD + " TEXT, " +
+            TABLE_ADMIN_USERNAME + " TEXT " +
+            ");";
+
+    private static final String SQL_DROP_TABLE_ADMIN = "DROP TABLE IF EXISTS " + TABLE_ADMIN_NAME;
+    // end
     //region Table History
     public static final String TABLE_LOG_HISTORY = "Table_Log_History";
 
@@ -177,7 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DROP_TABLE_SEAT);
         db.execSQL(SQL_DROP_TABLE_PROBREPORT);
         db.execSQL(SQL_DROP_TABLE_TIMESLOT);
-        db.execSQL(SQL_CREATE_TABLE_ADMIN);
+        db.execSQL(SQL_DROP_TABLE_ADMIN);
         onCreate(db);
     }
 

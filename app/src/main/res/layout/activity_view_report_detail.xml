@@ -20,6 +20,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="Time"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_view_report_detail" />
 
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
+        android:textColor="@color/colorWhite"
         android:text="Report time"
         app:layout_constraintBaseline_toBaselineOf="@+id/view_report_time"
         app:layout_constraintStart_toEndOf="@+id/view_report_time" />
@@ -38,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
         android:text="User"
         app:layout_constraintStart_toStartOf="@+id/view_report_time"
         app:layout_constraintTop_toBottomOf="@+id/view_report_time" />
@@ -46,6 +49,7 @@
         android:id="@+id/view_report_detail_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
         android:text="Report user"
         app:layout_constraintBaseline_toBaselineOf="@+id/view_report_user"
         app:layout_constraintStart_toStartOf="@+id/view_report_detail_time" />
@@ -55,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
         android:text="Place"
         app:layout_constraintStart_toStartOf="@+id/view_report_user"
         app:layout_constraintTop_toBottomOf="@+id/view_report_user" />
@@ -64,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
         android:text="Seat"
         app:layout_constraintStart_toStartOf="@+id/view_report_place"
         app:layout_constraintTop_toBottomOf="@+id/view_report_place" />
@@ -72,6 +78,7 @@
         android:id="@+id/view_report_detail_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
         android:text="Report place"
         app:layout_constraintBaseline_toBaselineOf="@+id/view_report_place"
         app:layout_constraintStart_toStartOf="@+id/view_report_detail_user" />
@@ -80,6 +87,7 @@
         android:id="@+id/view_report_detail_seat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
         android:text="Report seat"
         app:layout_constraintBaseline_toBaselineOf="@+id/view_report_seat"
         app:layout_constraintStart_toStartOf="@+id/view_report_detail_place" />
@@ -90,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Description"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="@+id/view_report_seat"
         app:layout_constraintTop_toBottomOf="@+id/image_view_report_photo" />
 
@@ -103,6 +112,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="Report description"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_report_description" />
@@ -126,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Comment"
+            android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="@+id/view_report_description"
             app:layout_constraintTop_toBottomOf="@+id/list_view_comment" />
 
@@ -138,6 +149,7 @@
         android:layout_marginRight="10dp"
         android:ems="10"
         android:hint="Add comment"
+        android:textColorHint="@color/colorWhite"
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,6 +177,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_report_existing_comment" />
@@ -175,6 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Existing comment"
+            android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="@+id/view_report_description"
             app:layout_constraintTop_toBottomOf="@+id/view_report_detail_description" />
     </androidx.constraintlayout.widget.ConstraintLayout>

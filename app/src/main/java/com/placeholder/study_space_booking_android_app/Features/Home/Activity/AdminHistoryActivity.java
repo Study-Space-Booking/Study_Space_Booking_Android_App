@@ -3,6 +3,7 @@ package com.placeholder.study_space_booking_android_app.Features.Home.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,11 +11,14 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.UseCases.HomeUseCases;
+import com.placeholder.study_space_booking_android_app.Features.ViewReport.Activity.ViewReportActivity;
 import com.placeholder.study_space_booking_android_app.R;
 
 import java.util.ArrayList;
@@ -38,6 +42,28 @@ public class AdminHistoryActivity extends AppCompatActivity {
         mStrs = getUserNames();
         mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
         mListView.setTextFilterEnabled(true);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigationadmin);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_pr_page:
+                        Intent intent = new Intent(AdminHistoryActivity.this, ViewReportActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.navigation_user:
+                        Intent a = new Intent(AdminHistoryActivity.this,AdminHistoryActivity.class);
+                        startActivity(a);
+                        break;
+                    case R.id.navigation_seat:
+//                        Intent b = new Intent(AdminHistoryActivity.this,ActivityTwo.class);
+//                        startActivity(b);
+                        break;
+                }
+                return false;
+            }
+        });
 
         // 设置搜索文本监听
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -8,16 +8,22 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseError;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
 
+import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic.Model.ViewReportListener;
 import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic.UseCases.ViewReportUseCases;
 import com.placeholder.study_space_booking_android_app.R;
@@ -34,6 +40,7 @@ public class ViewReportActivity extends AppCompatActivity implements ViewReportA
     //ValueEventListener valueEventListener;
     ProgressBar progressBar;
     ViewReportUseCases viewReportUseCases;
+    BottomNavigationView navigation;
 
     private Toolbar toolbar;
 
@@ -53,8 +60,32 @@ public class ViewReportActivity extends AppCompatActivity implements ViewReportA
         //firebaseStorage = FirebaseStorage.getInstance();
         //databaseReference = FirebaseDatabase.getInstance().getReference("submission");
 
+        navigation = (BottomNavigationView) findViewById(R.id.bottom_navigationadmin);
+        if (SignInUseCases.user instanceof NormalUser) {
+            navigation.setVisibility(View.GONE);
+        }
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_pr_page:
+                        Intent intent = new Intent(ViewReportActivity.this, ViewReportActivity.class);
+                        break;
+                    case R.id.navigation_user:
+                        Intent a = new Intent(ViewReportActivity.this,AdminHistoryActivity.class);
+                        startActivity(a);
+                        break;
+                    case R.id.navigation_seat:
+//                        Intent b = new Intent(AdminHistoryActivity.this,ActivityTwo.class);
+//                        startActivity(b);
+                        break;
+                }
+                return false;
+            }
+        });
+
         submissions = new ArrayList<>();
-        viewReportAdapter = new com.placeholder.study_space_booking_android_app.Features.ViewReport.Activity.ViewReportAdapter(ViewReportActivity.this, submissions);
+        viewReportAdapter = new ViewReportAdapter(ViewReportActivity.this, submissions);
         viewReportAdapter.setReportOnItemClickListener(this);
         recyclerView.setAdapter(viewReportAdapter);
 

@@ -22,6 +22,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.Register.Activity.RegisterActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
+import com.placeholder.study_space_booking_android_app.Features.ViewReport.Activity.ViewReportActivity;
 import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
@@ -344,7 +345,7 @@ public class SignInActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             } else if (((Result.Accepted<User>)result).getModel() instanceof Admin) {
-                Intent intent = new Intent(SignInActivity.this, AdminHistoryActivity.class);
+                Intent intent = new Intent(SignInActivity.this, ViewReportActivity.class);
                 startActivity(intent);
             }
 
