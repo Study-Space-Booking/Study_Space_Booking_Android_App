@@ -13,15 +13,19 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.Admin;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
+import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.Register.Activity.RegisterActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 import com.placeholder.study_space_booking_android_app.R;
+import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
+import com.placeholder.study_space_booking_android_app.db.DBLogHistoryManager;
 import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
@@ -103,7 +107,8 @@ public class SignInActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        writeIntoDataBase(v, DBTimeSlotManager.getInstance(), DBSeatManager.getInstance(), DBUserInformationManager.getInstance());
+                        writeIntoDataBase(v, DBTimeSlotManager.getInstance(), DBSeatManager.getInstance(), DBUserInformationManager.getInstance(),
+                                DBAdminManager.getInstance(), DBLogHistoryManager.getInstance());
                     }
                 }
         );
@@ -118,11 +123,13 @@ public class SignInActivity extends AppCompatActivity {
         );
     }
 
-    public void writeIntoDataBase(View v, DBTimeSlotManager d, DBSeatManager seatM, DBUserInformationManager userDB) {
+    public void writeIntoDataBase(View v, DBTimeSlotManager d, DBSeatManager seatM, DBUserInformationManager userDB, DBAdminManager adminDB,
+                                  DBLogHistoryManager dbLogHistoryManager) {
         d.initialize(SignInActivity.this);
         userDB.initialize(SignInActivity.this);
-
+        adminDB.initialize(SignInActivity.this);
         seatM.initialize(SignInActivity.this);
+        dbLogHistoryManager.initialize(SignInActivity.this);
 
 
         int minutes1 = 0;
@@ -189,8 +196,48 @@ public class SignInActivity extends AppCompatActivity {
         Seat s4p = new Seat(8, 2);
 
         NormalUser demo = new NormalUser(1, 10, "demo", "123", 0);
-
+        NormalUser demo2 = new NormalUser(2, 10, "demo2", "123", 0);
+        Admin admin = new Admin(1, "admin", "admin");
+        Admin admin2 = new Admin(2, "admin2", "admin");
+        adminDB.insertAdmin(admin);
         userDB.insertUserInformation(demo);
+        adminDB.insertAdmin(admin2);
+        userDB.insertUserInformation(demo2);
+
+        TimeSlot his1 = new TimeSlot(1, 1, 1, 1, (int) (System.currentTimeMillis()/1000 - 9000), (int) ((System.currentTimeMillis()+millis1)/1000 - 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his2 = new TimeSlot(2, 1, 2, 1, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis2)/1000 - 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his3 = new TimeSlot(3, 1, 3, 1, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis3)/1000- 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis4)/1000- 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his1p = new TimeSlot(5, 2, 1, 2, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis1p)/1000- 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his2p = new TimeSlot(6, 2, 2, 2, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis2p)/1000- 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his3p = new TimeSlot(7, 2, 3, 2, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis3p)/1000- 9000),
+                1, 2, 3, 3, 1);
+
+        TimeSlot his4p = new TimeSlot(8, 2, 4, 2, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis4p)/1000- 9000),
+                1, 2, 3, 3, 1);
+
+        dbLogHistoryManager.insertHistory(his1);
+        dbLogHistoryManager.insertHistory(his2);
+        dbLogHistoryManager.insertHistory(his3);
+        dbLogHistoryManager.insertHistory(his4);
+
+        dbLogHistoryManager.insertHistory(his1p);
+        dbLogHistoryManager.insertHistory(his2p);
+        dbLogHistoryManager.insertHistory(his3p);
+        dbLogHistoryManager.insertHistory(his4p);
+
 
         seatM.setSeat(s1p);
         seatM.setSeat(s2p);
@@ -295,6 +342,9 @@ public class SignInActivity extends AppCompatActivity {
 
             if(((Result.Accepted<User>)result).getModel() instanceof NormalUser) {
                 Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
+                startActivity(intent);
+            } else if (((Result.Accepted<User>)result).getModel() instanceof Admin) {
+                Intent intent = new Intent(SignInActivity.this, AdminHistoryActivity.class);
                 startActivity(intent);
             }
 

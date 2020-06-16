@@ -16,6 +16,11 @@
     <string name="navigation_home">Home</string>
     <string name="navigation_booking">Book seats</string>
     <string name="navigation_report">Report</string>
+    <string name="navigation_user">User</string>
+    <string name="navigation_seat">Seat</string>
+    <string name="search_hint">Please Enter User Name</string>
+
+
     <string-array name="list">
         <item>item 1</item>
         <item>item 2</item>

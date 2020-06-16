@@ -84,7 +84,7 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
             arrayAdapter = new ArrayAdapter<>(ViewReportDetailActivity.this, android.R.layout.simple_list_item_1, commentList);
 
             comments.setAdapter(arrayAdapter);
-            Picasso.with(this)
+            Picasso.get()
                     .load(submission.getImageUrl())
                     .fit()
                     .centerCrop()

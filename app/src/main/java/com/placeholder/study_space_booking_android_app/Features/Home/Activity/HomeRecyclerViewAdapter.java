@@ -8,16 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.R;
 
-import org.w3c.dom.Text;
-
-import java.sql.Time;
 import java.util.List;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {

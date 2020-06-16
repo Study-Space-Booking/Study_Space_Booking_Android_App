@@ -34,6 +34,7 @@
 
         <activity android:name=".Features.Capture.TempInCaptureActivity"/>
         <activity android:name=".Features.Capture.TempOutCaptureActivity"/>
+        <activity android:name=".Features.Home.Activity.AdminHistoryActivity"/>
 
         <activity
             android:name=".Services.RefreshTS"

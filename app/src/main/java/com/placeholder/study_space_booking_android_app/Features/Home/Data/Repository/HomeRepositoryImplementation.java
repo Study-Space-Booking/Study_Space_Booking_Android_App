@@ -3,6 +3,7 @@ package com.placeholder.study_space_booking_android_app.Features.Home.Data.Repos
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeLocalSource;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeRemoteSource;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.Repository.HomeRepository;
@@ -31,6 +32,11 @@ public class HomeRepositoryImplementation implements HomeRepository {
     }
 
     @Override
+    public Result<List<User>> getAllUsers() {
+        return homeLocalSource.getAllUsers();
+    }
+
+    @Override
     public Result<List<TimeSlot>> getHistory(NormalUser user) {
         return homeLocalSource.getHistory(user);
     }
@@ -43,5 +49,20 @@ public class HomeRepositoryImplementation implements HomeRepository {
     @Override
     public Result<String> getPlaceName(Integer placeId) {
         return homeLocalSource.getPlaceName(placeId);
+    }
+
+    @Override
+    public Result<List<TimeSlot>> getUserTimeSlot(String name) {
+        return homeLocalSource.getUserTimeSlot(name);
+    }
+
+    @Override
+    public Result<NormalUser> getUserInfo(String name) {
+        return homeLocalSource.getUserInfo(name);
+    }
+
+    @Override
+    public void updateUser(NormalUser user) {
+        homeLocalSource.updateUser(user);
     }
 }

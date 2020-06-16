@@ -92,8 +92,8 @@ public class DBUserInformationManager {
         contentValues.put(DatabaseHelper.USER_COLUMN_ISBLOCKED, user.isBlocked().toString());
         db.update(
                 DatabaseHelper.TABLE_USER, contentValues,
-                DatabaseHelper.USER_COLUMN_ID + " = ?",
-                new String[] {user.getId().toString()}
+                DatabaseHelper.USER_COLUMN_USERNAME + " = ?",
+                new String[] {user.getUserName()}
             );
         return true;
     }
