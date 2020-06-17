@@ -254,7 +254,9 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
         int year = calendar.get(calendar.YEAR);
         int month = calendar.get(calendar.MONTH);
         int date = calendar.get(calendar.DATE);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(ProblemReportActivity.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(ProblemReportActivity.this,
+                R.style.DialogTheme,
+                new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int currentMonth = month + 1;
@@ -271,7 +273,8 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
         int minute = calendar.get(calendar.MINUTE);
         boolean hourFormat = DateFormat.is24HourFormat(ProblemReportActivity.this);
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(ProblemReportActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(ProblemReportActivity.this,
+                R.style.DialogTheme,new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 selectedTime = hourOfDay + " " + minute;
