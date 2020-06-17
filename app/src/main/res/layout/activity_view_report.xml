@@ -38,4 +38,17 @@
         android:layout_centerInParent="true"
         tools:layout_editor_absoluteX="174dp"
         tools:layout_editor_absoluteY="317dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigationadmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/colorPrimary"
+        app:itemIconTint="@color/textSecondary"
+        app:itemTextColor="@color/textSecondary"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigationadmin"/>
+
 </RelativeLayout>

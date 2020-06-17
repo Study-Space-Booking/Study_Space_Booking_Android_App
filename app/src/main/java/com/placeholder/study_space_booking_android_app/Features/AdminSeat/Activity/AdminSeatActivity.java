@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.AdminSeat.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -42,10 +43,11 @@ import java.util.List;
         import android.widget.SearchView;
         import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
+import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-        import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
         import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
         import com.placeholder.study_space_booking_android_app.Core.Beans.User;
         import com.placeholder.study_space_booking_android_app.Features.Home.logic.UseCases.HomeUseCases;
@@ -63,6 +65,7 @@ public class AdminSeatActivity extends AppCompatActivity {
     private String[] mStrs;
     private SearchView mSearchView;
     private ListView mListView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,15 @@ public class AdminSeatActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         mStrs = getSeatID();
         mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
+        mListView.setBackgroundColor(Color. rgb(255,250,250));
         mListView.setTextFilterEnabled(true);
+        mSearchView.setQueryHint("Please enter seat ID");
+
+        toolbar = findViewById(R.id.toolbar_searching);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Seat History");
+
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigationadmin);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

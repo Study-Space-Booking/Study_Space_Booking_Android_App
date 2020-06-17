@@ -95,7 +95,7 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
 
             comments.setAdapter(arrayAdapter);
             setCommentListHeight(comments);
-            Picasso.with(this)
+            Picasso.get()
                     .load(submission.getImageUrl())
                     .fit()
                     .centerCrop()

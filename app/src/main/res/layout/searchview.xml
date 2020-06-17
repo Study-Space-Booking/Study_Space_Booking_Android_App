@@ -3,10 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
+    android:layout_margin="0dp"
     android:orientation="vertical"
     tools:context=".Features.Home.Activity.AdminHistoryActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/toolbar_searching"
+        layout="@layout/toolbar" />
 
     <SearchView
         android:id="@+id/searchView"
@@ -35,5 +39,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/show_history_list_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigationadmin"/>
 </LinearLayout>

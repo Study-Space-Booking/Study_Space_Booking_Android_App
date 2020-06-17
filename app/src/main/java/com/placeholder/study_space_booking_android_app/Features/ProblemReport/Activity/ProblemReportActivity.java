@@ -146,7 +146,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
 
         if(requestCode == CHOOSE_PHOTO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            Picasso.with(this).load(imageUri).into(imageView);
+            Picasso.get().load(imageUri).into(imageView);
 
         }
     }
