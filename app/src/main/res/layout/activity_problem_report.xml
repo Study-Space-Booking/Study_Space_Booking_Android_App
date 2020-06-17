@@ -13,24 +13,24 @@
         android:id="@+id/problem_report_chosen_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="75dp"
-        android:layout_marginRight="75dp"
         android:text="Choose date"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/problem_report_time"
+        app:layout_constraintStart_toEndOf="@+id/problem_report_date"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_problem_report" />
 
     <TextView
         android:id="@+id/problem_report_chosen_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginLeft="240dp"
         android:text="Choose time"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_date"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/problem_report_place"
@@ -54,11 +54,11 @@
         android:id="@+id/problem_report_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:text="@string/problem_report_date"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_date"
-        app:layout_constraintEnd_toStartOf="@+id/problem_report_chosen_date" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/problem_report_chosen_place"
@@ -80,8 +80,8 @@
 
     <TextView
         android:id="@+id/problem_report_photo"
-        android:layout_width="35dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:text="@string/problem_report_photo"
         app:layout_constraintBaseline_toBaselineOf="@+id/button_submit_photo"
         app:layout_constraintStart_toStartOf="@+id/problem_report_place" />
@@ -90,7 +90,7 @@
         android:id="@+id/button_submit_photo"
         android:layout_width="122dp"
         android:layout_height="30dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_background"
         android:text="submit photo"
         android:textColor="@color/textSecondary"
@@ -157,6 +157,7 @@
         android:gravity="start|top|left"
         android:hint="Add description"
         android:inputType="textPersonName"
+        android:padding="5dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/image_view_photo"
         app:layout_constraintStart_toStartOf="@+id/image_view_photo"
@@ -166,10 +167,11 @@
         android:id="@+id/problem_report_chosen_seat"
         android:layout_width="100dp"
         android:layout_height="35dp"
+        android:background="@drawable/border_background"
         android:ems="10"
         android:hint="Choose seat"
-        android:background="@drawable/border_background"
         android:inputType="textPersonName"
+        android:padding="5dp"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_seat"
         app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_time" />

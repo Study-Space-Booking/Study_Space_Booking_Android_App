@@ -2,10 +2,12 @@ package com.placeholder.study_space_booking_android_app.Features.ViewReport.Acti
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,8 @@ import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic
 import com.placeholder.study_space_booking_android_app.R;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,6 +39,7 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
     TextView place;
     TextView seat;
     TextView description;
+    TextView existingComment;
     EditText commentArea;
     ImageView imageView;
     ListView comments;
@@ -64,6 +69,7 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
         place = (TextView) findViewById(R.id.view_report_detail_place);
         seat = (TextView) findViewById(R.id.view_report_detail_seat);
         description = (TextView) findViewById(R.id.view_report_detail_description);
+        existingComment = (TextView) findViewById(R.id.view_report_existing_comment);
         imageView = (ImageView) findViewById(R.id.image_view_report_photo);
         comment = (Button) findViewById(R.id.button_add_comment);
         comments = (ListView) findViewById(R.id.list_view_comment);
@@ -80,11 +86,16 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
             seat.setText(submission.getSelectedSeat());
 
             commentList = submission.getCommentList();
-
+            if(commentList.size() == 0) {
+                existingComment.setText("No existing comment");
+            } else {
+                existingComment.setText("Existing comment");
+            }
             arrayAdapter = new ArrayAdapter<>(ViewReportDetailActivity.this, android.R.layout.simple_list_item_1, commentList);
 
             comments.setAdapter(arrayAdapter);
-            Picasso.get()
+            setCommentListHeight(comments);
+            Picasso.with(this)
                     .load(submission.getImageUrl())
                     .fit()
                     .centerCrop()
@@ -127,6 +138,26 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
         commentList.clear();
         commentList.addAll(submission.getCommentList());
         arrayAdapter.notifyDataSetChanged();
+        setCommentListHeight(comments);
+        existingComment.setText("Existing Comment:");
         Toast.makeText(ViewReportDetailActivity.this, "Add comment", Toast.LENGTH_SHORT).show();
+    }
+
+    public void setCommentListHeight(ListView listView) {
+        if(listView.getAdapter() != null) {
+            ListAdapter listAdapter = listView.getAdapter();
+            int height = 0;
+            for(int i = 0; i < listAdapter.getCount(); i = i + 1) {
+                View itemView = listAdapter.getView(i, null, listView);
+                itemView.measure(0, 0);
+                height = height + itemView.getMeasuredHeight();
+
+            }
+
+            ViewGroup.LayoutParams layoutParams = listView.getLayoutParams();
+            layoutParams.height = height + listView.getDividerHeight() * (listAdapter.getCount() - 1);
+            listView.setLayoutParams(layoutParams);
+            listView.requestLayout();
+        }
     }
 }
