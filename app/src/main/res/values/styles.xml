@@ -11,6 +11,10 @@
         <item name="android:windowBackground">@color/windowsBackground</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorGrey</item>
+    </style>
+
     <style name="EditTextStyle">
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:textColorHint">@color/colorGrey</item>

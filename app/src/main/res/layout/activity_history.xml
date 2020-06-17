@@ -1,31 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <include
     android:id="@+id/toolbar_history"
     layout="@layout/toolbar"/>
 
+    <LinearLayout
+        android:id="@+id/adminhistory_linearLayout"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_history">
 
-    <EditText
-        android:id="@+id/creditEditText"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:gravity="left|start"
-        android:text="Current Credit"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="User Credit: "
+            android:gravity="center|end"
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginEnd="0dp"
+            />
+
+        <EditText
+            android:id="@+id/creditEditText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="left|center"
+            android:text="10"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:autofillHints=""
+            tools:ignore="LabelFor,TextFields"
+            android:layout_margin="10dp"
+            android:layout_marginStart="0dp"/>
 
 
-    <Button
-        android:id="@+id/changeCreditButtion"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:gravity="center|start"
-        android:text="ChangeCredit" />
+        <Button
+            android:id="@+id/changeCreditButtion"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Change"
+            android:layout_margin="30dp"/>
 
+    </LinearLayout>
     <TextView
         android:id="@+id/history"
         android:layout_width="match_parent"
