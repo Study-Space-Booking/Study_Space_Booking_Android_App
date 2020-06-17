@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.Home.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -11,8 +12,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -33,6 +36,7 @@ public class AdminHistoryActivity extends AppCompatActivity {
     private String[] mStrs;
     private SearchView mSearchView;
     private ListView mListView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,11 @@ public class AdminHistoryActivity extends AppCompatActivity {
         mStrs = getUserNames();
         mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
         mListView.setTextFilterEnabled(true);
+        mListView.setBackgroundColor(Color. rgb(255,250,250));
+
+        toolbar = findViewById(R.id.toolbar_searching);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("User History & Credit");
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigationadmin);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

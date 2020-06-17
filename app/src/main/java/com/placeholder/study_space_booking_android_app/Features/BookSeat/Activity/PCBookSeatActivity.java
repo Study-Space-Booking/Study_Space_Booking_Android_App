@@ -55,7 +55,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     private Map<Button, Integer> seatMap = new HashMap<>();
     private Map<Integer, Button> buttonMap = new HashMap<>();
     private BookSeatUseCases bookSeatUseCases;
-    private Button[] seatButtons = new Button[4];
+    private Button[] seatButtons = new Button[21];
     private Button buttonConfirmTime;
 
     @Override
@@ -87,7 +87,24 @@ public class PCBookSeatActivity extends AppCompatActivity implements
                 findViewById(R.id.floating_action_button1p),
                 findViewById(R.id.floating_action_button2p),
                 findViewById(R.id.floating_action_button3p),
-                findViewById(R.id.floating_action_button4p)
+                findViewById(R.id.floating_action_button4p),
+                findViewById(R.id.floating_action_button5p),
+                findViewById(R.id.floating_action_button6p),
+                findViewById(R.id.floating_action_button7p),
+                findViewById(R.id.floating_action_button8p),
+                findViewById(R.id.floating_action_button9p),
+                findViewById(R.id.floating_action_button10p),
+                findViewById(R.id.floating_action_button11p),
+                findViewById(R.id.floating_action_button12p),
+                findViewById(R.id.floating_action_button13p),
+                findViewById(R.id.floating_action_button14p),
+                findViewById(R.id.floating_action_button15p),
+                findViewById(R.id.floating_action_button16p),
+                findViewById(R.id.floating_action_button17p),
+                findViewById(R.id.floating_action_button18p),
+                findViewById(R.id.floating_action_button19p),
+                findViewById(R.id.floating_action_button20p),
+                findViewById(R.id.floating_action_button21p)
         };
 
         for(int i = 0; i < seatButtons.length; i = i + 1) {
@@ -114,6 +131,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
             mDay = a.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -138,6 +156,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
 
             // Launch Time Picker Dialog
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override
@@ -147,7 +166,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
                             mMinutec = minute;
                             txtTime.setText(hourOfDay + ":" + minute);
                         }
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, false);
             timePickerDialog.show();
         }
 
@@ -163,6 +182,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
 
 
             DatePickerDialog datePickerDialogTo = new DatePickerDialog(this,
+                    R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -186,6 +206,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
 
             // Launch Time Picker Dialog
             TimePickerDialog timePickerDialogTo = new TimePickerDialog(this,
+                    R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
@@ -194,7 +215,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
                             mHourToc = hourOfDay;
                             txtTimeTo.setText(hourOfDay + ":" + minute);
                         }
-                    }, mHourTo, mMinuteTo, true);
+                    }, mHourTo, mMinuteTo, false);
             timePickerDialogTo.show();
         }
 

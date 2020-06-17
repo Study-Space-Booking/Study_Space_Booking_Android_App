@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@drawable/border_background"
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="5dp"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +12,8 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:gravity="center"
-        android:text="state" />
+        android:text="state"
+        android:textColor="@color/textSecondary" />
 
     <TextView
         android:id="@+id/view_report_description"
@@ -19,7 +21,8 @@
         android:layout_height="0dp"
         android:layout_weight="6"
         android:background="@drawable/border_background"
-        android:gravity="center"
+        android:gravity="top|left"
+        android:padding="5dp"
         android:text="Description" />
 
     <LinearLayout
@@ -33,30 +36,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_background"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:text="View detail"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/textSecondary" />
 
         <TextView
             android:id="@+id/view_report_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_background"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:text="Delete"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/textSecondary" />
 
         <TextView
             android:id="@+id/view_report_mark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_background"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:text="Mark"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/textSecondary" />
 
     </LinearLayout>
 </LinearLayout>

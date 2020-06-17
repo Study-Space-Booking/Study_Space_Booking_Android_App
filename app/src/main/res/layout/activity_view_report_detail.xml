@@ -20,107 +20,105 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="Time"
-        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_view_report_detail" />
 
-    <TextView
-        android:id="@+id/view_report_detail_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:textColor="@color/colorWhite"
-        android:text="Report time"
-        app:layout_constraintBaseline_toBaselineOf="@+id/view_report_time"
-        app:layout_constraintStart_toEndOf="@+id/view_report_time" />
+        <TextView
+            android:id="@+id/view_report_detail_time"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="Report time"
+            app:layout_constraintBaseline_toBaselineOf="@+id/view_report_time"
+            app:layout_constraintStart_toEndOf="@+id/view_report_time" />
 
     <TextView
         android:id="@+id/view_report_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorWhite"
         android:text="User"
         app:layout_constraintStart_toStartOf="@+id/view_report_time"
         app:layout_constraintTop_toBottomOf="@+id/view_report_time" />
 
-    <TextView
-        android:id="@+id/view_report_detail_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Report user"
-        app:layout_constraintBaseline_toBaselineOf="@+id/view_report_user"
-        app:layout_constraintStart_toStartOf="@+id/view_report_detail_time" />
+        <TextView
+            android:id="@+id/view_report_detail_user"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Report user"
+            app:layout_constraintBaseline_toBaselineOf="@+id/view_report_user"
+            app:layout_constraintStart_toStartOf="@+id/view_report_detail_time" />
 
     <TextView
         android:id="@+id/view_report_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorWhite"
         android:text="Place"
         app:layout_constraintStart_toStartOf="@+id/view_report_user"
         app:layout_constraintTop_toBottomOf="@+id/view_report_user" />
 
-    <TextView
-        android:id="@+id/view_report_seat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorWhite"
-        android:text="Seat"
-        app:layout_constraintStart_toStartOf="@+id/view_report_place"
-        app:layout_constraintTop_toBottomOf="@+id/view_report_place" />
+        <TextView
+            android:id="@+id/view_report_seat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:text="Seat"
+            app:layout_constraintBaseline_toBaselineOf="@+id/view_report_detail_place"
+            app:layout_constraintStart_toEndOf="@+id/view_report_detail_place" />
 
-    <TextView
-        android:id="@+id/view_report_detail_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Report place"
-        app:layout_constraintBaseline_toBaselineOf="@+id/view_report_place"
-        app:layout_constraintStart_toStartOf="@+id/view_report_detail_user" />
+        <TextView
+            android:id="@+id/view_report_detail_place"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Report place"
+            app:layout_constraintBaseline_toBaselineOf="@+id/view_report_place"
+            app:layout_constraintStart_toStartOf="@+id/view_report_detail_user" />
 
-    <TextView
-        android:id="@+id/view_report_detail_seat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Report seat"
-        app:layout_constraintBaseline_toBaselineOf="@+id/view_report_seat"
-        app:layout_constraintStart_toStartOf="@+id/view_report_detail_place" />
+        <TextView
+            android:id="@+id/view_report_detail_seat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Report seat"
+            app:layout_constraintBaseline_toBaselineOf="@+id/view_report_seat"
+            app:layout_constraintEnd_toEndOf="@+id/view_report_detail_user"
+            app:layout_constraintStart_toEndOf="@+id/view_report_seat" />
 
-    <TextView
-        android:id="@+id/view_report_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Description"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintStart_toStartOf="@+id/view_report_seat"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_report_photo" />
+        <TextView
+            android:id="@+id/view_report_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Description"
+            app:layout_constraintStart_toStartOf="@+id/view_report_place"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_report_photo" />
 
-    <TextView
-        android:id="@+id/view_report_detail_description"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Report description"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_report_description" />
+        <TextView
+            android:id="@+id/view_report_detail_description"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border_background"
+            android:padding="5dp"
+            android:paddingTop="5dp"
+            android:text="Report description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_report_description" />
 
     <ImageView
         android:id="@+id/image_view_report_photo"
         android:layout_width="0dp"
         android:layout_height="200dp"
+        android:background="@drawable/border_background"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
@@ -134,27 +132,27 @@
             android:id="@+id/view_report_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Comment"
-            android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="@+id/view_report_description"
             app:layout_constraintTop_toBottomOf="@+id/list_view_comment" />
 
-    <EditText
-        android:id="@+id/view_report_add_comment"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="Add comment"
-        android:textColorHint="@color/colorWhite"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view_report_detail_description"
-        app:layout_constraintTop_toBottomOf="@+id/view_report_comment" />
+        <EditText
+            android:id="@+id/view_report_add_comment"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border_background"
+            android:ems="10"
+            android:hint="Add comment"
+            android:inputType="textPersonName"
+            android:padding="5dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view_report_detail_description"
+            app:layout_constraintTop_toBottomOf="@+id/view_report_comment" />
 
     <Button
         android:id="@+id/button_add_comment"
@@ -171,13 +169,12 @@
         <ListView
             android:id="@+id/list_view_comment"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_report_existing_comment" />
@@ -186,9 +183,8 @@
             android:id="@+id/view_report_existing_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Existing comment"
-            android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="@+id/view_report_description"
             app:layout_constraintTop_toBottomOf="@+id/view_report_detail_description" />
     </androidx.constraintlayout.widget.ConstraintLayout>

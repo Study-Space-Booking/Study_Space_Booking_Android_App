@@ -13,38 +13,38 @@
 
     <EditText
         android:id="@+id/in_date"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
+        style="@style/EditTextStyle"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        style="@style/EditTextStyle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_date"
-        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.028" />
 
     <Button
         android:id="@+id/btn_date"
+        style="@style/ButtonStyle"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_alignBottom="@+id/in_date"
-        android:layout_marginEnd="220dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/in_date"
         android:layout_toRightOf="@+id/in_date"
         android:text="DATE"
-        style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintEnd_toStartOf="@+id/in_time"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toEndOf="@+id/in_date"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/in_time"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -57,23 +57,24 @@
 
     <Button
         android:id="@+id/btn_time"
+        style="@style/ButtonStyle"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_below="@+id/btn_date"
         android:layout_alignStart="@+id/btn_date"
         android:layout_alignLeft="@+id/btn_date"
         android:text="TIME"
-        style="@style/ButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.020" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="From"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
@@ -85,37 +86,40 @@
 
     <EditText
         android:id="@+id/in_dateto"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
+        style="@style/EditTextStyle"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        style="@style/EditTextStyle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_dateto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.126" />
 
     <Button
         android:id="@+id/btn_dateto"
+        style="@style/ButtonStyle"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_alignBottom="@+id/in_dateto"
-        android:layout_marginEnd="224dp"
+        android:layout_marginEnd="52dp"
         android:layout_toEndOf="@+id/in_dateto"
         android:layout_toRightOf="@+id/in_dateto"
         android:text="DATE"
-        style="@style/ButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/in_timeto"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/in_dateto"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <EditText
         android:id="@+id/in_timeto"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -128,23 +132,24 @@
 
     <Button
         android:id="@+id/btn_timeto"
+        style="@style/ButtonStyle"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_below="@+id/btn_dateto"
         android:layout_alignStart="@+id/btn_dateto"
         android:layout_alignLeft="@+id/btn_dateto"
         android:text="TIME"
-        style="@style/ButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120" />
+        app:layout_constraintVertical_bias="0.127" />
 
     <TextView
         android:id="@+id/textView2to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
@@ -155,84 +160,317 @@
 
     <ImageView
         android:id="@+id/tablemac"
-        android:layout_width="370dp"
-        android:layout_height="401dp"
+        android:layout_width="356dp"
+        android:layout_height="430dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748"
-        app:srcCompat="@drawable/table" />
+        app:layout_constraintVertical_bias="0.913"
+        app:srcCompat="@drawable/tablemaccommons" />
 
     <Button
         android:id="@+id/floating_action_button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:layout_marginStart="32dp"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
         app:layout_constraintEnd_toStartOf="@+id/floating_action_button2"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388" />
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.228" />
 
     <Button
         android:id="@+id/floating_action_button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginEnd="152dp"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/floating_action_button4"
-        app:layout_constraintHorizontal_bias="0.134"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.333" />
 
     <Button
         android:id="@+id/floating_action_button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.870" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.333" />
 
     <Button
         android:id="@+id/floating_action_button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.207" />
+
+    <Button
+        android:id="@+id/floating_action_button5"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.390" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <Button
+        android:id="@+id/floating_action_button6"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <Button
+        android:id="@+id/floating_action_button7"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <Button
+        android:id="@+id/floating_action_button13"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <Button
+        android:id="@+id/floating_action_button14"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <Button
+        android:id="@+id/floating_action_button15"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.708" />
+
+    <Button
+        android:id="@+id/floating_action_button16"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <Button
+        android:id="@+id/floating_action_button17"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <Button
+        android:id="@+id/floating_action_button18"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.708" />
+
+    <Button
+        android:id="@+id/floating_action_button19"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <Button
+        android:id="@+id/floating_action_button20"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <Button
+        android:id="@+id/floating_action_button21"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.708" />
+
+    <Button
+        android:id="@+id/floating_action_button8"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <Button
+        android:id="@+id/floating_action_button9"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <Button
+        android:id="@+id/floating_action_button10"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <Button
+        android:id="@+id/floating_action_button11"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <Button
+        android:id="@+id/floating_action_button12"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablemac"
+        app:layout_constraintEnd_toEndOf="@+id/tablemac"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="@+id/tablemac"
+        app:layout_constraintTop_toTopOf="@+id/tablemac"
+        app:layout_constraintVertical_bias="0.229" />
 
     <Button
         android:id="@+id/button_confirm_time"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text="confirm"
-        style="@style/ButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

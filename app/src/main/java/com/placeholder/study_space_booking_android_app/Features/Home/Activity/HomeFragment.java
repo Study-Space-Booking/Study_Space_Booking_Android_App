@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
         currentCredit = (TextView) view.findViewById(R.id.current_credit);
         history = (TextView) view.findViewById(R.id.go_to_history);
         showBookings = (TextView)view.findViewById(R.id.show_bookings);
-        currentCredit.setText("credit: " + ((NormalUser) SignInUseCases.user).getCredit().toString());
+        currentCredit.setText(SignInUseCases.user.getUserName()+"'s Credit : " + ((NormalUser) SignInUseCases.user).getCredit().toString());
 
         //DBTimeSlotManager dbTimeSlotManager = DBTimeSlotManager.getInstance();
         //dbTimeSlotManager.initialize(getActivity().getApplicationContext());

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.placeholder.study_space_booking_android_app.R;
+
 public class LoadDialogue {
     private Activity activity;
     private AlertDialog dialog;
@@ -17,7 +19,7 @@ public class LoadDialogue {
     }
 
     public void startDialogue() {
-        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity, R.style.MyDialogTheme);
         LayoutInflater inflater = activity.getLayoutInflater();
         builder.setView(inflater.inflate(resource, null));
         builder.setCancelable(false);

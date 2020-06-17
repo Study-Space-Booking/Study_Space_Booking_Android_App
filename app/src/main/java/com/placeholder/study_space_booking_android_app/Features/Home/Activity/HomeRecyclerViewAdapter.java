@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,10 +35,10 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
-        final String bookingSeat = "seat: " + bookings.get(position).getSeatId().toString();
-        final String bookingTime = "time: " + bookings.get(position).getBookStartTime() +
+        final String bookingSeat = "Seat: " + bookings.get(position).getSeatId().toString();
+        final String bookingTime = "Time: " + bookings.get(position).getBookStartTime() +
                 " to " + bookings.get(position).getBookEndTime();
-        String bookingState = "status: future";
+        String bookingState = "Status: Future";
 
         //if(result instanceof Result.Handle) {
         //    ((HomeViewHolder) holder).title.setText("place not found");
@@ -47,7 +48,13 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
 
 
         final TimeSlot timeSlot = bookings.get(position);
-        ((HomeViewHolder) holder).title.setText("place");
+        if (timeSlot.getPlaceId() == 1) {
+            ((HomeViewHolder) holder).title.setBackgroundResource(R.drawable.macbackground);
+        } else {
+            ((HomeViewHolder) holder).title.setBackgroundResource(R.drawable.pcbackground);
+        }
+//        ImageView img= (ImageView) findViewById(R.id.image);
+//        img.setImageResource(R.drawable.my_image);
         ((HomeViewHolder) holder).seat.setText(bookingSeat);
         ((HomeViewHolder) holder).time.setText(bookingTime);
         ((HomeViewHolder) holder).state.setText(bookingState);
@@ -75,7 +82,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public static final class HomeViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearLayout;
-        TextView title;
+        ImageView title;
         TextView seat;
         TextView time;
         TextView state;
@@ -83,7 +90,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
         public HomeViewHolder(LinearLayout linearLayout) {
             super(linearLayout);
             this.linearLayout = linearLayout;
-            title = (TextView) linearLayout.findViewById(R.id.item_booking_title);
+            title = (ImageView) linearLayout.findViewById(R.id.item_booking_title);
             seat = (TextView) linearLayout.findViewById(R.id.item_booking_seat);
             time = (TextView) linearLayout.findViewById(R.id.item_booking_time);
             state = (TextView) linearLayout.findViewById(R.id.item_booking_state);
