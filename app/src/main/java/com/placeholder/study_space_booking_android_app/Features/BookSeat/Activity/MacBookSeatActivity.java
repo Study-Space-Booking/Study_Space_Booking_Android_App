@@ -133,7 +133,9 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             mMonth = a.get(Calendar.MONTH);
             mDay = a.get(Calendar.DAY_OF_MONTH);
 
+            //DatePickerDialog = new DatePickerDialog(context,R.style.DialogTheme,this,now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -157,7 +159,8 @@ public class MacBookSeatActivity extends AppCompatActivity implements
 
 
             // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.DialogTheme,
+
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override
@@ -167,7 +170,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                             mMinutec = minute;
                             txtTime.setText(hourOfDay + ":" + minute);
                         }
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, false);
             timePickerDialog.show();
         }
 
@@ -182,7 +185,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             mDayTo = c.get(Calendar.DAY_OF_MONTH);
 
 
-            DatePickerDialog datePickerDialogTo = new DatePickerDialog(this,
+            DatePickerDialog datePickerDialogTo = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -206,6 +209,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
 
             // Launch Time Picker Dialog
             TimePickerDialog timePickerDialogTo = new TimePickerDialog(this,
+                    R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
@@ -214,7 +218,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                             mHourToc = hourOfDay;
                             txtTimeTo.setText(hourOfDay + ":" + minute);
                         }
-                    }, mHourTo, mMinuteTo, true);
+                    }, mHourTo, mMinuteTo, false);
             timePickerDialogTo.show();
         }
 
@@ -289,13 +293,13 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         else if(v instanceof Button) {
             final Integer seatId = seatMap.get(v);
             if(bookSeatUseCases.isOccupied(seatId)) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder.setCancelable(true);
                 builder.setTitle("Seat" + seatId.toString());
                 builder.setMessage("The seat is occupied");
                 builder.show();
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
 //                LayoutInflater inflater = this.getLayoutInflater();
 //                builder.setView(inflater.inflate(R.layout.dialogue_confirm_booking, null));
 
