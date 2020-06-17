@@ -8,9 +8,11 @@
     android:padding="10dp"
     android:text="item"
     android:textSize="30sp"
-    android:textStyle="bold">
+    android:textStyle="bold"
+    android:layout_alignParentBottom="true"
+    >
 
-    <TextView
+    <ImageView
         android:id="@+id/item_booking_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -18,15 +20,27 @@
         android:text="Hello"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_weight="2" />
+        android:layout_weight="3"
+        />
 
     <TextView
         android:id="@+id/item_booking_seat"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:padding="5sp"
         android:text="TextView"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:typeface="sans"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/item_booking_state"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5sp"
+        android:text="TextView"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/item_booking_time"
@@ -34,15 +48,10 @@
         android:layout_height="0dp"
         android:padding="5sp"
         android:text="TextView"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="15sp"/>
 
-    <TextView
-        android:id="@+id/item_booking_state"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="5sp"
-        android:text="TextView"
-        android:layout_weight="1"/>
+
 
     <Button
         android:id="@+id/call_off_booking_button"

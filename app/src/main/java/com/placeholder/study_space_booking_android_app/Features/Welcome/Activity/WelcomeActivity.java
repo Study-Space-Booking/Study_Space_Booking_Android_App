@@ -2,6 +2,7 @@ package com.placeholder.study_space_booking_android_app.Features.Welcome.Activit
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.SingleLineTransformationMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
 import com.placeholder.study_space_booking_android_app.Features.Place.Activity.PlaceFragment;
 import com.placeholder.study_space_booking_android_app.Features.ScanOption.Activity.ScanOptionActivity;
+import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -57,7 +59,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_welcome);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Welcome");
+        getSupportActionBar().setTitle("Welcome! " + SignInUseCases.user.getUserName());
 
         fragmentManager = getSupportFragmentManager();
         //fragmentTransaction = fragmentManager.beginTransaction();
