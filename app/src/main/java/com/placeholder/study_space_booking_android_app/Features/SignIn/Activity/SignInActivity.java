@@ -34,8 +34,8 @@ import com.placeholder.study_space_booking_android_app.db.Injection;
 //import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity {
-    EditText editUserName;
-    EditText editPassword;
+    public static EditText editUserName;
+    public static EditText editPassword;
     Button signInButton;
     Button showButton;
     Button writeButton; //write in to database
@@ -43,6 +43,16 @@ public class SignInActivity extends AppCompatActivity {
     TextView textView;
     Toolbar toolbar;
     private static final String TAG = "SignInActivity";
+
+    public static void setEditUserName(String newname) {
+        editUserName.setText(newname);
+    }
+
+    public static void setEditPassword(String password) {
+        editPassword.setText(password);
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

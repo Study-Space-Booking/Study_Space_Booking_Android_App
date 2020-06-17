@@ -6,12 +6,15 @@
         android:title="camera"
         app:showAsAction="ifRoom"/>
     <item android:id="@+id/item_toolbar_home"
-        android:title="home"
+        android:title="Home"
         app:showAsAction="never"/>
     <item android:id="@+id/item_toolbar_booking"
-        android:title="booking"
+        android:title="Book Seats"
         app:showAsAction="never"/>
     <item android:id="@+id/item_toolbar_report"
-        android:title="report"
+        android:title="Problem Report"
+        app:showAsAction="never"/>
+    <item android:id="@+id/item_log_out"
+        android:title="Log Out"
         app:showAsAction="never"/>
 </menu>
