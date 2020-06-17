@@ -55,7 +55,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     private Map<Button, Integer> seatMap = new HashMap<>();
     private Map<Integer, Button> buttonMap = new HashMap<>();
     private BookSeatUseCases bookSeatUseCases;
-    private Button[] seatButtons = new Button[4];
+    private Button[] seatButtons = new Button[21];
     private Button buttonConfirmTime;
 
     @Override
@@ -87,7 +87,24 @@ public class PCBookSeatActivity extends AppCompatActivity implements
                 findViewById(R.id.floating_action_button1p),
                 findViewById(R.id.floating_action_button2p),
                 findViewById(R.id.floating_action_button3p),
-                findViewById(R.id.floating_action_button4p)
+                findViewById(R.id.floating_action_button4p),
+                findViewById(R.id.floating_action_button5p),
+                findViewById(R.id.floating_action_button6p),
+                findViewById(R.id.floating_action_button7p),
+                findViewById(R.id.floating_action_button8p),
+                findViewById(R.id.floating_action_button9p),
+                findViewById(R.id.floating_action_button10p),
+                findViewById(R.id.floating_action_button11p),
+                findViewById(R.id.floating_action_button12p),
+                findViewById(R.id.floating_action_button13p),
+                findViewById(R.id.floating_action_button14p),
+                findViewById(R.id.floating_action_button15p),
+                findViewById(R.id.floating_action_button16p),
+                findViewById(R.id.floating_action_button17p),
+                findViewById(R.id.floating_action_button18p),
+                findViewById(R.id.floating_action_button19p),
+                findViewById(R.id.floating_action_button20p),
+                findViewById(R.id.floating_action_button21p)
         };
 
         for(int i = 0; i < seatButtons.length; i = i + 1) {

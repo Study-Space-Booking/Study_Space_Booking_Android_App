@@ -154,87 +154,320 @@
 
 
     <ImageView
-        android:id="@+id/tablemacp"
-        android:layout_width="370dp"
-        android:layout_height="401dp"
+        android:id="@+id/tablepc"
+        android:layout_width="356dp"
+        android:layout_height="430dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748"
-        app:srcCompat="@drawable/table" />
+        app:layout_constraintVertical_bias="0.913"
+        app:srcCompat="@drawable/tablepccommons" />
 
     <Button
         android:id="@+id/floating_action_button1p"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:layout_marginStart="32dp"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
         app:layout_constraintEnd_toStartOf="@+id/floating_action_button2p"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388" />
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.251" />
 
     <Button
         android:id="@+id/floating_action_button3p"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginEnd="152dp"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/floating_action_button4p"
-        app:layout_constraintHorizontal_bias="0.134"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.353" />
 
     <Button
         android:id="@+id/floating_action_button4p"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.870" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.353" />
 
     <Button
         android:id="@+id/floating_action_button2p"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <Button
+        android:id="@+id/floating_action_button5p"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.390" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.249" />
+
+    <Button
+        android:id="@+id/floating_action_button6p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.353" />
+
+    <Button
+        android:id="@+id/floating_action_button7p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.353" />
+
+    <Button
+        android:id="@+id/floating_action_button13p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <Button
+        android:id="@+id/floating_action_button14p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.644" />
+
+    <Button
+        android:id="@+id/floating_action_button15p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.733" />
+
+    <Button
+        android:id="@+id/floating_action_button16p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <Button
+        android:id="@+id/floating_action_button17p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.644" />
+
+    <Button
+        android:id="@+id/floating_action_button18p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.733" />
+
+    <Button
+        android:id="@+id/floating_action_button19p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <Button
+        android:id="@+id/floating_action_button20p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.646" />
+
+    <Button
+        android:id="@+id/floating_action_button21p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.733" />
+
+    <Button
+        android:id="@+id/floating_action_button8p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.249" />
+
+    <Button
+        android:id="@+id/floating_action_button9p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.249" />
+
+    <Button
+        android:id="@+id/floating_action_button10p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.353" />
+
+    <Button
+        android:id="@+id/floating_action_button11p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.353" />
+
+    <Button
+        android:id="@+id/floating_action_button12p"
+        style="@style/ButtonStyle"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablepc"
+        app:layout_constraintEnd_toEndOf="@+id/tablepc"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="@+id/tablepc"
+        app:layout_constraintTop_toTopOf="@+id/tablepc"
+        app:layout_constraintVertical_bias="0.249" />
 
     <Button
         android:id="@+id/button_confirm_timep"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="confirm"
-        style="@style/ButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_timetop" />
 

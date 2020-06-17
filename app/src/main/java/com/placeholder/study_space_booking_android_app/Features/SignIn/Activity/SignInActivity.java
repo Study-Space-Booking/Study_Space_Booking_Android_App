@@ -158,10 +158,52 @@ public class SignInActivity extends AppCompatActivity {
         TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
                 1, 2, 3, 3, 1);
 
+        /* Adding the same time slots for all new seats
+        TimeSlot tmp5 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp6 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp7 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp8 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp9 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1);
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+                1, 2, 3, 3, 1); */
         Seat s1 = new Seat(1, 1);
         Seat s2 = new Seat(2, 1);
         Seat s3 = new Seat(3, 1);
-        Seat s4 = new Seat(4, 1);
+        Seat s5 = new Seat(5, 1);
+        Seat s6 = new Seat(6, 1);
+        Seat s7 = new Seat(7, 1);
+        Seat s8 = new Seat(8, 1);Seat s4 = new Seat(4, 1);
+        Seat s9 = new Seat(9, 1);
+        Seat s10 = new Seat(10, 1);
+
+        Seat s11 = new Seat(11, 1);
+        Seat s12 = new Seat(12, 1);
+        Seat s13 = new Seat(13, 1);
+        Seat s14 = new Seat(14, 1);
+        Seat s15 = new Seat(15, 1);
+        Seat s16 = new Seat(16, 1);
+        Seat s17 = new Seat(17, 1);
+        Seat s18 = new Seat(18, 1);
+        Seat s19 = new Seat(19, 1);
+        Seat s20 = new Seat(20, 1);
+        Seat s21 = new Seat(21, 1);
+
+
 
 
 
@@ -191,10 +233,13 @@ public class SignInActivity extends AppCompatActivity {
         TimeSlot tmp4p = new TimeSlot(8, 2, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4p)/1000),
                 1, 2, 3, 3, 1);
 
+        /*
         Seat s1p = new Seat(5, 2);
         Seat s2p = new Seat(6, 2);
         Seat s3p = new Seat(7, 2);
         Seat s4p = new Seat(8, 2);
+
+         */
 
         NormalUser demo = new NormalUser(1, 10, "demo", "123", 0);
         NormalUser demo2 = new NormalUser(2, 10, "demo2", "123", 0);
@@ -240,15 +285,81 @@ public class SignInActivity extends AppCompatActivity {
         dbLogHistoryManager.insertHistory(his4p);
 
 
+        /*
         seatM.setSeat(s1p);
         seatM.setSeat(s2p);
         seatM.setSeat(s3p);
         seatM.setSeat(s4p);
 
+         */
+
         seatM.setSeat(s1);
         seatM.setSeat(s2);
         seatM.setSeat(s3);
         seatM.setSeat(s4);
+        seatM.setSeat(s5);
+        seatM.setSeat(s6);
+        seatM.setSeat(s7);
+        seatM.setSeat(s8);
+        seatM.setSeat(s9);
+        seatM.setSeat(s10);
+        seatM.setSeat(s11);
+        seatM.setSeat(s12);
+        seatM.setSeat(s13);
+        seatM.setSeat(s14);
+        seatM.setSeat(s15);
+        seatM.setSeat(s16);
+        seatM.setSeat(s17);
+        seatM.setSeat(s18);
+        seatM.setSeat(s19);
+        seatM.setSeat(s20);
+        seatM.setSeat(s21);
+
+
+        Seat s1p = new Seat(22, 2);
+        Seat s2p = new Seat(23, 2);
+        Seat s3p = new Seat(24, 2);
+        Seat s5p = new Seat(25, 2);
+        Seat s6p = new Seat(26, 2);
+        Seat s7p = new Seat(27, 2);
+        Seat s8p = new Seat(28, 2);
+        Seat s9p = new Seat(29, 2);
+        Seat s10p = new Seat(30, 2);
+        Seat s11p = new Seat(31, 2);
+        Seat s12p = new Seat(32, 2);
+        Seat s13p = new Seat(33, 2);
+        Seat s14p = new Seat(34, 2);
+        Seat s15p = new Seat(35, 2);
+        Seat s16p = new Seat(36, 2);
+        Seat s17p = new Seat(37, 2);
+        Seat s18p = new Seat(38, 2);
+        Seat s19p = new Seat(39, 2);
+        Seat s20p = new Seat(40, 2);
+        Seat s21p = new Seat(41, 2);
+        Seat s4p = new Seat(42, 2);
+
+        seatM.setSeat(s1p);
+        seatM.setSeat(s2p);
+        seatM.setSeat(s3p);
+        seatM.setSeat(s4p);
+        seatM.setSeat(s5p);
+        seatM.setSeat(s6p);
+        seatM.setSeat(s7p);
+        seatM.setSeat(s8p);
+        seatM.setSeat(s9p);
+        seatM.setSeat(s10p);
+        seatM.setSeat(s11p);
+        seatM.setSeat(s12p);
+        seatM.setSeat(s13p);
+        seatM.setSeat(s14p);
+        seatM.setSeat(s15p);
+        seatM.setSeat(s16p);
+        seatM.setSeat(s17p);
+        seatM.setSeat(s18p);
+        seatM.setSeat(s19p);
+        seatM.setSeat(s20p);
+        seatM.setSeat(s21p);
+
 
         d.setTimeSlot(tmp1);
         d.setTimeSlot(tmp2);
