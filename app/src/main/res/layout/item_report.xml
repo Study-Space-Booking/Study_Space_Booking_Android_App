@@ -33,30 +33,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_background"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:text="View detail"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/textSecondary" />
 
         <TextView
             android:id="@+id/view_report_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_background"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:text="Delete"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/textSecondary" />
 
         <TextView
             android:id="@+id/view_report_mark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_background"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:text="Mark"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/textSecondary" />
 
     </LinearLayout>
 </LinearLayout>

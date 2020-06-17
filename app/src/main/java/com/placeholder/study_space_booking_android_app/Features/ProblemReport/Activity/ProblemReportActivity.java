@@ -45,7 +45,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
     private TextView chooseTime;
     private TextView choosePlace;
     private Button choosePhoto;
-    private Button showPhoto;
+    //private Button showPhoto;
     private Button submit;
     public ProgressBar progressBar;
     private ImageView imageView;
@@ -74,7 +74,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
         choosePlace = (TextView) findViewById(R.id.problem_report_chosen_place);
         chooseSeat = (EditText) findViewById(R.id.problem_report_chosen_seat);
         choosePhoto = (Button) findViewById(R.id.button_submit_photo);
-        showPhoto = (Button) findViewById(R.id.button_show_photo);
+        //showPhoto = (Button) findViewById(R.id.button_show_photo);
         submit = (Button) findViewById(R.id.button_submit);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_photo);
         imageView = (ImageView) findViewById(R.id.image_view_photo);
@@ -113,6 +113,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
             }
         });
 
+        /*
         showPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +121,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
 
             }
         });
-
+        */
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +146,7 @@ public class ProblemReportActivity extends AppCompatActivity implements ProblemR
 
         if(requestCode == CHOOSE_PHOTO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            Picasso.get().load(imageUri).into(imageView);
+            Picasso.with(this).load(imageUri).into(imageView);
 
         }
     }
