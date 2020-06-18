@@ -61,11 +61,17 @@ public class SeatHistoryAdapter extends ArrayAdapter {
             realUser = ((Result.Accepted<NormalUser>) user).getModel();
         }
 
-        String userString = "Username: " + realUser.getUserName();
-        String timeString = "from " + startTimeString + " to " + endTimeString;
-        String stateString = "state: " + history.get(position).getState();
-        String arrivalString = "arrival at " + history.get(position).getInTime();
-        String signOutString = "sign out at " + history.get(position).getOutTime();
+        String userString = " Username: " + realUser.getUserName();
+        String placeString;
+        if (history.get(position).getPlaceId() == 1) {
+            placeString = "Place:\nMac Commons";
+        } else {
+            placeString = "Place\nPC Commons";
+        }
+        String timeString = " From " + startTimeString + "\n To " + endTimeString;
+        String stateString = " State: " + history.get(position).getState();
+        String arrivalString = " Arrival at " + history.get(position).getInTime();
+        String signOutString = " Sign out at " + history.get(position).getOutTime();
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(history.get(position).getPlaceId());
 
         //LinearLayout view;
@@ -86,10 +92,10 @@ public class SeatHistoryAdapter extends ArrayAdapter {
         //} else {
         //    holder.place.setText(((Result.Accepted<String>) result).getModel());
         //}
-        holder.place.setText("place");
+        holder.place.setText(placeString);
         holder.user.setText(userString);
         holder.time.setText(timeString);
-        holder.state.setText(stateString);
+       // holder.state.setText(stateString);
         holder.arrivalTime.setText(arrivalString);
         holder.signOutTime.setText(signOutString);
 
@@ -109,7 +115,7 @@ public class SeatHistoryAdapter extends ArrayAdapter {
             place = (TextView) view.findViewById(R.id.seathistory_place);
             user = (TextView) view.findViewById(R.id.seathistory_user);
             time = (TextView) view.findViewById(R.id.seathistory_time);
-            state = (TextView) view.findViewById(R.id.seathistroy_state);
+            //state = (TextView) view.findViewById(R.id.seathistroy_state);
             arrivalTime = (TextView) view.findViewById(R.id.seathistory_arrival);
             signOutTime = (TextView) view.findViewById(R.id.seathistory_sign_out);
         }

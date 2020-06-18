@@ -2,6 +2,8 @@ package com.placeholder.study_space_booking_android_app.Features.ViewReport.Acti
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -24,9 +26,12 @@ import com.placeholder.study_space_booking_android_app.Features.AdminSeat.Activi
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
 
+import com.placeholder.study_space_booking_android_app.Features.ScanOption.Activity.ScanOptionActivity;
+import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic.Model.ViewReportListener;
 import com.placeholder.study_space_booking_android_app.Features.ViewReport.Logic.UseCases.ViewReportUseCases;
+import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 import com.placeholder.study_space_booking_android_app.R;
 
 import java.util.ArrayList;
@@ -139,6 +144,40 @@ public class ViewReportActivity extends AppCompatActivity implements ViewReportA
 
 
 
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuItem logout = menu.findItem(R.id.item_log_out_admin);
+        if(SignInUseCases.user instanceof NormalUser)
+        {
+            logout.setVisible(false);
+        }
+        else
+        {
+            logout.setVisible(true);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu_admin, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_log_out_admin:
+                SignInActivity.setEditUserName("");
+                SignInActivity.setEditPassword("");
+                Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
+                startActivity(logout);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

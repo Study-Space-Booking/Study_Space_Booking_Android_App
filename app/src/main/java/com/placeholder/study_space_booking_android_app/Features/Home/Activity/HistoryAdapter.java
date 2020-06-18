@@ -41,11 +41,17 @@ public class HistoryAdapter extends ArrayAdapter {
         calendar.setTimeInMillis(history.get(position).getBookEndTime() * 1000);
         String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
 
-        String seatString = "seat: " +  history.get(position).getSeatId();
-        String timeString = "from " + startTimeString + " to " + endTimeString;
-        String stateString = "state: " + history.get(position).getState();
-        String arrivalString = "arrival at " + history.get(position).getInTime();
-        String signOutString = "sign out at " + history.get(position).getOutTime();
+        String placeString;
+        if (history.get(position).getPlaceId() == 1) {
+            placeString = "Place:\nMac Commons";
+        } else {
+            placeString = "Place:\nPC Commons";
+        }
+        String seatString = " Seat: " +  history.get(position).getSeatId();
+        String timeString = " From " + startTimeString + "\n To " + endTimeString;
+        // String stateString = "state: " + history.get(position).getState();
+        String arrivalString = " Arrival at " + history.get(position).getInTime();
+        String signOutString = " Sign out at " + history.get(position).getOutTime();
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(history.get(position).getPlaceId());
 
         //LinearLayout view;
@@ -66,10 +72,10 @@ public class HistoryAdapter extends ArrayAdapter {
         //} else {
         //    holder.place.setText(((Result.Accepted<String>) result).getModel());
         //}
-        holder.place.setText("place");
+        holder.place.setText(placeString);
         holder.seat.setText(seatString);
         holder.time.setText(timeString);
-        holder.state.setText(stateString);
+        //holder.state.setText(stateString);
         holder.arrivalTime.setText(arrivalString);
         holder.signOutTime.setText(signOutString);
 
@@ -89,7 +95,7 @@ public class HistoryAdapter extends ArrayAdapter {
             place = (TextView) view.findViewById(R.id.history_place);
             seat = (TextView) view.findViewById(R.id.history_seat);
             time = (TextView) view.findViewById(R.id.history_time);
-            state = (TextView) view.findViewById(R.id.histroy_state);
+            //state = (TextView) view.findViewById(R.id.histroy_state);
             arrivalTime = (TextView) view.findViewById(R.id.history_arrival);
             signOutTime = (TextView) view.findViewById(R.id.history_sign_out);
         }

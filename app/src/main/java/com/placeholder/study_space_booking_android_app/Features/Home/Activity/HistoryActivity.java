@@ -37,6 +37,7 @@ public class HistoryActivity extends AppCompatActivity {
     private EditText credit;
     private Button change;
     private NormalUser user;
+    private TextView username;
     private static final String TAG = "HistoryActivity";
 
 
@@ -67,12 +68,13 @@ public class HistoryActivity extends AppCompatActivity {
         historyInformation = (TextView) findViewById(R.id.history);
         credit = (EditText) findViewById(R.id.creditEditText);
         change = (Button) findViewById(R.id.changeCreditButtion);
-
+        username = (TextView) findViewById(R.id.usercredit_text);
 
 
         if (SignInUseCases.user instanceof NormalUser) {
             credit.setVisibility(View.GONE);
             change.setVisibility(View.GONE);
+            username.setVisibility(View.GONE);
             history = HomeFragment.HOME_USE_CASES.getHistory((NormalUser) SignInUseCases.user);
             if (history instanceof Result.Handle) {
                 historyInformation.setText("No history");

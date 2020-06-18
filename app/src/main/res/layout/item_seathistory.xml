@@ -3,6 +3,86 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:weightSum="100"
+    android:background="@drawable/border_background"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/seathistory_place"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_weight="30"
+        android:background="@drawable/border_background"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/textPrimary"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="70"
+        android:background="@drawable/border_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/seathistory_user"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/border_background"
+            android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/seathistory_time"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_background"
+            android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
+            android:textSize="16sp" />
+
+        <!--
+        <TextView
+            android:id="@+id/histroy_state"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/border_background"
+            android:text="TextView"
+            android:textSize="16sp" />
+            -->
+
+        <TextView
+            android:id="@+id/seathistory_arrival"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/border_background"
+            android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/seathistory_sign_out"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/border_background"
+            android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/booking_background"
     android:weightSum="100"
     android:padding="10dp">
@@ -15,6 +95,9 @@
         android:gravity="center"
         android:text="TextView"
         android:textSize="18sp" />
+
+
+
 
     <LinearLayout
         android:layout_width="0dp"
@@ -59,3 +142,5 @@
     </LinearLayout>
 
 </LinearLayout>
+
+    -->

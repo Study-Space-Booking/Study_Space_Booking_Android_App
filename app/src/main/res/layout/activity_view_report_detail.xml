@@ -20,6 +20,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="Time"
+        android:textColor="@color/textSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_view_report_detail" />
 
@@ -30,6 +31,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:text="Report time"
+            android:textColor="@color/textSecondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/view_report_time"
             app:layout_constraintStart_toEndOf="@+id/view_report_time" />
 
@@ -39,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="User"
+        android:textColor="@color/textSecondary"
         app:layout_constraintStart_toStartOf="@+id/view_report_time"
         app:layout_constraintTop_toBottomOf="@+id/view_report_time" />
 
@@ -47,6 +50,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Report user"
+            android:textColor="@color/textSecondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/view_report_user"
             app:layout_constraintStart_toStartOf="@+id/view_report_detail_time" />
 
@@ -56,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Place"
+        android:textColor="@color/textSecondary"
         app:layout_constraintStart_toStartOf="@+id/view_report_user"
         app:layout_constraintTop_toBottomOf="@+id/view_report_user" />
 
@@ -66,6 +71,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
             android:text="Seat"
+            android:textColor="@color/textSecondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/view_report_detail_place"
             app:layout_constraintStart_toEndOf="@+id/view_report_detail_place" />
 
@@ -74,6 +80,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Report place"
+            android:textColor="@color/textSecondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/view_report_place"
             app:layout_constraintStart_toStartOf="@+id/view_report_detail_user" />
 
@@ -84,6 +91,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:text="Report seat"
+            android:textColor="@color/textSecondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/view_report_seat"
             app:layout_constraintEnd_toEndOf="@+id/view_report_detail_user"
             app:layout_constraintStart_toEndOf="@+id/view_report_seat" />
@@ -94,6 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Description"
+            android:textColor="@color/textSecondary"
             app:layout_constraintStart_toStartOf="@+id/view_report_place"
             app:layout_constraintTop_toBottomOf="@+id/image_view_report_photo" />
 
@@ -110,6 +119,7 @@
             android:padding="5dp"
             android:paddingTop="5dp"
             android:text="Report description"
+            android:textColor="@color/textPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_report_description" />
@@ -134,6 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Comment"
+            android:textColor="@color/textSecondary"
             app:layout_constraintStart_toStartOf="@+id/view_report_description"
             app:layout_constraintTop_toBottomOf="@+id/list_view_comment" />
 
@@ -168,6 +179,8 @@
 
         <ListView
             android:id="@+id/list_view_comment"
+            android:background="@drawable/border_background"
+            android:textColor="@color/textPrimary"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -177,6 +190,7 @@
             android:layout_marginRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:padding="5dp"
             app:layout_constraintTop_toBottomOf="@+id/view_report_existing_comment" />
 
         <TextView
@@ -185,6 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Existing comment"
+            android:textColor="@color/textSecondary"
             app:layout_constraintStart_toStartOf="@+id/view_report_description"
             app:layout_constraintTop_toBottomOf="@+id/view_report_detail_description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
