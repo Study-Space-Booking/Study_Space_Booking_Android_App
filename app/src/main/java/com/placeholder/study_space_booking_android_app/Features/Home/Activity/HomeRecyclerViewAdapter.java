@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.R;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -35,10 +37,22 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
-        final String bookingSeat = "Seat: " + bookings.get(position).getSeatId().toString();
-        final String bookingTime = "Time: " + bookings.get(position).getBookStartTime() +
-                " to " + bookings.get(position).getBookEndTime();
-        String bookingState = "Status: Future";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(bookings.get(position).getBookStartTime() * 1000);
+        String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        calendar.setTimeInMillis(bookings.get(position).getBookEndTime() * 1000);
+        String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        String place;
+        if (bookings.get(position).getPlaceId() == 1) {
+            place = "Mac Commons";
+        } else {
+            place = "PC Commons";
+        }
+        //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
+        final String bookingSeat = "Place: "+ place + "           " + " Seat: " + bookings.get(position).getSeatId().toString();
+        final String bookingTime = "From: " + startTimeString +
+                "\nTo:     " + endTimeString;
+        String bookingState = "Status: future booking";
 
         //if(result instanceof Result.Handle) {
         //    ((HomeViewHolder) holder).title.setText("place not found");

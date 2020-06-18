@@ -17,7 +17,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
         android:text="Choose date"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/textSecondary"
         app:layout_constraintStart_toEndOf="@+id/problem_report_date"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_problem_report" />
 
@@ -28,7 +28,7 @@
         android:layout_marginStart="240dp"
         android:layout_marginLeft="240dp"
         android:text="Choose time"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/textSecondary"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_date"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -37,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/problem_report_place"
+        android:textColor="@color/textSecondary"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_place"
         app:layout_constraintStart_toStartOf="@+id/problem_report_date" />
 
@@ -47,6 +48,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:text="@string/problem_report_time"
+        android:textColor="@color/textSecondary"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_time"
         app:layout_constraintEnd_toStartOf="@+id/problem_report_chosen_time" />
 
@@ -56,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:textColor="@color/textSecondary"
         android:text="@string/problem_report_date"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_date"
         app:layout_constraintStart_toStartOf="parent" />
@@ -66,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Choose place"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/textSecondary"
         app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_date"
         app:layout_constraintTop_toBottomOf="@+id/problem_report_chosen_date" />
 
@@ -75,6 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/problem_report_seat"
+        android:textColor="@color/textSecondary"
         app:layout_constraintBaseline_toBaselineOf="@+id/problem_report_chosen_place"
         app:layout_constraintStart_toStartOf="@+id/problem_report_time" />
 
@@ -83,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="@string/problem_report_photo"
+        android:textColor="@color/textSecondary"
         app:layout_constraintBaseline_toBaselineOf="@+id/button_submit_photo"
         app:layout_constraintStart_toStartOf="@+id/problem_report_place" />
 
@@ -144,6 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/problem_report_description"
+        android:textColor="@color/textSecondary"
         app:layout_constraintStart_toStartOf="@+id/problem_report_photo"
         app:layout_constraintTop_toBottomOf="@+id/progress_bar_photo" />
 
@@ -169,7 +175,7 @@
         android:layout_height="35dp"
         android:background="@drawable/border_background"
         android:ems="10"
-        android:hint="Choose seat"
+        android:hint="Enter seat ID"
         android:inputType="textPersonName"
         android:padding="5dp"
         android:textSize="14sp"

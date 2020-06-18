@@ -15,6 +15,7 @@
         android:background="@drawable/border_background"
         android:gravity="center"
         android:text="TextView"
+        android:textColor="@color/textPrimary"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -30,16 +31,21 @@
             android:layout_height="30dp"
             android:background="@drawable/border_background"
             android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/history_time"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="60dp"
             android:background="@drawable/border_background"
             android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
             android:textSize="16sp" />
 
+        <!--
         <TextView
             android:id="@+id/histroy_state"
             android:layout_width="match_parent"
@@ -47,6 +53,7 @@
             android:background="@drawable/border_background"
             android:text="TextView"
             android:textSize="16sp" />
+            -->
 
         <TextView
             android:id="@+id/history_arrival"
@@ -54,6 +61,8 @@
             android:layout_height="30dp"
             android:background="@drawable/border_background"
             android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
             android:textSize="16sp" />
 
         <TextView
@@ -62,6 +71,8 @@
             android:layout_height="30dp"
             android:background="@drawable/border_background"
             android:text="TextView"
+            android:textColor="@color/textPrimary"
+            android:gravity="left|center"
             android:textSize="16sp" />
     </LinearLayout>
 

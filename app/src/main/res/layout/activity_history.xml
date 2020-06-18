@@ -20,6 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_history">
 
         <TextView
+            android:id="@+id/usercredit_text"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -61,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="@string/history"
+        android:text="History"
         style="@style/LabelTextViewStyle"
         android:textSize="20sp" />
 
