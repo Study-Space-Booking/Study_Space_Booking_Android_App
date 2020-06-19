@@ -61,7 +61,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_welcome);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Welcome! " + SignInUseCases.user.getUserName());
+        getSupportActionBar().setTitle("Welcome! ");
 
         fragmentManager = getSupportFragmentManager();
         //fragmentTransaction = fragmentManager.beginTransaction();

@@ -9,10 +9,21 @@ public class TimeSlot {
     Integer bookEndTime;
     Integer inTime;
     Integer outTime;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     Integer tempLeaveTime;
     Integer tempBackTime;
     Integer state;
+    String key;
 
+    public TimeSlot() {}
     public TimeSlot(Integer id, Integer placeId, Integer seatId, Integer userId, Integer bookStartTime,
                             Integer bookEndTime, Integer inTime, Integer outTime, Integer tempLeaveTime,
                             Integer tempBackTime, Integer state) {

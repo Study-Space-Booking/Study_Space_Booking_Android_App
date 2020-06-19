@@ -13,6 +13,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Admin;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -31,6 +33,9 @@ import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.db.Injection;
+
+import java.util.ArrayList;
+import java.util.List;
 //import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity {
@@ -42,6 +47,9 @@ public class SignInActivity extends AppCompatActivity {
     Button showDBButton;
     TextView textView;
     Toolbar toolbar;
+    DatabaseReference seatdatabaseReference = FirebaseDatabase.getInstance().getReference("seat");
+    DatabaseReference tsdatabaseReference = FirebaseDatabase.getInstance().getReference("timeslot");
+
     private static final String TAG = "SignInActivity";
 
     public static void setEditUserName(String newname) {
@@ -143,6 +151,8 @@ public class SignInActivity extends AppCompatActivity {
         dbLogHistoryManager.initialize(SignInActivity.this);
 
 
+
+
         int minutes1 = 0;
         long millis1 = minutes1 * 60 * 1000;
 
@@ -168,30 +178,8 @@ public class SignInActivity extends AppCompatActivity {
         TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
                 1, 2, 3, 3, 1);
 
-        /* Adding the same time slots for all new seats
-        TimeSlot tmp5 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp6 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp7 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp8 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp9 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1);
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
-                1, 2, 3, 3, 1); */
-        Seat s1 = new Seat(1, 1);
+
+        Seat s1 = new Seat( 1, 1);
         Seat s2 = new Seat(2, 1);
         Seat s3 = new Seat(3, 1);
         Seat s5 = new Seat(5, 1);
@@ -243,22 +231,12 @@ public class SignInActivity extends AppCompatActivity {
         TimeSlot tmp4p = new TimeSlot(8, 2, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4p)/1000),
                 1, 2, 3, 3, 1);
 
-        /*
-        Seat s1p = new Seat(5, 2);
-        Seat s2p = new Seat(6, 2);
-        Seat s3p = new Seat(7, 2);
-        Seat s4p = new Seat(8, 2);
-
-         */
 
         NormalUser demo = new NormalUser(1, 10, "demo", "123", 0);
         NormalUser demo2 = new NormalUser(2, 10, "demo2", "123", 0);
         Admin admin = new Admin(1, "admin", "admin");
         Admin admin2 = new Admin(2, "admin2", "admin");
-        adminDB.insertAdmin(admin);
-        userDB.insertUserInformation(demo);
-        adminDB.insertAdmin(admin2);
-        userDB.insertUserInformation(demo2);
+
 
         TimeSlot his1 = new TimeSlot(1, 1, 1, 1, (int) (System.currentTimeMillis()/1000 - 9000), (int) ((System.currentTimeMillis()+millis1)/1000 - 9000),
                 1, 2, 3, 3, 1);
@@ -284,6 +262,28 @@ public class SignInActivity extends AppCompatActivity {
         TimeSlot his4p = new TimeSlot(8, 2, 4, 2, (int) (System.currentTimeMillis()/1000- 9000), (int) ((System.currentTimeMillis()+millis4p)/1000- 9000),
                 1, 2, 3, 3, 1);
 
+        Seat s1p = new Seat(22, 2);
+        Seat s2p = new Seat(23, 2);
+        Seat s3p = new Seat(24, 2);
+        Seat s5p = new Seat(25, 2);
+        Seat s6p = new Seat(26, 2);
+        Seat s7p = new Seat(27, 2);
+        Seat s8p = new Seat(28, 2);
+        Seat s9p = new Seat(29, 2);
+        Seat s10p = new Seat(30, 2);
+        Seat s11p = new Seat(31, 2);
+        Seat s12p = new Seat(32, 2);
+        Seat s13p = new Seat(33, 2);
+        Seat s14p = new Seat(34, 2);
+        Seat s15p = new Seat(35, 2);
+        Seat s16p = new Seat(36, 2);
+        Seat s17p = new Seat(37, 2);
+        Seat s18p = new Seat(38, 2);
+        Seat s19p = new Seat(39, 2);
+        Seat s20p = new Seat(40, 2);
+        Seat s21p = new Seat(41, 2);
+        Seat s4p = new Seat(42, 2);
+
         dbLogHistoryManager.insertHistory(his1);
         dbLogHistoryManager.insertHistory(his2);
         dbLogHistoryManager.insertHistory(his3);
@@ -294,15 +294,63 @@ public class SignInActivity extends AppCompatActivity {
         dbLogHistoryManager.insertHistory(his3p);
         dbLogHistoryManager.insertHistory(his4p);
 
+        List<Seat> seatList = new ArrayList<>();
+        seatList.add(s1);
+        seatList.add(s2);
+        seatList.add(s3);
+        seatList.add(s4);
+        seatList.add(s5);
+        seatList.add(s6);
+        seatList.add(s7);
+        seatList.add(s8);
+        seatList.add(s9);
+        seatList.add(s10);
+        seatList.add(s11);
+        seatList.add(s12);
+        seatList.add(s13);
+        seatList.add(s14);
+        seatList.add(s15);
+        seatList.add(s16);
+        seatList.add(s17);
+        seatList.add(s18);
+        seatList.add(s19);
+        seatList.add(s20);
+        seatList.add(s21);
+
+        seatList.add(s1p);
+        seatList.add(s2p);
+        seatList.add(s3p);
+        seatList.add(s4p);
+        seatList.add(s5p);
+        seatList.add(s6p);
+        seatList.add(s7p);
+        seatList.add(s8p);
+        seatList.add(s9p);
+        seatList.add(s10p);
+        seatList.add(s11p);
+        seatList.add(s12p);
+        seatList.add(s13p);
+        seatList.add(s14p);
+        seatList.add(s15p);
+        seatList.add(s16p);
+        seatList.add(s17p);
+        seatList.add(s18p);
+        seatList.add(s19p);
+        seatList.add(s20p);
+        seatList.add(s21p);
 
         /*
-        seatM.setSeat(s1p);
-        seatM.setSeat(s2p);
-        seatM.setSeat(s3p);
-        seatM.setSeat(s4p);
+        String key = seatdatabaseReference.push().getKey();
+        seatdatabaseReference.child(key).setValue(s4p);
 
          */
+        /*
+        for (Seat s: seatList) {
+            String key = seatdatabaseReference.push().getKey();
+            seatdatabaseReference.child(key).setValue(s);
+        }
 
+         */
         seatM.setSeat(s1);
         seatM.setSeat(s2);
         seatM.setSeat(s3);
@@ -326,27 +374,7 @@ public class SignInActivity extends AppCompatActivity {
         seatM.setSeat(s21);
 
 
-        Seat s1p = new Seat(22, 2);
-        Seat s2p = new Seat(23, 2);
-        Seat s3p = new Seat(24, 2);
-        Seat s5p = new Seat(25, 2);
-        Seat s6p = new Seat(26, 2);
-        Seat s7p = new Seat(27, 2);
-        Seat s8p = new Seat(28, 2);
-        Seat s9p = new Seat(29, 2);
-        Seat s10p = new Seat(30, 2);
-        Seat s11p = new Seat(31, 2);
-        Seat s12p = new Seat(32, 2);
-        Seat s13p = new Seat(33, 2);
-        Seat s14p = new Seat(34, 2);
-        Seat s15p = new Seat(35, 2);
-        Seat s16p = new Seat(36, 2);
-        Seat s17p = new Seat(37, 2);
-        Seat s18p = new Seat(38, 2);
-        Seat s19p = new Seat(39, 2);
-        Seat s20p = new Seat(40, 2);
-        Seat s21p = new Seat(41, 2);
-        Seat s4p = new Seat(42, 2);
+
 
         seatM.setSeat(s1p);
         seatM.setSeat(s2p);
@@ -381,6 +409,10 @@ public class SignInActivity extends AppCompatActivity {
         d.setTimeSlot(tmp3p);
         d.setTimeSlot(tmp4p);
 
+        adminDB.insertAdmin(admin);
+        userDB.insertUserInformation(demo);
+        adminDB.insertAdmin(admin2);
+        userDB.insertUserInformation(demo2);
 
     }
 

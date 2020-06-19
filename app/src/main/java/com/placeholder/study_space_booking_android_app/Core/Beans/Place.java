@@ -2,11 +2,11 @@ package com.placeholder.study_space_booking_android_app.Core.Beans;
 
 public class Place {
     Integer id;
-    String name;
+    String key;
 
     public Place(Integer id, String name) {
         this.id = id;
-        this.name = name;
+        this.key = name;
     }
 
 
@@ -15,15 +15,15 @@ public class Place {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getKey() {
+        return key;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(String name) {
+        this.key = name;
     }
 }

@@ -11,19 +11,23 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseError;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Model.BookSeatListener;
 import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases.BookSeatUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,7 +37,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class PCBookSeatActivity extends AppCompatActivity implements
-        View.OnClickListener {
+        View.OnClickListener, BookSeatListener {
 
 
     private static String TAG = "BookSeatActivity";
@@ -57,6 +61,11 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     private BookSeatUseCases bookSeatUseCases;
     private Button[] seatButtons = new Button[21];
     private Button buttonConfirmTime;
+
+
+    List<Integer> seats = new ArrayList<>();
+
+    List<Integer> occupiedSeats = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,21 +234,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
 
             Log.d("Time", String.valueOf(mHourc));
             Log.d("Time2", String.valueOf(mHourToc));
-            // calculating startTime
-//            String myDate = mYearc+"/"+mMonthc+"/"+mDayc+" "+mHourc+":"+mMinutec+":00";
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//            Date date = null;
-//
-//            try {
-//                date = sdf.parse(myDate);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//
-//            long millis = date.getTime();
-//            Integer startTime = (int) (millis/1000);
-//            //
-//            Log.d("StartTime", String.valueOf(startTime));
+
             Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
             calendar.set(Calendar.YEAR, mYearc);
             calendar.set(Calendar.MONTH, mMonthc);
@@ -264,18 +259,18 @@ public class PCBookSeatActivity extends AppCompatActivity implements
 
             //
             //Log.d("debug", "debgug can see?");
-            Result<List<Integer>> result = bookSeatUseCases.getOccupiedSeat(startTime, endTime, placeId);
+            Result<List<TimeSlot>> result = bookSeatUseCases.getAllBooking(startTime, endTime, placeId, PCBookSeatActivity.this);
 
             // Log.d("debug", "debgug can see?");
             if(result instanceof Result.Accepted) {
-                List<Integer> seatsOccupied = ((Result.Accepted<List<Integer>>) result).getModel();
-                //Log.d("debug", "debgug can see?");
-                for(int i = 0; i < seatsOccupied.size(); i = i + 1) {
-                    Button button = buttonMap.get(seatsOccupied.get(i));
-                    assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
-                    Log.d("Coloring seats", String.valueOf(button.getId()));
-                    button.setBackgroundColor(Color.RED);
-                }
+//                List<Integer> seatsOccupied = ((Result.Accepted<List<Integer>>) result).getModel();
+//                //Log.d("debug", "debgug can see?");
+//                for(int i = 0; i < seatsOccupied.size(); i = i + 1) {
+//                    Button button = buttonMap.get(seatsOccupied.get(i));
+//                    assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
+//                    Log.d("Coloring seats", String.valueOf(button.getId()));
+//                    button.setBackgroundColor(Color.RED);
+//                }
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -289,7 +284,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
         }
         else if(v instanceof Button) {
             final Integer seatId = seatMap.get(v);
-            if(bookSeatUseCases.isOccupied(seatId)) {
+            if(occupiedSeats.contains(seatId) || occupiedSeats == null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
                 builder.setTitle("Seat" + seatId.toString());
@@ -322,17 +317,17 @@ public class PCBookSeatActivity extends AppCompatActivity implements
 
     public void getSeats() {
         //Log.d("debug", "get all seats debugging");
-        Result<List<Integer>> result = bookSeatUseCases.getAllSeatId(this.placeId);
+        Result<List<Integer>> result = bookSeatUseCases.getAllSeatId(this.placeId, PCBookSeatActivity.this);
         //Log.d("debug", "get all seats debugging");
         if(result instanceof Result.Accepted) {
 
-            List<Integer> seats = ((Result.Accepted<List<Integer>>) result).getModel();
-
-            for(int i = 0; i < seatButtons.length; i = i + 1) {
-
-                seatMap.put(seatButtons[i], seats.get(i));
-                buttonMap.put(seats.get(i), seatButtons[i]);
-            }
+//            List<Integer> seats = ((Result.Accepted<List<Integer>>) result).getModel();
+//
+//            for(int i = 0; i < seatButtons.length; i = i + 1) {
+//
+//                seatMap.put(seatButtons[i], seats.get(i));
+//                buttonMap.put(seats.get(i), seatButtons[i]);
+//            }
 
         }
     }
@@ -340,8 +335,61 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     public void bookSeat(Integer seatId) {
         TimeSlot book = new TimeSlot(0, this.placeId, seatId, SignInUseCases.user.getId(), startTime, endTime,
                 0,0,0,0, State.BOOKED); // state is turned to 1;
-        bookSeatUseCases.bookSeat(book);
+        bookSeatUseCases.bookSeat(book, PCBookSeatActivity.this);
     }
 
+    @Override
+    public void onGetBookingsFailure(DatabaseError databaseError) {
+        Toast.makeText(this, "Booking database" + databaseError.toString(), Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void onGetBookingsSuccess(List<TimeSlot> timeSlots) {
+        Toast.makeText(this, "Bookings refreshed successfully", Toast.LENGTH_SHORT).show();
+
+        List<TimeSlot> bookings = timeSlots;
+        List<Integer> seats = new ArrayList<>();
+        for(int i = 0; i < bookings.size(); i = i + 1) {
+            if (bookings.get(i).getBookEndTime() > startTime && bookings.get(i).getBookStartTime() < endTime)
+                seats.add(bookings.get(i).getSeatId());
+        }
+
+
+        occupiedSeats = seats;
+        //Log.d("debug", "debgug can see?");
+        for(int i = 0; i < occupiedSeats.size(); i = i + 1) {
+            Button button = buttonMap.get(occupiedSeats.get(i));
+            assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
+            Log.d("Coloring seats", String.valueOf(button.getId()));
+            button.setBackgroundColor(Color.RED);
+        }
+    }
+
+    @Override
+    public void onGetSeatFailure(DatabaseError databaseError) {
+        Toast.makeText(this, "seat database" + databaseError.toString(), Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void onAddBookingsSuccess() {
+        Toast.makeText(this, "Bookings added successfully", Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void onGetSeatSuccess(List<Integer> seats) {
+        this.seats = seats;
+        Log.d("debug", "get all seats debugging!!!   " + seats.size());
+        for(int i = 0; i < seatButtons.length; i = i + 1) {
+
+            seatMap.put(seatButtons[i], seats.get(i));
+            buttonMap.put(seats.get(i), seatButtons[i]);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bookSeatUseCases.removeListener();
+    }
 }
 
