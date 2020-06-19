@@ -130,7 +130,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
 
         // From
         if (v == btnDatePicker) {
@@ -258,9 +258,14 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             endTime = (int) (dateTo.getTime()/ 1000);
             Log.d("EndTime", String.valueOf(endTime));
 
+            occupiedSeats.clear();
+            for (Button button : seatButtons) {
+                button.setBackgroundColor(Color.BLUE);
+            }
             //
             //Log.d("debug", "debgug can see?");
              Result<List<TimeSlot>> result = bookSeatUseCases.getAllBooking(startTime, endTime, placeId, MacBookSeatActivity.this);
+
 
             // Log.d("debug", "debgug can see?");
             if(result instanceof Result.Accepted) {
@@ -297,7 +302,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         MacBookSeatActivity.this.bookSeat(seatId);
-                        buttonConfirmTime.performClick();
+                        v.setBackgroundColor(Color.RED);
                     }
                 });
 
@@ -346,14 +351,14 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         Toast.makeText(this, "Bookings refreshed successfully", Toast.LENGTH_SHORT).show();
 
         List<TimeSlot> bookings = timeSlots;
-        List<Integer> seats = new ArrayList<>();
+        List<Integer> seats2 = new ArrayList<>();
         for(int i = 0; i < bookings.size(); i = i + 1) {
             if (bookings.get(i).getBookEndTime() > startTime && bookings.get(i).getBookStartTime() < endTime)
-                seats.add(bookings.get(i).getSeatId());
+                seats2.add(bookings.get(i).getSeatId());
         }
 
 
-        occupiedSeats = seats;
+        occupiedSeats = seats2;
         //Log.d("debug", "debgug can see?");
         for(int i = 0; i < occupiedSeats.size(); i = i + 1) {
             Button button = buttonMap.get(occupiedSeats.get(i));

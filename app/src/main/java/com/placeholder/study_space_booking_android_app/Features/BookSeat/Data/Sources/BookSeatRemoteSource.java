@@ -57,6 +57,7 @@ public class BookSeatRemoteSource {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             timeSlots.clear();
+                            currentTs.clear();
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Log.d("in remote source: ", "get information");
                                 TimeSlot timeSlot = snapshot.getValue(TimeSlot.class);
