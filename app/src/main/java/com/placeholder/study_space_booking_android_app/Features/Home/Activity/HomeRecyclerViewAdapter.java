@@ -9,9 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.UseCases.HomeUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
 import java.text.DateFormat;
@@ -20,6 +24,7 @@ import java.util.List;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     private List<TimeSlot> bookings;
+    private HomeListener homeListener;
 
     HomeRecyclerViewAdapter(List<TimeSlot> bookings) {
         this.bookings = bookings;
@@ -72,36 +77,53 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
         ((HomeViewHolder) holder).seat.setText(bookingSeat);
         ((HomeViewHolder) holder).time.setText(bookingTime);
         ((HomeViewHolder) holder).state.setText(bookingState);
+        /*
         ((HomeViewHolder) holder).callOffBooking.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        callOffBookings(timeSlot);
+                        callOffBookings(timeSlot, homeListener);
                     }
                 }
         );
+        */
     }
 
-    void callOffBookings(TimeSlot timeSlot) {
+    /*
+    void callOffBookings(TimeSlot timeSlot, HomeListener homeListener) {
         int position = bookings.indexOf(timeSlot);
-        HomeFragment.HOME_USE_CASES.callOffBooking(bookings.get(position));
+        HomeFragment.HOME_USE_CASES.callOffBooking(bookings.get(position), homeListener);
         bookings.remove(position);
         notifyItemRemoved(position);
     }
+    */
 
     @Override
     public int getItemCount() {
         return bookings.size();
     }
 
-    public static final class HomeViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout linearLayout;
+    public final class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        //View view;
         ImageView title;
         TextView seat;
         TextView time;
         TextView state;
         Button callOffBooking;
-        public HomeViewHolder(LinearLayout linearLayout) {
+
+        public HomeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            //this.view = itemView;
+            title = (ImageView) itemView.findViewById(R.id.item_booking_title);
+            seat = (TextView) itemView.findViewById(R.id.item_booking_seat);
+            time = (TextView) itemView.findViewById(R.id.item_booking_time);
+            state = (TextView) itemView.findViewById(R.id.item_booking_state);
+            callOffBooking = (Button) itemView.findViewById(R.id.call_off_booking_button);
+            callOffBooking.setOnClickListener(this);
+        }
+
+        /*
+        public HomeViewHolder() {
             super(linearLayout);
             this.linearLayout = linearLayout;
             title = (ImageView) linearLayout.findViewById(R.id.item_booking_title);
@@ -109,6 +131,27 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
             time = (TextView) linearLayout.findViewById(R.id.item_booking_time);
             state = (TextView) linearLayout.findViewById(R.id.item_booking_state);
             callOffBooking = (Button) linearLayout.findViewById(R.id.call_off_booking_button);
+            callOffBooking.setOnClickListener(this);
         }
+        */
+        @Override
+        public void onClick(View v) {
+            int postion = getAdapterPosition();
+            if(homeListener != null && postion != RecyclerView.NO_POSITION) {
+                homeListener.onCallOffBookingsClick(postion);
+                /*
+                HomeRecyclerViewAdapter.this.homeListener.onCallOffBookingsClick(postion);
+                TimeSlot booking = bookings.get(postion);
+                bookings.remove(postion);
+                notifyDataSetChanged();
+                Result<TimeSlot> result = HomeFragment.HOME_USE_CASES.callOffBooking(booking, homeListener);
+                homeListener.onCallOffBookingSuccess();
+                */
+            }
+        }
+    }
+
+    public void setHomeListener(HomeListener homeListener) {
+        this.homeListener = homeListener;
     }
 }

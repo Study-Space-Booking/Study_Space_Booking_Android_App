@@ -95,12 +95,15 @@ public class ViewReportDetailActivity extends AppCompatActivity implements ViewR
 
             comments.setAdapter(arrayAdapter);
             setCommentListHeight(comments);
+
             Picasso.get()
                     .load(submission.getImageUrl())
                     .fit()
                     .centerCrop()
                     .placeholder(R.drawable.ic_cloud_download_black_24dp)
                     .into(imageView);
+
+
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

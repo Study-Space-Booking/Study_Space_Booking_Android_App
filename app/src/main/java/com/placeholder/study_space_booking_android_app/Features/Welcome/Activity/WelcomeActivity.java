@@ -26,7 +26,7 @@ import com.placeholder.study_space_booking_android_app.R;
 
 public class WelcomeActivity extends AppCompatActivity {
     public FragmentManager fragmentManager = getSupportFragmentManager();
-    public FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
     private Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
     private static final String TAG = "WelcomeActivity";
@@ -48,9 +48,9 @@ public class WelcomeActivity extends AppCompatActivity {
                             selectedFragment = new ReportFragment();
                             break;
                     }
-                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment)
+                        .addToBackStack(null)
+                        .commit();
                 }
             };
 
@@ -86,22 +86,33 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.item_toolbar_camera:
                 startActivity(new Intent(getApplicationContext(), ScanOptionActivity.class));
                 break;
             case R.id.item_toolbar_home:
+                /*
                 Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
+                */
+                fragmentTransaction.replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
                 break;
             case R.id.item_toolbar_booking:
+                /*
                 bottomNavigationView = findViewById(R.id.bottom_navigation);
                 bottomNavigationView.getMenu().findItem(R.id.navigation_booking).setChecked(true);
+                */
+                fragmentTransaction.replace(R.id.fragment_container, new PlaceFragment()).addToBackStack(null).commit();
+                break;
+            case R.id.item_toolbar_report:
+                fragmentTransaction.replace(R.id.fragment_container, new ReportFragment()).addToBackStack(null).commit();
                 break;
             case R.id.item_log_out:
                 SignInActivity.setEditUserName("");
                 SignInActivity.setEditPassword("");
+                SignInUseCases.signOut();
                 Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(logout);
                 break;

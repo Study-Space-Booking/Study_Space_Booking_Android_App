@@ -7,6 +7,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
 import com.placeholder.study_space_booking_android_app.db.DBLogHistoryManager;
 import com.placeholder.study_space_booking_android_app.db.DBPlaceManager;
 import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
@@ -105,7 +106,7 @@ public class HomeLocalSource implements HomeSource {
     }
 
     @Override
-    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
+    public Result<List<TimeSlot>> getAllBookings(List<TimeSlot> bookings, NormalUser user, HomeListener homeListener) {
         Log.d("in home local source", " create a new cursor");
         Cursor cursor = dbTimeSlotManager.getUserTimeSlot(user.getId());
         boolean check = cursor == null;
@@ -113,7 +114,8 @@ public class HomeLocalSource implements HomeSource {
 
         try {
             if (cursor.getCount() == 0) {
-                return new Result.Handle(new IllegalArgumentException("No booking"));
+                homeListener.onNoBookingFound();
+                return new Result.Accepted<>(null);
             } else {
                 List<TimeSlot> list = new ArrayList<>();
                 while (cursor.moveToNext()) {
@@ -133,6 +135,7 @@ public class HomeLocalSource implements HomeSource {
                             )
                     );
                 }
+                homeListener.onGetBookingsSuccess(list);
                 return new Result.Accepted<>(list);
             }
         } catch (Exception exception) {
@@ -141,12 +144,14 @@ public class HomeLocalSource implements HomeSource {
     }
 
     @Override
-    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
+    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener) {
         try {
             int result = dbTimeSlotManager.deleteTimeSlot(timeSlot.getId());
             if (result == 0) {
-                return new Result.Handle(new IllegalArgumentException("The booking is not found"));
+                homeListener.onCallOffBookingFailure(new Exception("The booking is not found"));
+                return new Result.Accepted<>(null);
             } else {
+                homeListener.onCallOffBookingSuccess();
                 return new Result.Accepted<>(timeSlot);
             }
         } catch (Exception exception) {
@@ -154,6 +159,7 @@ public class HomeLocalSource implements HomeSource {
         }
     }
 
+    /*
     @Override
     public Result<String> getPlaceName(Integer placeId) {
         try {
@@ -163,7 +169,7 @@ public class HomeLocalSource implements HomeSource {
             return new Result.Handle(exception);
         }
     }
-
+    */
 
     public Result<List<TimeSlot>> getUserTimeSlot(String username) {
         NormalUser user = new NormalUser();

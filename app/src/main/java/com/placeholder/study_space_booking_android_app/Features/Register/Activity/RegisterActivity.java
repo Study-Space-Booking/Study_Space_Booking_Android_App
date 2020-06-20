@@ -13,21 +13,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Model.RegisterListener;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases.RegisterUseCases;
 import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
-import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Usecases.RegisterUseCases;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements RegisterListener {
     EditText editUserName;
     EditText editPassword;
     EditText editConfirmPassword;
     Button registerButton;
     Button showButton;
     Toolbar toolbar;
+    RegisterUseCases registerUseCases;
     private static final String TAG = "RegisterActivity";
 
     @Override
@@ -45,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         dbAdminManager.initialize(this);
         //RegisterLocalSource registerLocalSource = RegisterLocalSource.getInstance();
         //RegisterRepository registerRepository = RegisterRepositoryImplementation.getInstance();
-        final RegisterUseCases registerUseCases = RegisterUseCases.getInstance();
+        registerUseCases = RegisterUseCases.getInstance();
 
         editUserName = (EditText)findViewById(R.id.username_register);
         editPassword = (EditText)findViewById(R.id.password_register);
@@ -77,15 +79,17 @@ public class RegisterActivity extends AppCompatActivity {
         String userName = editUserName.getText().toString();
         String password =  editPassword.getText().toString();
         String confirmPassword = editConfirmPassword.getText().toString();
-        Result<NormalUser> result = registerUseCases.register(userName, password, confirmPassword);
+        Result<NormalUser> result = registerUseCases.validate(userName, password, confirmPassword, this);
         if(result instanceof Result.Handle) {
             Exception exception = ((Result.Handle) result).getException();
 
             Toast.makeText(RegisterActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
+            /*
             Toast.makeText(RegisterActivity.this, "register", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegisterActivity.this, SignInActivity.class);
             startActivity(intent);
+            */
         }
     }
 
@@ -115,6 +119,28 @@ public class RegisterActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
+    }
+
+    @Override
+    public void onNewUser() {
+        registerUseCases.register(editUserName.getText().toString(), editPassword.getText().toString(), this);
+    }
+
+    @Override
+    public void onExistingUser() {
+        Toast.makeText(this, "Existing user", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRegistered() {
+        Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(RegisterActivity.this, SignInActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onCheckRegistration() {
+        Toast.makeText(this, "Check", Toast.LENGTH_SHORT).show();
     }
 
 

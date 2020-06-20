@@ -6,6 +6,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeLocalSource;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeRemoteSource;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.Repository.HomeRepository;
 
 import java.util.List;
@@ -27,8 +28,9 @@ public class HomeRepositoryImplementation implements HomeRepository {
     }
 
     @Override
-    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
-        return homeLocalSource.getAllBookings(user);
+    public Result<List<TimeSlot>> getAllBookings(List<TimeSlot> bookings, NormalUser user, HomeListener homeListener) {
+        //return homeLocalSource.getAllBookings(bookings, user, homeListener);
+        return homeRemoteSource.getAllBookings(bookings, user, homeListener);
     }
 
     @Override
@@ -42,13 +44,9 @@ public class HomeRepositoryImplementation implements HomeRepository {
     }
 
     @Override
-    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
-        return homeLocalSource.callOffBooking(timeSlot);
-    }
-
-    @Override
-    public Result<String> getPlaceName(Integer placeId) {
-        return homeLocalSource.getPlaceName(placeId);
+    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener) {
+        //return homeLocalSource.callOffBooking(timeSlot, homeListener);
+        return homeRemoteSource.callOffBooking(timeSlot, homeListener);
     }
 
     @Override
