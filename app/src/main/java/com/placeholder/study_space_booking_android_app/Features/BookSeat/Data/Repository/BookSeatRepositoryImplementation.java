@@ -2,6 +2,7 @@ package com.placeholder.study_space_booking_android_app.Features.BookSeat.Data.R
 
 import android.util.Log;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
@@ -61,5 +62,9 @@ public class BookSeatRepositoryImplementation implements BookSeatRepository {
 
     public Result<Submission> removeListener() {
         return bookSeatRemoteSource.removeListener();
+    }
+
+    public Result<List<TimeSlot>> getMyBookings(NormalUser user, final BookSeatListener bookSeatListener) {
+        return bookSeatRemoteSource.getMyBookings(user, bookSeatListener);
     }
 }

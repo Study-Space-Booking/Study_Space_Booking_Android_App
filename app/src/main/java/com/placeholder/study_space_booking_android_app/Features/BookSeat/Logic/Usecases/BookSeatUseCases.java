@@ -83,4 +83,8 @@ public class BookSeatUseCases {
     public Result<Submission> removeListener() {
         return bookSeatRepository.removeListener();
     }
+
+    public Result<List<TimeSlot>> getMyBookings(NormalUser user, final BookSeatListener bookSeatListener) {
+        return bookSeatRepository.getMyBookings(user, bookSeatListener);
+    }
 }

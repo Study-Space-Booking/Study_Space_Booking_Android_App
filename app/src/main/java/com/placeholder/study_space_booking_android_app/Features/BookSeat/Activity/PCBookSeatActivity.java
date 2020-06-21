@@ -2,6 +2,7 @@ package com.placeholder.study_space_booking_android_app.Features.BookSeat.Activi
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseError;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
@@ -62,7 +64,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     private Button[] seatButtons = new Button[21];
     private Button buttonConfirmTime;
 
-
+    List<TimeSlot> myBookings = new ArrayList<>();
     List<Integer> seats = new ArrayList<>();
 
     List<Integer> occupiedSeats = new ArrayList<>();
@@ -128,7 +130,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
 
         // From
         if (v == btnDatePicker) {
@@ -257,21 +259,37 @@ public class PCBookSeatActivity extends AppCompatActivity implements
             endTime = (int) (dateTo.getTime()/ 1000);
             Log.d("EndTime", String.valueOf(endTime));
 
+            BookSeatUseCases.getInstance().getMyBookings((NormalUser) SignInUseCases.user, this);
+            // check if time is correct
+            if (startTime >= endTime) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+                builder.setCancelable(true);
+                builder.setTitle("Check you time");
+                builder.setMessage("Start Time is later than End time");
+                builder.show();
+                for(int i = 0; i < seatButtons.length; i = i + 1) {
+                    seatButtons[i].setEnabled(false);
+                }
+
+            } else {
+                for(int i = 0; i < seatButtons.length; i = i + 1) {
+                    seatButtons[i].setEnabled(true);
+                }
+            }
             //
             //Log.d("debug", "debgug can see?");
+
+            occupiedSeats.clear();
+            for (Button button : seatButtons) {
+                button.setBackgroundColor(Color.BLUE);
+            }
+
+
             Result<List<TimeSlot>> result = bookSeatUseCases.getAllBooking(startTime, endTime, placeId, PCBookSeatActivity.this);
+
 
             // Log.d("debug", "debgug can see?");
             if(result instanceof Result.Accepted) {
-//                List<Integer> seatsOccupied = ((Result.Accepted<List<Integer>>) result).getModel();
-//                //Log.d("debug", "debgug can see?");
-//                for(int i = 0; i < seatsOccupied.size(); i = i + 1) {
-//                    Button button = buttonMap.get(seatsOccupied.get(i));
-//                    assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
-//                    Log.d("Coloring seats", String.valueOf(button.getId()));
-//                    button.setBackgroundColor(Color.RED);
-//                }
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -280,7 +298,6 @@ public class PCBookSeatActivity extends AppCompatActivity implements
                     }
                 }, 1000);
             }
-            //Log.d("debug", "debgug can see?");
         }
         else if(v instanceof Button) {
             final Integer seatId = seatMap.get(v);
@@ -298,7 +315,11 @@ public class PCBookSeatActivity extends AppCompatActivity implements
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         PCBookSeatActivity.this.bookSeat(seatId);
-                        buttonConfirmTime.performClick();
+                        v.setBackgroundColor(Color.RED);
+                        buttonConfirmTime.setEnabled(false);
+                        for(int i = 0; i < seatButtons.length; i = i + 1) {
+                            seatButtons[i].setEnabled(false);
+                        }
                     }
                 });
 
@@ -360,7 +381,7 @@ public class PCBookSeatActivity extends AppCompatActivity implements
         for(int i = 0; i < occupiedSeats.size(); i = i + 1) {
             Button button = buttonMap.get(occupiedSeats.get(i));
             assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
-            Log.d("Coloring seats", String.valueOf(button.getId()));
+            // Log.d("Coloring seats", String.valueOf(button.getId()));
             button.setBackgroundColor(Color.RED);
         }
     }
@@ -387,8 +408,51 @@ public class PCBookSeatActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onGetMyBookingsSuccess(List<TimeSlot> list) {
+        myBookings.clear();
+        myBookings = list;
+        boolean free = true;
+        if (list.size() != 0) {
+            for (TimeSlot t : myBookings) {
+                if (t.getBookStartTime() <= endTime && t.getBookEndTime() >= startTime) {
+                    free = false;
+                    break;
+                }
+            }
+        }
+        if (free == false) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+            builder.setCancelable(true);
+            builder.setTitle("Check you time");
+            builder.setMessage("You have already booked a seat during this period");
+            builder.setNeutralButton("ReEnter", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            buttonConfirmTime.setEnabled(false);
+                            PCBookSeatActivity.this.recreate();
+                        }
+                    }
+            );
+            builder.show();
+            for(int i = 0; i < seatButtons.length; i = i + 1) {
+                seatButtons[i].setEnabled(false);
+            }
+        }
+    }
+
+    @Override
+    public void onGetMyBookingsFail(DatabaseError databaseError) {
+
+    }
+
+    @Override
+    public void onGetMyBookingsNotFound() {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        buttonConfirmTime.setEnabled(false);
         bookSeatUseCases.removeListener();
     }
 }

@@ -2,6 +2,7 @@ package com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.
 
 import android.content.Intent;
 
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Model.BookSeatListener;
@@ -17,4 +18,5 @@ public interface BookSeatRepository {
     Result<List<TimeSlot>> getAllBooking(Integer startTime, Integer endTime, Integer placeId, BookSeatListener bookSeatListener);
     void insertBooking(TimeSlot timeSlot, BookSeatListener bookSeatListener);
     public Result<Submission> removeListener();
+    public Result<List<TimeSlot>> getMyBookings(NormalUser user, final BookSeatListener bookSeatListener);
 }

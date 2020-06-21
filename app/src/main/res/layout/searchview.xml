@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-        android:queryHint="Please Enter User Name"
+        android:queryHint="Please Enter Username or UserID"
         android:background="@color/colorGrey"
         android:queryBackground="@color/colorGrey"/>
 

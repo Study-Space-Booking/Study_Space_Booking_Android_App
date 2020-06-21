@@ -9,11 +9,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Model.BookSeatListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HistoryListener;
 import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
 
 import java.sql.Time;
@@ -32,6 +35,8 @@ public class BookSeatRemoteSource {
 
     final List<Seat> seats = new ArrayList<>();
     final List<Integer> seatIDs = new ArrayList<>();
+
+    final List<TimeSlot> myBookings = new ArrayList<>();
 
     BookSeatRemoteSource(DatabaseReference databaseReference, DatabaseReference seatdatabaseReference) {
         this.databaseReference = databaseReference;
@@ -150,6 +155,38 @@ public class BookSeatRemoteSource {
             databaseReference.removeEventListener(valueEventListener);
             seatdatabaseReference.removeEventListener(valueEventListener2);
             return new Result.Accepted<>(null);
+        } catch (Exception exception) {
+            return new Result.Handle(exception);
+        }
+    }
+
+    public Result<List<TimeSlot>> getMyBookings(NormalUser user, final BookSeatListener bookSeatListener) {
+        try {
+            Query query = databaseReference.orderByChild("userId").equalTo(user.getId());
+            query.addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            myBookings.clear();
+                            if(!dataSnapshot.exists()) {
+                                bookSeatListener.onGetMyBookingsNotFound();
+                            } else {
+                                for(DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                                    TimeSlot timeSlot = snapshot.getValue(TimeSlot.class);
+                                    timeSlot.setKey(snapshot.getKey());
+                                    myBookings.add(timeSlot);
+                                }
+                                bookSeatListener.onGetMyBookingsSuccess(myBookings);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            bookSeatListener.onGetMyBookingsFail(databaseError);
+                        }
+                    }
+            );
+            return new Result.Accepted<>(myBookings);
         } catch (Exception exception) {
             return new Result.Handle(exception);
         }
