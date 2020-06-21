@@ -70,7 +70,7 @@ public class BookSeatLocalSource {
                     list.add(
                                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TABLE_SEAT_SEAT_ID))
                     );
-                    Log.d("debug", "show newly created method to get all seat!!" + String.valueOf(i));
+                    Log.d("debug", "show newly created method to get all seat!!" + i);
                     i++;
                 }
                 return new Result.Accepted<>(list);

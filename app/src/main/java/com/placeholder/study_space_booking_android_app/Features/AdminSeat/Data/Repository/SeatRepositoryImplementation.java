@@ -6,6 +6,9 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.AdminSeat.Data.Sources.SeatLocalSource;
+import com.placeholder.study_space_booking_android_app.Features.AdminSeat.Data.Sources.SeatRemoteSource;
+import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.Model.SeatListener;
+import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.Model.UserInfoListener;
 import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.Repository.SeatRepository;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeLocalSource;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeRemoteSource;
@@ -16,70 +19,32 @@ import java.util.List;
 public class SeatRepositoryImplementation implements SeatRepository {
     private static volatile SeatRepositoryImplementation instance;
     private final SeatLocalSource seatLocalSource;
-    // private final  ;
+    private final SeatRemoteSource seatRemoteSource;
 
-    private SeatRepositoryImplementation(SeatLocalSource seatLocalSource) {
+    private SeatRepositoryImplementation(SeatLocalSource seatLocalSource, SeatRemoteSource seatRemoteSource) {
         this.seatLocalSource = seatLocalSource;
-      //  this.homeRemoteSource = homeRemoteSource;
+        this.seatRemoteSource = seatRemoteSource;
     }
+
     public static SeatRepositoryImplementation getInstance() {
-        if(instance == null) {
-            instance = new SeatRepositoryImplementation(SeatLocalSource.getInstance());
+        if (instance == null) {
+            instance = new SeatRepositoryImplementation(SeatLocalSource.getInstance(), SeatRemoteSource.getInstance());
         }
         return instance;
     }
+
     @Override
-    public Result<List<Seat>> getAllSeats() {
-        return seatLocalSource.getAllSeats();
+    public Result<List<Seat>> getAllSeats(SeatListener seatListener) {
+        return seatRemoteSource.getAllSeats(seatListener);
     }
 
     @Override
-    public Result<List<TimeSlot>> getSeatTimeSlot(Integer id) {
-        return seatLocalSource.getSeatTimeSlot(id);
+    public Result<List<TimeSlot>> getSeatTimeSlot(Integer id, final SeatListener seatListener) {
+        return seatRemoteSource.getSeatTimeSlot(id, seatListener);
     }
 
     @Override
-    public Result<NormalUser> getUserInfo(String id) {
-        return seatLocalSource.getUserInfo(id);
+    public Result<NormalUser> getUserInfo(Integer id, UserInfoListener userInfoListener) {
+        return seatRemoteSource.getUserInfo(id, userInfoListener);
     }
-
-//    @Override
-//    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
-//        return seatLocalSource.getAllBookings(user);
-//    }
-//
-//    @Override
-//    public Result<List<User>> getAllUsers() {
-//        return homeLocalSource.getAllUsers();
-//    }
-//
-//    @Override
-//    public Result<List<TimeSlot>> getHistory(NormalUser user) {
-//        return homeLocalSource.getHistory(user);
-//    }
-//
-//    @Override
-//    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
-//        return homeLocalSource.callOffBooking(timeSlot);
-//    }
-//
-//    @Override
-//    public Result<String> getPlaceName(Integer placeId) {
-//        return homeLocalSource.getPlaceName(placeId);
-//    }
-//
-//    @Override
-//    public Result<List<TimeSlot>> getUserTimeSlot(String name) {
-//        return homeLocalSource.getUserTimeSlot(name);
-//    }
-//
-//    @Override
-//    public Result<NormalUser> getUserInfo(String name) {
-//        return homeLocalSource.getUserInfo(name);
-//    }
-//
-//    @Override
-//    public void updateUser(NormalUser user) {
-//        homeLocalSource.updateUser(user);
-//    }
 }

@@ -8,6 +8,7 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sour
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources.Source;
 
 
+import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Model.SignInListener;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Repository.SignInRepository;
 
 import java.util.Optional;
@@ -37,7 +38,8 @@ public class RepositoryImplementation implements SignInRepository {
     */
 
     @Override
-    public Result<User> getUserInformation(String userName, String password) {
-        return localSource.getUserInformation(userName, password);
+    public Result<User> getUserInformation(String userName, String password, SignInListener signInListener) {
+        //return localSource.getUserInformation(userName, password, signInListener);
+        return remoteSource.getUserInformation(password, userName, signInListener);
     }
 }

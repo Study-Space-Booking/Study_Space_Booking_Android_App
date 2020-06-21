@@ -4,6 +4,7 @@ import android.database.Cursor;
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
+import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Model.RegisterListener;
 import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
 
@@ -28,25 +29,34 @@ public class RegisterLocalSource implements RegisterSource {
     }
 
     @Override
-    public boolean hasExistingUser(String userName) {
-        boolean check = false;
-        Cursor cursorOne = dbUserInformationManager.getUserInformation(userName, null, null);
-        Cursor cursorTwo = dbAdminManager.getAdmin(userName, null, null);
-        if(cursorOne.getCount() + cursorTwo.getCount() > 0) {
-            check = true;
+    public boolean hasExistingUser(String userName, RegisterListener registerListener) {
+        try {
+            boolean check = false;
+            Cursor cursorOne = dbUserInformationManager.getUserInformation(userName, null, null);
+            Cursor cursorTwo = dbAdminManager.getAdmin(userName, null, null);
+            if (cursorOne.getCount() + cursorTwo.getCount() > 0) {
+                check = true;
+                registerListener.onExistingUser();
+            } else {
+                registerListener.onNewUser();
+            }
+            return true;
+        } catch (Exception exception) {
+            return false;
         }
-        return check;
     }
 
     @Override
-    public Result<NormalUser> register(String userName, String password) {
+    public Result<NormalUser> register(String userName, String password, RegisterListener registerListener) {
         try{
             boolean check = dbUserInformationManager.insertUserInformation(
                     new NormalUser(0, INITIAL_CREDIT, userName, password, 0)
             );
             if(check == false) {
-                return new Result.Handle(new Exception("check insertion"));
+                registerListener.onCheckRegistration();
+                return new Result.Accepted<>(null);
             } else {
+                registerListener.onRegistered();
                 return new Result.Accepted<NormalUser>(null);
             }
         } catch (Exception e) {

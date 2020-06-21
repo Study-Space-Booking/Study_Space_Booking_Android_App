@@ -1,6 +1,9 @@
 package com.placeholder.study_space_booking_android_app.Features.SignIn.Data.Sources;
 
 import android.database.Cursor;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 
 import com.placeholder.study_space_booking_android_app.Core.Beans.Admin;
@@ -8,9 +11,13 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 
+import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Model.SignInListener;
 import com.placeholder.study_space_booking_android_app.db.DBAdminManager;
 import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
 import com.placeholder.study_space_booking_android_app.db.DatabaseHelper;
+
+
+import java.util.Optional;
 
 /*
 interface LocalSource {
@@ -37,13 +44,16 @@ public class LocalSourceImplementation implements Source {
     }
 
     //@RequiresApi(api = Build.VERSION_CODES.N)
-    public Result<User> getUserInformation(String userName, String password) {
+    public Result<User> getUserInformation(String userName, String password, SignInListener signInListener) {
         try {
             Cursor cursorOne = dbUserInformationManager.getUserInformation(userName, password, null);
             Cursor cursorTwo = dbAdminManager.getAdmin(userName, password, null);
-            if ((cursorOne.getCount() + cursorTwo.getCount() == 0) ||
-                    (cursorOne.getCount() + cursorTwo.getCount() >= 2)) {
-                return new Result.Handle(new IllegalArgumentException("No such user. Check user name or password"));
+            if (cursorOne.getCount() + cursorTwo.getCount() == 0) {
+                signInListener.onNoUserFound();
+                return new Result.Accepted<>(null);
+            } else if (cursorOne.getCount() + cursorTwo.getCount() >= 2) {
+                signInListener.onDuplicateUserFound();
+                return new Result.Accepted<>(null);
             } else {
                 if (cursorOne.getCount() == 1) {
                     //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ID));
@@ -52,24 +62,24 @@ public class LocalSourceImplementation implements Source {
                     //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_PASSWORD));
                     //System.out.println(cursorOne.getColumnIndex(DatabaseHelper.USER_COLUMN_ISBLOCKED));
                     cursorOne.moveToFirst();
-                    return new Result.Accepted<User>(
-                            new NormalUser(
-                                    Integer.parseInt(cursorOne.getString(0)),
-                                    Integer.parseInt(cursorOne.getString(3)),
-                                    cursorOne.getString(1),
-                                    cursorOne.getString(2),
-                                    Integer.parseInt(cursorOne.getString(4))
-                            )
+                    NormalUser normalUser = new NormalUser(
+                            Integer.parseInt(cursorOne.getString(0)),
+                            Integer.parseInt(cursorOne.getString(3)),
+                            cursorOne.getString(1),
+                            cursorOne.getString(2),
+                            Integer.parseInt(cursorOne.getString(4))
                     );
+                    signInListener.onUserFound(normalUser);
+                    return new Result.Accepted<User>(normalUser);
                 } else {
                     cursorTwo.moveToFirst();
-                    return new Result.Accepted<User>(
-                            new Admin(
-                                    cursorTwo.getInt(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_ID)),
-                                    cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_USERNAME)),
-                                    cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_PASSWORD))
-                            )
+                    Admin administrator = new Admin(
+                            cursorTwo.getInt(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_ID)),
+                            cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_USERNAME)),
+                            cursorTwo.getString(cursorTwo.getColumnIndex(DatabaseHelper.TABLE_ADMIN_PASSWORD))
                     );
+                    signInListener.onUserFound(administrator);
+                    return new Result.Accepted<User>(administrator);
                 }
             }
         } catch (Exception e) {

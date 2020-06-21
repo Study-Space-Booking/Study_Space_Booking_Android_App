@@ -7,7 +7,9 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Data.Repository.BookSeatRepositoryImplementation;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Model.BookSeatListener;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Repository.BookSeatRepository;
+import com.placeholder.study_space_booking_android_app.Features.ProblemReport.Logic.Model.Submission;
 import com.placeholder.study_space_booking_android_app.Features.Register.Data.Repository.RegisterRepositoryImplementation;
 import com.placeholder.study_space_booking_android_app.Features.Register.Logic.Repository.RegisterRepository;
 
@@ -35,30 +37,26 @@ public class BookSeatUseCases {
         return bookSeatRepository.CurrStateOfSeat(t);
     }
 
-    public Result<List<Integer>> getAllSeatId(Integer placeId) {
-        return bookSeatRepository.getAllSeatId(placeId);
+    public Result<List<Integer>> getAllSeatId(Integer placeId, BookSeatListener bookSeatListener) {
+        return bookSeatRepository.getAllSeatId(placeId, bookSeatListener);
     }
 
-    public Result<List<Integer>> getOccupiedSeat(Integer startTime, Integer endTime, Integer placeId) {
-        Result<List<TimeSlot>> result = bookSeatRepository.getAllBooking(startTime, endTime, placeId);
-        //Log.d("debug", "debgug can see?");
-        if(result instanceof Result.Handle) {
-            //Log.d("debug", "debgug can see?");
-            return new Result.Handle(new Exception("cannot find booking information"));
-        } else {
-            List<TimeSlot> bookings = ((Result.Accepted<List<TimeSlot>>) result).getModel();
-            List<Integer> seats = new ArrayList<>();
-            for(int i = 0; i < bookings.size(); i = i + 1) {
-                if (bookings.get(i).getBookEndTime() > startTime && bookings.get(i).getBookStartTime() < endTime)
-                    seats.add(bookings.get(i).getSeatId());
-            }
-            this.seats = seats;
-            return new Result.Accepted<>(seats);
-        }
-    }
-
-//    public Result<TimeSlot> confirmBooking(TimeSlot timeSlot) {
-//        return bookSeatRepository.insertBooking(timeSlot);
+//    public Result<List<Integer>> getOccupiedSeat(Integer startTime, Integer endTime, Integer placeId, BookSeatListener bookSeatListener) {
+//        Result<List<TimeSlot>> result = bookSeatRepository.getAllBooking(startTime, endTime, placeId, bookSeatListener);
+//        //Log.d("debug", "debgug can see?");
+//        if(result instanceof Result.Handle) {
+//            //Log.d("debug", "debgug can see?");
+//            return new Result.Handle(new Exception("cannot find booking information"));
+//        } else {
+//            List<TimeSlot> bookings = ((Result.Accepted<List<TimeSlot>>) result).getModel();
+//            List<Integer> seats = new ArrayList<>();
+//            for(int i = 0; i < bookings.size(); i = i + 1) {
+//                if (bookings.get(i).getBookEndTime() > startTime && bookings.get(i).getBookStartTime() < endTime)
+//                    seats.add(bookings.get(i).getSeatId());
+//            }
+//            this.seats = seats;
+//            return new Result.Accepted<>(seats);
+//        }
 //    }
 
     public boolean isOccupied(Integer seatId) {
@@ -75,7 +73,18 @@ public class BookSeatUseCases {
         }
     }
 
-    public void bookSeat(TimeSlot t) {
-        bookSeatRepository.insertBooking(t);
+    public Result<List<TimeSlot>> getAllBooking(Integer startTime, Integer endTime, Integer placeId, BookSeatListener bookSeatListener) {
+        return bookSeatRepository.getAllBooking(startTime, endTime, placeId, bookSeatListener);
+    }
+    public void bookSeat(TimeSlot t, BookSeatListener bookSeatListener) {
+        bookSeatRepository.insertBooking(t, bookSeatListener);
+    }
+
+    public Result<Submission> removeListener() {
+        return bookSeatRepository.removeListener();
+    }
+
+    public Result<List<TimeSlot>> getMyBookings(NormalUser user, final BookSeatListener bookSeatListener) {
+        return bookSeatRepository.getMyBookings(user, bookSeatListener);
     }
 }

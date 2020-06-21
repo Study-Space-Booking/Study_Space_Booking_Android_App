@@ -80,9 +80,9 @@
 
         <TextView
             android:id="@+id/go_to_history"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
             style="@style/LabelTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center|center_horizontal"
             android:text="Go To History"
             android:textAllCaps="false"
@@ -93,6 +93,15 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_bar_home"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_booking_recycler_view" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

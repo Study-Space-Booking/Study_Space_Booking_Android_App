@@ -6,18 +6,31 @@ public class NormalUser extends User{
     //private String userName;
     //private String password;
     //private Integer isAdministrator;
-    private Integer isBlocked;
+    private Integer blocked;
+    private String key;
 
-    public NormalUser() {}
+
+    public NormalUser() {
+
+    }
+
     public NormalUser(Integer id, Integer credit, String userName,
-             String password, Integer isBlocked) {
+             String password, Integer blocked) {
         super(id, userName, password);
         this.credit = credit;
 
         //this.isAdministrator = isAdministrator;
-        this.isBlocked = isBlocked;
+        this.blocked = blocked;
     }
 
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public void setCredit(Integer credit) {
         this.credit = credit;
@@ -28,7 +41,7 @@ public class NormalUser extends User{
     //}
 
     public void setState(Integer state) {
-        this.isBlocked = state;
+        this.blocked = state;
     }
 
     public Integer getCredit() {
@@ -40,6 +53,6 @@ public class NormalUser extends User{
     //}
 
     public Integer isBlocked() {
-        return isBlocked;
+        return blocked;
     }
 }

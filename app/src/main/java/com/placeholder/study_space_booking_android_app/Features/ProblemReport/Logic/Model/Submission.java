@@ -30,12 +30,11 @@ public class Submission implements Parcelable {
     static {
         stateMap.put("Pending", Color.YELLOW);
         stateMap.put("Invalid", Color.RED);
-        stateMap.put("Solved", Color.BLUE);
+        stateMap.put("Solved", Color.WHITE);
     }
 
 
     public Submission() {
-
     }
 
     public Submission(String selectedDate, String selectedTime, String selectedPlace,

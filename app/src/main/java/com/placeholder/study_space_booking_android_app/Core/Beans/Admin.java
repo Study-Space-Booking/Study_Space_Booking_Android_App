@@ -6,6 +6,10 @@ public class Admin extends User{
     String name;
     String Password;
     */
+    public Admin() {
+
+    }
+
     public Admin(Integer id, String name, String password) {
         super(id, name, password);
     }

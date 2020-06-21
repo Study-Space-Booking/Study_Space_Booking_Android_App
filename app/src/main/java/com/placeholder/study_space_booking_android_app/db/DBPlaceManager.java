@@ -47,7 +47,7 @@ public class DBPlaceManager {
         if (!valid()) return false;
         SQLiteDatabase database = pDbhelper.open();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.TABLE_PLACE_PlACE_NAME, p.getName());
+        contentValues.put(DatabaseHelper.TABLE_PLACE_PlACE_NAME, p.getKey());
         long result = database.insert(DatabaseHelper.TABLE_PLACE_NAME, null, contentValues);
         if (result == -1) {
             return false;
@@ -81,7 +81,7 @@ public class DBPlaceManager {
         SQLiteDatabase database = pDbhelper.open();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.TABLE_PLACE_PlACE_ID, p.getId());
-        contentValues.put(DatabaseHelper.TABLE_PLACE_PlACE_NAME, p.getName());
+        contentValues.put(DatabaseHelper.TABLE_PLACE_PlACE_NAME, p.getKey());
         database.update(DatabaseHelper.TABLE_PLACE_NAME, contentValues, "Tab_Place_PlaceId = ?",
                 new String[] { String.valueOf(p.getId()) });
         return true;

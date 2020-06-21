@@ -6,6 +6,9 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeLocalSource;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Sources.HomeRemoteSource;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.AdminHistoryListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HistoryListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.Repository.HomeRepository;
 
 import java.util.List;
@@ -27,28 +30,25 @@ public class HomeRepositoryImplementation implements HomeRepository {
     }
 
     @Override
-    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
-        return homeLocalSource.getAllBookings(user);
+    public Result<List<TimeSlot>> getAllBookings(List<TimeSlot> bookings, NormalUser user, HomeListener homeListener) {
+        //return homeLocalSource.getAllBookings(bookings, user, homeListener);
+        return homeRemoteSource.getAllBookings(bookings, user, homeListener);
     }
 
     @Override
-    public Result<List<User>> getAllUsers() {
-        return homeLocalSource.getAllUsers();
+    public Result<List<NormalUser>> getAllUsers(AdminHistoryListener adminHistoryListener) {
+        return homeRemoteSource.getAllUsers(adminHistoryListener);
     }
 
     @Override
-    public Result<List<TimeSlot>> getHistory(NormalUser user) {
-        return homeLocalSource.getHistory(user);
+    public Result<List<TimeSlot>> getHistory(NormalUser user, final HistoryListener historyListener) {
+        return homeRemoteSource.getHistory(user, historyListener);
     }
 
     @Override
-    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
-        return homeLocalSource.callOffBooking(timeSlot);
-    }
-
-    @Override
-    public Result<String> getPlaceName(Integer placeId) {
-        return homeLocalSource.getPlaceName(placeId);
+    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener) {
+        //return homeLocalSource.callOffBooking(timeSlot, homeListener);
+        return homeRemoteSource.callOffBooking(timeSlot, homeListener);
     }
 
     @Override
@@ -57,12 +57,17 @@ public class HomeRepositoryImplementation implements HomeRepository {
     }
 
     @Override
-    public Result<NormalUser> getUserInfo(String name) {
-        return homeLocalSource.getUserInfo(name);
+    public Result<NormalUser> getUserInfo(String name, final HistoryListener historyListener) {
+        return homeRemoteSource.getUserInfo(name, historyListener);
     }
 
     @Override
-    public void updateUser(NormalUser user) {
-        homeLocalSource.updateUser(user);
+    public Result<NormalUser> getUserInfoID(Integer name, final HistoryListener historyListener) {
+        return homeRemoteSource.getUserInfoID(name, historyListener);
+    }
+
+    @Override
+    public void updateUser(NormalUser user, final HistoryListener historyListener) {
+        homeRemoteSource.updateUser(user, historyListener);
     }
 }

@@ -1,7 +1,9 @@
 package com.placeholder.study_space_booking_android_app.Features.BookSeat.Activity;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,19 +13,24 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseError;
+import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.State;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Model.BookSeatListener;
 import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.Features.BookSeat.Logic.Usecases.BookSeatUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,7 +40,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class MacBookSeatActivity extends AppCompatActivity implements
-        View.OnClickListener {
+        View.OnClickListener, BookSeatListener {
 
 
     private static String TAG = "BookSeatActivity";
@@ -57,6 +64,10 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     private BookSeatUseCases bookSeatUseCases;
     private Button[] seatButtons = new Button[21];
     private Button buttonConfirmTime;
+
+    List<Integer> seats = new ArrayList<>();
+    List<TimeSlot> myBookings = new ArrayList<>();
+    List<Integer> occupiedSeats = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +124,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         for(int i = 0; i < seatButtons.length; i = i + 1) {
             seatButtons[i].setOnClickListener(this);
             seatButtons[i].setBackgroundColor(Color.BLUE);
+            seatButtons[i].setEnabled(false);
         }
 
         buttonConfirmTime = (Button) findViewById(R.id.button_confirm_time);
@@ -122,7 +134,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
 
         // From
         if (v == btnDatePicker) {
@@ -133,7 +145,6 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             mMonth = a.get(Calendar.MONTH);
             mDay = a.get(Calendar.DAY_OF_MONTH);
 
-            //DatePickerDialog = new DatePickerDialog(context,R.style.DialogTheme,this,now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
@@ -228,21 +239,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
 
             Log.d("Time", String.valueOf(mHourc));
             Log.d("Time2", String.valueOf(mHourToc));
-            // calculating startTime
-//            String myDate = mYearc+"/"+mMonthc+"/"+mDayc+" "+mHourc+":"+mMinutec+":00";
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//            Date date = null;
-//
-//            try {
-//                date = sdf.parse(myDate);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//
-//            long millis = date.getTime();
-//            Integer startTime = (int) (millis/1000);
-//            //
-//            Log.d("StartTime", String.valueOf(startTime));
+
             Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
             calendar.set(Calendar.YEAR, mYearc);
             calendar.set(Calendar.MONTH, mMonthc);
@@ -265,20 +262,44 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             endTime = (int) (dateTo.getTime()/ 1000);
             Log.d("EndTime", String.valueOf(endTime));
 
+
+            // check if time is correct
+            if (startTime >= endTime) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+                builder.setCancelable(true);
+                builder.setTitle("Check you time");
+                builder.setMessage("Start Time is later than End time");
+                builder.show();
+                for(int i = 0; i < seatButtons.length; i = i + 1) {
+                    seatButtons[i].setEnabled(false);
+                }
+
+            } else {
+                for(int i = 0; i < seatButtons.length; i = i + 1) {
+                    seatButtons[i].setEnabled(true);
+                }
+            }
+
+            BookSeatUseCases.getInstance().getMyBookings((NormalUser) SignInUseCases.user, this);
+
+//            occupiedSeats.clear();
+//            for (Button button : seatButtons) {
+//                button.setBackgroundColor(Color.BLUE);
+//            }
             //
             //Log.d("debug", "debgug can see?");
-            Result<List<Integer>> result = bookSeatUseCases.getOccupiedSeat(startTime, endTime, placeId);
+             Result<List<TimeSlot>> result = bookSeatUseCases.getAllBooking(startTime, endTime, placeId, MacBookSeatActivity.this);
 
             // Log.d("debug", "debgug can see?");
             if(result instanceof Result.Accepted) {
-                List<Integer> seatsOccupied = ((Result.Accepted<List<Integer>>) result).getModel();
-                //Log.d("debug", "debgug can see?");
-                for(int i = 0; i < seatsOccupied.size(); i = i + 1) {
-                    Button button = buttonMap.get(seatsOccupied.get(i));
-                    assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
-                    Log.d("Coloring seats", String.valueOf(button.getId()));
-                    button.setBackgroundColor(Color.RED);
-                }
+//                List<Integer> seatsOccupied = ((Result.Accepted<List<Integer>>) result).getModel();
+//                //Log.d("debug", "debgug can see?");
+//                for(int i = 0; i < seatsOccupied.size(); i = i + 1) {
+//                    Button button = buttonMap.get(seatsOccupied.get(i));
+//                    assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
+//                    Log.d("Coloring seats", String.valueOf(button.getId()));
+//                    button.setBackgroundColor(Color.RED);
+//                }
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -292,7 +313,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         }
         else if(v instanceof Button) {
             final Integer seatId = seatMap.get(v);
-            if(bookSeatUseCases.isOccupied(seatId)) {
+            if(occupiedSeats.contains(seatId) || occupiedSeats == null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder.setCancelable(true);
                 builder.setTitle("Seat" + seatId.toString());
@@ -300,13 +321,15 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                 builder.show();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
-//                LayoutInflater inflater = this.getLayoutInflater();
-//                builder.setView(inflater.inflate(R.layout.dialogue_confirm_booking, null));
 
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         MacBookSeatActivity.this.bookSeat(seatId);
-                        buttonConfirmTime.performClick();
+                        v.setBackgroundColor(Color.RED);
+                        buttonConfirmTime.setEnabled(false);
+                        for(int i = 0; i < seatButtons.length; i = i + 1) {
+                            seatButtons[i].setEnabled(false);
+                        }
                     }
                 });
 
@@ -317,34 +340,130 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                     }
                 });
                 builder.setMessage("Please confirm your booking");
-
                 builder.show();
             }
         }
     }
 
     public void getSeats() {
-        //Log.d("debug", "get all seats debugging");
-        Result<List<Integer>> result = bookSeatUseCases.getAllSeatId(this.placeId);
-        //Log.d("debug", "get all seats debugging");
+        Result<List<Integer>> result = bookSeatUseCases.getAllSeatId(this.placeId, MacBookSeatActivity.this);
+
         if(result instanceof Result.Accepted) {
 
-            List<Integer> seats = ((Result.Accepted<List<Integer>>) result).getModel();
-
-            for(int i = 0; i < seatButtons.length; i = i + 1) {
-
-                seatMap.put(seatButtons[i], seats.get(i));
-                buttonMap.put(seats.get(i), seatButtons[i]);
-            }
+//            seats = ((Result.Accepted<List<Integer>>) result).getModel();
+//
+//            Log.d("debug", "get all seats debugging!!!   " + seats.size());
+//            for(int i = 0; i < seatButtons.length; i = i + 1) {
+//
+//                seatMap.put(seatButtons[i], seats.get(i));
+//                buttonMap.put(seats.get(i), seatButtons[i]);
+//            }
 
         }
     }
 
+
     public void bookSeat(Integer seatId) {
         TimeSlot book = new TimeSlot(0, this.placeId, seatId, SignInUseCases.user.getId(), startTime, endTime,
                 0,0,0,0, State.BOOKED); // state is turned to 1;
-        bookSeatUseCases.bookSeat(book);
+        bookSeatUseCases.bookSeat(book, MacBookSeatActivity.this);
     }
+
+    @Override
+    public void onGetBookingsFailure(DatabaseError databaseError) {
+        Toast.makeText(this, "Booking database" + databaseError.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGetBookingsSuccess(List<TimeSlot> timeSlots) {
+        Toast.makeText(this, "Bookings refreshed successfully", Toast.LENGTH_SHORT).show();
+
+        List<TimeSlot> bookings = timeSlots;
+        List<Integer> seats2 = new ArrayList<>();
+        for(int i = 0; i < bookings.size(); i = i + 1) {
+            if (bookings.get(i).getBookEndTime() > startTime && bookings.get(i).getBookStartTime() < endTime)
+                seats2.add(bookings.get(i).getSeatId());
+        }
+
+        occupiedSeats = seats2;
+        //Log.d("debug", "debgug can see?");
+        for(int i = 0; i < occupiedSeats.size(); i = i + 1) {
+            Button button = buttonMap.get(occupiedSeats.get(i));
+            assert button != null; // throw exception in case that null that a null pointer exception maybe thrown
+           //  Log.d("Coloring seats", String.valueOf(button.getId()));
+            button.setBackgroundColor(Color.RED);
+        }
+    }
+
+    @Override
+    public void onGetSeatFailure(DatabaseError databaseError) {
+        Toast.makeText(this, "seat database" + databaseError.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAddBookingsSuccess() {
+        Toast.makeText(this, "Bookings added successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGetSeatSuccess(List<Integer> seats) {
+        this.seats = seats;
+        Log.d("debug", "get all seats debugging!!!   " + seats.size());
+        for(int i = 0; i < seatButtons.length; i = i + 1) {
+
+            seatMap.put(seatButtons[i], seats.get(i));
+            buttonMap.put(seats.get(i), seatButtons[i]);
+        }
+    }
+
+    @Override
+    public void onGetMyBookingsSuccess(List<TimeSlot> list) {
+        myBookings.clear();
+        myBookings = list;
+        boolean free = true;
+        for (TimeSlot t : myBookings) {
+            if (t.getBookStartTime() <= endTime && t.getBookEndTime() >= startTime) {
+                free = false;
+                break;
+            }
+        }
+        if (free == false) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+            builder.setCancelable(false);
+            builder.setTitle("Check you time");
+            builder.setMessage("You have already booked a seat during this period");
+            builder.setNeutralButton("ReEnter", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            buttonConfirmTime.setEnabled(false);
+                            MacBookSeatActivity.this.recreate();
+                        }
+                    }
+            );
+            builder.show();
+            for(int i = 0; i < seatButtons.length; i = i + 1) {
+                seatButtons[i].setEnabled(false);
+            }
+        }
+    }
+
+    @Override
+    public void onGetMyBookingsFail(DatabaseError databaseError) {
+
+    }
+
+    @Override
+    public void onGetMyBookingsNotFound() {
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        buttonConfirmTime.setEnabled(false);
+        bookSeatUseCases.removeListener();
+    }
+
 
 }
 

@@ -6,15 +6,18 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Repository.HomeRepositoryImplementation;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.AdminHistoryListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HistoryListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.Repository.HomeRepository;
 
 import java.util.List;
 
 public class HomeUseCases {
     private static volatile HomeUseCases instance;
-    private final HomeRepository homeEepository;
+    private final HomeRepository homeRepository;
     private HomeUseCases(HomeRepository repository) {
-        this.homeEepository = repository;
+        this.homeRepository = repository;
     }
 
     public static HomeUseCases getInstance() {
@@ -24,36 +27,37 @@ public class HomeUseCases {
         return instance;
     }
 
-    public Result<List<TimeSlot>> getAllBookings(NormalUser user) {
+    public Result<List<TimeSlot>> getAllBookings(List<TimeSlot> bookings, NormalUser user, HomeListener homeListener) {
 
-        return homeEepository.getAllBookings(user);
+        return homeRepository.getAllBookings(bookings, user, homeListener);
     }
 
-    public Result<List<User>> getAllUsers() {
-        return homeEepository.getAllUsers();
+    public Result<List<NormalUser>> getAllUsers(AdminHistoryListener adminHistoryListener) {
+        return homeRepository.getAllUsers(adminHistoryListener);
+    }
+
+    public Result<List<TimeSlot>> getHistory(NormalUser user, final HistoryListener historyListener) {
+        return homeRepository.getHistory(user, historyListener);
+    }
+
+    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener) {
+        return homeRepository.callOffBooking(timeSlot, homeListener);
     }
 
 
-    public Result<List<TimeSlot>> getHistory(NormalUser user) {
-        return homeEepository.getHistory(user);
-    }
-
-    public Result<TimeSlot> callOffBooking(TimeSlot timeSlot) {
-        return homeEepository.callOffBooking(timeSlot);
-    }
-
-    public Result<String> getPlaceName(Integer placeId) {
-        return homeEepository.getPlaceName(placeId);
-    }
 
     public Result<List<TimeSlot>> getUserTimeSlot(String username) {
-        return homeEepository.getUserTimeSlot(username);
+        return homeRepository.getUserTimeSlot(username);
     }
 
-    public Result<NormalUser> getUserInfo(String username) {
-        return homeEepository.getUserInfo(username);
+    public Result<NormalUser> getUserInfo(String username, final HistoryListener historyListener) {
+        return homeRepository.getUserInfo(username, historyListener);
     }
-    public void updateUser(NormalUser user){
-        homeEepository.updateUser(user);
+
+    public Result<NormalUser> getUserInfoID(Integer username, final HistoryListener historyListener) {
+        return homeRepository.getUserInfoID(username, historyListener);
+    }
+    public void updateUser(NormalUser user, final HistoryListener historyListener){
+        homeRepository.updateUser(user, historyListener);
     }
 }

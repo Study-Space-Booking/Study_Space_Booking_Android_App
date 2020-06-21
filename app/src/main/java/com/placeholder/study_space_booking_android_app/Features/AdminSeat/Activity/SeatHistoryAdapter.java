@@ -1,6 +1,7 @@
 package com.placeholder.study_space_booking_android_app.Features.AdminSeat.Activity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.firebase.database.DatabaseError;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
+import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.Model.UserInfoListener;
 import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.UseCases.SeatUseCases;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HomeFragment;
@@ -23,6 +26,10 @@ import com.placeholder.study_space_booking_android_app.R;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 public class SeatHistoryAdapter extends ArrayAdapter {
     private List<TimeSlot> history;
@@ -30,6 +37,11 @@ public class SeatHistoryAdapter extends ArrayAdapter {
     //private LinearLayout linearLayout;
     private int resource;
     SeatUseCases seatUseCases = SeatUseCases.getInstance();
+    NormalUser realUser;
+    String userString;
+    ViewHolder holder;
+
+//    final CountDownLatch loginLatch = new CountDownLatch(3);
 
     public SeatHistoryAdapter(@NonNull Context context, int resource, @NonNull List objects) {
         super(context, resource, objects);
@@ -49,19 +61,22 @@ public class SeatHistoryAdapter extends ArrayAdapter {
         calendar.setTimeInMillis(history.get(position).getBookEndTime() * 1000);
         String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
 
-        String userID = history.get(position).getUserId().toString();
-        Result<NormalUser> user = seatUseCases.getUserInfo(userID);
-        NormalUser realUser = new NormalUser();
-        if (user instanceof Result.Handle) {
-            //Log.d("signin", "s == null");
-            Exception exception = ((Result.Handle) user).getException();
-            //Toast.makeText(AdminHistoryActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-        } else {
-            //Toast.makeText(AdminHistoryActivity.this, "get user names", Toast.LENGTH_LONG).show();
-            realUser = ((Result.Accepted<NormalUser>) user).getModel();
-        }
 
-        String userString = " Username: " + realUser.getUserName();
+        userString = " UserID: " + history.get(position).getUserId();
+
+        //
+//        Result<NormalUser> user = seatUseCases.getUserInfo(userID, this);
+//
+//        if (user instanceof Result.Handle) {
+//            //Log.d("signin", "s == null");
+//            Exception exception = ((Result.Handle) user).getException();
+//            //Toast.makeText(AdminHistoryActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+//        } else {
+//            //Toast.makeText(AdminHistoryActivity.this, "get user names", Toast.LENGTH_LONG).show();
+//
+//        }
+
+//        String userString = " Username: " + realUser.getUserName();
         String placeString;
         if (history.get(position).getPlaceId() == 1) {
             placeString = "Place:\nMac Commons";
@@ -75,7 +90,7 @@ public class SeatHistoryAdapter extends ArrayAdapter {
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(history.get(position).getPlaceId());
 
         //LinearLayout view;
-        ViewHolder holder;
+
 
         if(convertView == null) {
             convertView = LayoutInflater
@@ -87,11 +102,15 @@ public class SeatHistoryAdapter extends ArrayAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //if(result instanceof Result.Handle) {
-        //    holder.place.setText("place not found");
-        //} else {
-        //    holder.place.setText(((Result.Accepted<String>) result).getModel());
-        //}
+
+//        try {
+//            loginLatch.await ();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
+
         holder.place.setText(placeString);
         holder.user.setText(userString);
         holder.time.setText(timeString);
@@ -99,8 +118,33 @@ public class SeatHistoryAdapter extends ArrayAdapter {
         holder.arrivalTime.setText(arrivalString);
         holder.signOutTime.setText(signOutString);
 
+        // this is a count down set to wait for call back
+//        try {
+//            loginLatch.await (100L, TimeUnit.MILLISECONDS);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         return convertView;
     }
+
+//    @Override
+//    public void onGetUserInfoSuccess(NormalUser user) {
+////        realUser = user;
+////        userString = " Username: " + realUser.getUserName();
+////        holder.user.setText(userString);
+//////        loginLatch.countDown ();
+//    }
+//
+//    @Override
+//    public void onGetUserInfoFail(DatabaseError databaseError) {
+//        Toast.makeText(getContext(), databaseError.toString(), Toast.LENGTH_SHORT);
+//    }
+//
+//    @Override
+//    public void onFoundNoUserInfo() {
+//        Toast.makeText(getContext(), "No UserName found", Toast.LENGTH_SHORT);
+//    }
 
     public static final class ViewHolder {
         View view;

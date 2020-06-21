@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.UseCases.HomeUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
 import com.placeholder.study_space_booking_android_app.R;
@@ -25,16 +28,18 @@ import com.placeholder.study_space_booking_android_app.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeListener {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private HomeRecyclerViewAdapter homeRecyclerViewAdapter;
     private Context context;
-    //private List<TimeSlot> bookings;
+    private List<TimeSlot> bookings;
     public static final HomeUseCases HOME_USE_CASES = HomeUseCases.getInstance();
     TextView currentCredit;
     TextView history;
     TextView showBookings;
+    ProgressBar progressBar;
+    HomeUseCases homeUseCases;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -53,7 +58,12 @@ public class HomeFragment extends Fragment {
         currentCredit = (TextView) view.findViewById(R.id.current_credit);
         history = (TextView) view.findViewById(R.id.go_to_history);
         showBookings = (TextView)view.findViewById(R.id.show_bookings);
+
+        progressBar = (ProgressBar)view.findViewById(R.id.progress_bar_home);
+
         currentCredit.setText(SignInUseCases.user.getUserName()+"'s Credit : " + ((NormalUser) SignInUseCases.user).getCredit().toString());
+
+        homeUseCases = HomeUseCases.getInstance();
 
         //DBTimeSlotManager dbTimeSlotManager = DBTimeSlotManager.getInstance();
         //dbTimeSlotManager.initialize(getActivity().getApplicationContext());
@@ -82,18 +92,22 @@ public class HomeFragment extends Fragment {
         homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(bookings);
         */
 
+        bookings = new ArrayList<>();
+        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(bookings);
+        homeRecyclerViewAdapter.setHomeListener(this);
+        recyclerView.setAdapter(homeRecyclerViewAdapter);
 
-        Result<List<TimeSlot>> result = HOME_USE_CASES.getAllBookings((NormalUser) SignInUseCases.user); // get all bookings of a normal user
+        Result<List<TimeSlot>> result = HOME_USE_CASES.getAllBookings(bookings, (NormalUser) SignInUseCases.user, this); // get all bookings of a normal user
 
         if(result instanceof Result.Handle) {
             showBookings.setText(((Result.Handle) result).getException().getMessage()); // show the exception in the textbox
             homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(new ArrayList<TimeSlot>());
             //recyclerView.setAdapter(homeRecyclerViewAdapter);
         } else {
-            homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(((Result.Accepted<List<TimeSlot>>) result).getModel());
+            //homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(((Result.Accepted<List<TimeSlot>>) result).getModel());
             //homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(bookings);
         }
-        recyclerView.setAdapter(homeRecyclerViewAdapter);
+        //recyclerView.setAdapter(homeRecyclerViewAdapter);
         return view;
     }
 
@@ -106,4 +120,50 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.commit();
         }
     }
+
+    @Override
+    public void onGetBookingsSuccess(List<TimeSlot> bookings) {
+        //Toast.makeText(context, "get booking", Toast.LENGTH_SHORT).show();
+        homeRecyclerViewAdapter.notifyDataSetChanged();
+        showBookings.setText("Booking List:");
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onGetBookingsFailure(Exception exception) {
+        Toast.makeText(context, exception.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNoBookingFound() {
+        Toast.makeText(context, "No booking found", Toast.LENGTH_SHORT).show();
+        showBookings.setText("No booking:");
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onCallOffBookingSuccess() {
+        //homeRecyclerViewAdapter.notifyDataSetChanged();
+        Toast.makeText(context, "item deleted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCallOffBookingFailure(Exception exception) {
+        Toast.makeText(context, "Check", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onCallOffBookingsClick(int position) {
+        TimeSlot booking = bookings.get(position);
+        bookings.remove(position);
+        homeRecyclerViewAdapter.notifyDataSetChanged();
+        Result<TimeSlot> result = homeUseCases.callOffBooking(booking, HomeFragment.this);
+        if(result instanceof Result.Handle) {
+            Toast.makeText(context, ((Result.Handle) result).getException().getMessage(), Toast.LENGTH_SHORT).show();
+        } else {
+
+        }
+    }
+
 }
