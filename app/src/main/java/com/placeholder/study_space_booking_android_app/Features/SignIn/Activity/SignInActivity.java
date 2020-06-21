@@ -25,6 +25,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Features.Injection;
 import com.placeholder.study_space_booking_android_app.Features.Scan.ScanActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Model.SignInListener;
+import com.placeholder.study_space_booking_android_app.Features.ViewReport.Activity.ViewReportActivity;
 import com.placeholder.study_space_booking_android_app.Features.Welcome.Activity.WelcomeActivity;
 import com.placeholder.study_space_booking_android_app.R;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -37,6 +38,8 @@ import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.Use
 import com.placeholder.study_space_booking_android_app.db.DBSeatManager;
 import com.placeholder.study_space_booking_android_app.db.DBTimeSlotManager;
 import com.placeholder.study_space_booking_android_app.db.DBUserInformationManager;
+
+import java.util.HashMap;
 //import com.placeholder.study_space_booking_android_app.Services.TSService;
 
 public class SignInActivity extends AppCompatActivity implements SignInListener {
@@ -157,16 +160,16 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         long millis4 = minutes4 * 60 * 1000;
         // define the state of the seat, 0--available, 1--not available, 2--under maintainence
         // 1, 1, 1, 2, System.currentTimeMillis(), System.currentTimeMillis()+millis, null, null, null, null, 0
-        TimeSlot tmp1 = new TimeSlot(1, 1, 1, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
+        TimeSlot tmp1 = new TimeSlot(1, 1, 1, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp2 = new TimeSlot(2, 1, 2, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
+        TimeSlot tmp2 = new TimeSlot(2, 1, 2, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp3 = new TimeSlot(3, 1, 3, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
+        TimeSlot tmp3 = new TimeSlot(3, 1, 3, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, 1, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+        TimeSlot tmp4 = new TimeSlot(4, 1, 4, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
                 1, 2, 3, 3, 1);
 
         Seat s1 = new Seat(1, 1);
@@ -187,6 +190,20 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         d.setTimeSlot(tmp2);
         d.setTimeSlot(tmp3);
         d.setTimeSlot(tmp4);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("history");
+        String key = databaseReference.push().getKey();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put(key, tmp1);
+        databaseReference.setValue(hashMap);
+//        databaseReference.setValue(tmp2);
+//        databaseReference.setValue(tmp3);
+//        databaseReference.setValue(tmp4);
+//        Admin admin = new Admin(1, "admin", "admin");
+//        String key = databaseReference.push().getKey();
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put(key, admin);
+//        databaseReference.updateChildren(hashMap);
 
 
     }
@@ -301,8 +318,13 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         */
         Toast.makeText(SignInActivity.this, "sign in successfully", Toast.LENGTH_SHORT).show();
         SignInUseCases.user = user;
-        Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
-        startActivity(intent);
+        if (SignInUseCases.user instanceof NormalUser) {
+            Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(SignInActivity.this, ViewReportActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override

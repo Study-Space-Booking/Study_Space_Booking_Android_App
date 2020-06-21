@@ -7,6 +7,8 @@ public class NormalUser extends User{
     //private String password;
     //private Integer isAdministrator;
     private Integer blocked;
+    private String key;
+
 
     public NormalUser() {
 
@@ -21,6 +23,14 @@ public class NormalUser extends User{
         this.blocked = blocked;
     }
 
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public void setCredit(Integer credit) {
         this.credit = credit;

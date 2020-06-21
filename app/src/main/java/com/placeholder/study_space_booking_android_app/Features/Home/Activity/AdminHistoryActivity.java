@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,10 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseError;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.AdminSeat.Activity.AdminSeatActivity;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.AdminHistoryListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.UseCases.HomeUseCases;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.Activity.SignInActivity;
 import com.placeholder.study_space_booking_android_app.Features.SignIn.logic.UseCases.SignInUseCases;
@@ -33,7 +36,7 @@ import com.placeholder.study_space_booking_android_app.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminHistoryActivity extends AppCompatActivity {
+public class AdminHistoryActivity extends AppCompatActivity implements AdminHistoryListener {
     public static final HomeUseCases homeUseCases = HomeUseCases.getInstance();
 
     //get all user names
@@ -42,6 +45,8 @@ public class AdminHistoryActivity extends AppCompatActivity {
     private SearchView mSearchView;
     private ListView mListView;
     private Toolbar toolbar;
+    List<NormalUser> realist = new ArrayList<>();
+    List<String> arr = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +54,8 @@ public class AdminHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.searchview);
         mSearchView = (SearchView) findViewById(R.id.searchView);
         mListView = (ListView) findViewById(R.id.listView);
-        mStrs = getUserNames();
-        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
+        getUserNames();
+//        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
         mListView.setTextFilterEnabled(true);
         mListView.setBackgroundColor(Color. rgb(255,250,250));
 
@@ -80,15 +85,15 @@ public class AdminHistoryActivity extends AppCompatActivity {
             }
         });
 
-        // 设置搜索文本监听
+        // set listener to clicking the search
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            // 当点击搜索按钮时触发该方法
+            // when clicking search
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
-            // 当搜索内容改变时触发该方法
+            // when search content changes
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (!TextUtils.isEmpty(newText)) {
@@ -114,23 +119,24 @@ public class AdminHistoryActivity extends AppCompatActivity {
     }
 
     public String[] getUserNames() {
-        Result<List<User>> list = homeUseCases.getAllUsers();
-        List<User> realist = new ArrayList<>();
-        List<String> arr = new ArrayList<>();
+        arr.clear();
+        Result<List<NormalUser>> list = homeUseCases.getAllUsers(AdminHistoryActivity.this);
+
+
 
 
         if (list instanceof Result.Handle) {
             //Log.d("signin", "s == null");
             Exception exception = ((Result.Handle) list).getException();
-            Toast.makeText(AdminHistoryActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(AdminHistoryActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(AdminHistoryActivity.this, "get user names", Toast.LENGTH_LONG).show();
-            realist = ((Result.Accepted<List<User>>) list).getModel();
-            for (User u : realist) {
-                arr.add(u.getUserName());
-            }
-            String[] result = new String[realist.size()];
-            return arr.toArray(result);
+//            Toast.makeText(AdminHistoryActivity.this, "get user names", Toast.LENGTH_LONG).show();
+//            realist = ((Result.Accepted<List<NormalUser>>) list).getModel();
+//            for (User u : realist) {
+//                arr.add(u.getUserName());
+//            }
+//            String[] result = new String[realist.size()];
+//            return arr.toArray(result);
         }
         return new String[] {"cool"};
     }
@@ -170,4 +176,22 @@ public class AdminHistoryActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onGetAllUserSuccess(List<NormalUser> list) {
+        Toast.makeText(AdminHistoryActivity.this, "get user names", Toast.LENGTH_SHORT).show();
+        arr.clear();
+        realist = list;
+        Log.d("list", "the size of the list is: " + realist.size());
+        for (User u : realist) {
+            arr.add(u.getUserName());
+        }
+        String[] result = new String[realist.size()];
+        mStrs = arr.toArray(result);
+        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
+    }
+
+    @Override
+    public void onGetAllUserFail(DatabaseError databaseError) {
+        Toast.makeText(this, databaseError.toString(),Toast.LENGTH_SHORT);
+    }
 }

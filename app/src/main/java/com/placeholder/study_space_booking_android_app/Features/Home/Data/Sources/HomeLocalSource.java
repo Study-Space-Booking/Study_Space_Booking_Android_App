@@ -17,7 +17,7 @@ import com.placeholder.study_space_booking_android_app.db.DatabaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeLocalSource implements HomeSource {
+public class HomeLocalSource {
     private static volatile HomeLocalSource instance;
     private final DBLogHistoryManager dbLogHistoryManager;
     private final DBTimeSlotManager dbTimeSlotManager;
@@ -46,7 +46,7 @@ public class HomeLocalSource implements HomeSource {
         return instance;
     }
 
-    @Override
+    //@Override
     public Result<List<User>> getAllUsers() {
         Cursor cursor = dbUserInformationManager.getAllUser();
         List<User> list = new ArrayList<>();
@@ -73,7 +73,7 @@ public class HomeLocalSource implements HomeSource {
         }
     }
 
-    @Override
+    //@Override
     public Result<List<TimeSlot>> getHistory(NormalUser user) {
         Cursor cursor = dbLogHistoryManager.getUserHistory(user);
         try {
@@ -105,7 +105,7 @@ public class HomeLocalSource implements HomeSource {
         }
     }
 
-    @Override
+    // @Override
     public Result<List<TimeSlot>> getAllBookings(List<TimeSlot> bookings, NormalUser user, HomeListener homeListener) {
         Log.d("in home local source", " create a new cursor");
         Cursor cursor = dbTimeSlotManager.getUserTimeSlot(user.getId());
@@ -143,7 +143,7 @@ public class HomeLocalSource implements HomeSource {
         }
     }
 
-    @Override
+    // @Override
     public Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener) {
         try {
             int result = dbTimeSlotManager.deleteTimeSlot(timeSlot.getId());

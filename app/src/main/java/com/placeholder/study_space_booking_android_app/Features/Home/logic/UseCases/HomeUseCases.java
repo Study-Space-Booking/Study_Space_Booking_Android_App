@@ -6,6 +6,8 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.Home.Data.Repository.HomeRepositoryImplementation;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.AdminHistoryListener;
+import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HistoryListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.Model.HomeListener;
 import com.placeholder.study_space_booking_android_app.Features.Home.logic.Repository.HomeRepository;
 
@@ -30,12 +32,12 @@ public class HomeUseCases {
         return homeRepository.getAllBookings(bookings, user, homeListener);
     }
 
-    public Result<List<User>> getAllUsers() {
-        return homeRepository.getAllUsers();
+    public Result<List<NormalUser>> getAllUsers(AdminHistoryListener adminHistoryListener) {
+        return homeRepository.getAllUsers(adminHistoryListener);
     }
 
-    public Result<List<TimeSlot>> getHistory(NormalUser user) {
-        return homeRepository.getHistory(user);
+    public Result<List<TimeSlot>> getHistory(NormalUser user, final HistoryListener historyListener) {
+        return homeRepository.getHistory(user, historyListener);
     }
 
     public Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener) {
@@ -48,10 +50,10 @@ public class HomeUseCases {
         return homeRepository.getUserTimeSlot(username);
     }
 
-    public Result<NormalUser> getUserInfo(String username) {
-        return homeRepository.getUserInfo(username);
+    public Result<NormalUser> getUserInfo(String username, final HistoryListener historyListener) {
+        return homeRepository.getUserInfo(username, historyListener);
     }
-    public void updateUser(NormalUser user){
-        homeRepository.updateUser(user);
+    public void updateUser(NormalUser user, final HistoryListener historyListener){
+        homeRepository.updateUser(user, historyListener);
     }
 }
