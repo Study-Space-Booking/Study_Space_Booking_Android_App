@@ -17,5 +17,6 @@ public interface HomeSource {
     Result<TimeSlot> callOffBooking(TimeSlot timeSlot, HomeListener homeListener);
     Result<List<NormalUser>> getAllUsers(AdminHistoryListener adminHistoryListener);
     Result<NormalUser> getUserInfo(String name, final HistoryListener historyListener);
+    Result<NormalUser> getUserInfoID(Integer name, final HistoryListener historyListener);
     void updateUser(NormalUser user, final HistoryListener historyListener);
 }

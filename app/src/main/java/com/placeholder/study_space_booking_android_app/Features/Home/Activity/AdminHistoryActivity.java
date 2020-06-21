@@ -122,9 +122,6 @@ public class AdminHistoryActivity extends AppCompatActivity implements AdminHist
         arr.clear();
         Result<List<NormalUser>> list = homeUseCases.getAllUsers(AdminHistoryActivity.this);
 
-
-
-
         if (list instanceof Result.Handle) {
             //Log.d("signin", "s == null");
             Exception exception = ((Result.Handle) list).getException();
@@ -140,6 +137,7 @@ public class AdminHistoryActivity extends AppCompatActivity implements AdminHist
         }
         return new String[] {"cool"};
     }
+
 
     public boolean onPrepareOptionsMenu(Menu menu)
     {
@@ -184,6 +182,9 @@ public class AdminHistoryActivity extends AppCompatActivity implements AdminHist
         Log.d("list", "the size of the list is: " + realist.size());
         for (User u : realist) {
             arr.add(u.getUserName());
+        }
+        for (User u : realist) {
+            arr.add(u.getId().toString());
         }
         String[] result = new String[realist.size()];
         mStrs = arr.toArray(result);

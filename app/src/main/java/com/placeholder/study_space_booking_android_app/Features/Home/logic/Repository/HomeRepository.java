@@ -17,5 +17,6 @@ public interface HomeRepository {
     Result<List<NormalUser>> getAllUsers(AdminHistoryListener adminHistoryListener);
     Result<List<TimeSlot>> getUserTimeSlot(String name);
     Result<NormalUser> getUserInfo(String name, final HistoryListener historyListener);
+    Result<NormalUser> getUserInfoID(Integer name, final HistoryListener historyListener);
     void updateUser(NormalUser user, final HistoryListener historyListener);
 }

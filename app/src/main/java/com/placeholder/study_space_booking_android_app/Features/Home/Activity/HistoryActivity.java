@@ -88,7 +88,11 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
         } else {
             String name = getIntent().getStringExtra("EXTRA_USERNAME");
             // set edit text and credit
-            getUser(name);
+            if (Character.isLetter(name.charAt(0))) {
+                getUser(name);
+            } else {
+                getUserID(Integer.valueOf(name));
+            }
 
 //            history = HomeFragment.HOME_USE_CASES.getHistory(user, this);
 //            if (history instanceof Result.Handle) {
@@ -132,6 +136,18 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
 
         }
 
+    }
+
+    public void getUserID(Integer id) {
+        Result<NormalUser> user = HomeFragment.HOME_USE_CASES.getUserInfoID(id, HistoryActivity.this);
+
+        if (user instanceof Result.Handle) {
+            Exception exception = ((Result.Handle) user).getException();
+            Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT);
+        } else {
+            Log.d("cool", "found the bug");
+
+        }
 
     }
     public void creditChange() {

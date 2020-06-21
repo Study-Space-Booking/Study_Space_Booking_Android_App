@@ -18,10 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseError;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Seat;
+import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
+import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.Model.SeatListener;
 import com.placeholder.study_space_booking_android_app.Features.AdminSeat.logic.UseCases.SeatUseCases;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.AdminHistoryActivity;
 import com.placeholder.study_space_booking_android_app.Features.Home.Activity.HistoryActivity;
@@ -62,7 +65,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
         import java.util.ArrayList;
         import java.util.List;
 
-public class AdminSeatActivity extends AppCompatActivity {
+public class AdminSeatActivity extends AppCompatActivity implements SeatListener {
     public static final SeatUseCases seatUseCases = SeatUseCases.getInstance();
 
     //get all user names
@@ -71,6 +74,8 @@ public class AdminSeatActivity extends AppCompatActivity {
     private SearchView mSearchView;
     private ListView mListView;
     private Toolbar toolbar;
+    List<Seat> realist = new ArrayList<>();
+    List<String> arr = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +83,8 @@ public class AdminSeatActivity extends AppCompatActivity {
         setContentView(R.layout.searchview);
         mSearchView = (SearchView) findViewById(R.id.searchView);
         mListView = (ListView) findViewById(R.id.listView);
-        mStrs = getSeatID();
-        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
+        getSeatID();
+//        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
         mListView.setBackgroundColor(Color. rgb(255,250,250));
         mListView.setTextFilterEnabled(true);
         mSearchView.setQueryHint("Please enter seat ID");
@@ -112,15 +117,12 @@ public class AdminSeatActivity extends AppCompatActivity {
             }
         });
 
-        // 设置搜索文本监听
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            // 当点击搜索按钮时触发该方法
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
-            // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (!TextUtils.isEmpty(newText)) {
@@ -145,10 +147,9 @@ public class AdminSeatActivity extends AppCompatActivity {
 
     }
 
-    public String[] getSeatID() {
-        Result<List<Seat>> list = seatUseCases.getAllSeats();
-        List<Seat> realist = new ArrayList<>();
-        List<String> arr = new ArrayList<>();
+    public void getSeatID() {
+        Result<List<Seat>> list = seatUseCases.getAllSeats(this);
+
 
 
         if (list instanceof Result.Handle) {
@@ -156,15 +157,9 @@ public class AdminSeatActivity extends AppCompatActivity {
             Exception exception = ((Result.Handle) list).getException();
             Toast.makeText(AdminSeatActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(AdminSeatActivity.this, "get seat ids", Toast.LENGTH_LONG).show();
-            realist = ((Result.Accepted<List<Seat>>) list).getModel();
-            for (Seat u : realist) {
-                arr.add(u.getId().toString());
-            }
-            String[] result = new String[realist.size()];
-            return arr.toArray(result);
+
         }
-        return new String[] {"cool"};
+
     }
 
     public boolean onPrepareOptionsMenu(Menu menu)
@@ -202,4 +197,39 @@ public class AdminSeatActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onGetSeatSuccess(List<Seat> list) {
+        realist.clear();
+        arr.clear();
+        mStrs = null;
+        Toast.makeText(AdminSeatActivity.this, "get seat ids", Toast.LENGTH_SHORT).show();
+        realist = list;
+        for (Seat u : realist) {
+            arr.add(u.getId().toString());
+        }
+        String[] result = new String[realist.size()];
+        mStrs = arr.toArray(result);
+        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
+
+    }
+
+    @Override
+    public void onGetSeatFail(DatabaseError databaseError) {
+        Toast.makeText(this, databaseError.toString(),Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void onSeatTimeSlotNotFound() {
+
+    }
+
+    @Override
+    public void onSeatTimeSlotSuccess(List<TimeSlot> timeSlots) {
+
+    }
+
+    @Override
+    public void onSeatTimeSlotFail(DatabaseError databaseError) {
+
+    }
 }

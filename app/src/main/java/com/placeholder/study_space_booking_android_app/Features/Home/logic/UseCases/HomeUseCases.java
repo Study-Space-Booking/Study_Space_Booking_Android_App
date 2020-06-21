@@ -53,6 +53,10 @@ public class HomeUseCases {
     public Result<NormalUser> getUserInfo(String username, final HistoryListener historyListener) {
         return homeRepository.getUserInfo(username, historyListener);
     }
+
+    public Result<NormalUser> getUserInfoID(Integer username, final HistoryListener historyListener) {
+        return homeRepository.getUserInfoID(username, historyListener);
+    }
     public void updateUser(NormalUser user, final HistoryListener historyListener){
         homeRepository.updateUser(user, historyListener);
     }

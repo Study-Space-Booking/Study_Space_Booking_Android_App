@@ -62,6 +62,11 @@ public class HomeRepositoryImplementation implements HomeRepository {
     }
 
     @Override
+    public Result<NormalUser> getUserInfoID(Integer name, final HistoryListener historyListener) {
+        return homeRemoteSource.getUserInfoID(name, historyListener);
+    }
+
+    @Override
     public void updateUser(NormalUser user, final HistoryListener historyListener) {
         homeRemoteSource.updateUser(user, historyListener);
     }

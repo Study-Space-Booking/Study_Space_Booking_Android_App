@@ -198,6 +198,40 @@ public class HomeRemoteSource implements HomeSource{
     }
 
     @Override
+    public Result<NormalUser> getUserInfoID(Integer id, final HistoryListener historyListener) {
+        try {
+            Query query = userdatabaseReference.orderByChild("id").equalTo(id);
+            query.addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Log.d("in home remote source", "onDataChange: snapshot exists" + dataSnapshot.exists());
+                            if(!dataSnapshot.exists()) {
+                                historyListener.onFoundNoUserInfo();
+                            } else {
+                                NormalUser getuser = new NormalUser();
+                                for(DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                                    getuser = snapshot.getValue(NormalUser.class);
+                                    getuser.setKey(snapshot.getKey());
+                                    break;
+                                }
+                                historyListener.onGetUserInfoSuccess(getuser);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            historyListener.onGetUserInfoFail(databaseError);
+                        }
+                    }
+            );
+            return new Result.Accepted<>(null);
+        } catch (Exception exception) {
+            return new Result.Handle(exception);
+        }
+    }
+
+    @Override
     public void updateUser(NormalUser user, final HistoryListener historyListener) {
         try {
             Map<String, Object> update = new HashMap<>();

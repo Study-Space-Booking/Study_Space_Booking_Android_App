@@ -163,13 +163,13 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         TimeSlot tmp1 = new TimeSlot(1, 1, 1, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis1)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp2 = new TimeSlot(2, 1, 2, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
+        TimeSlot tmp2 = new TimeSlot(2, 1, 1, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis2)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp3 = new TimeSlot(3, 1, 3, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
+        TimeSlot tmp3 = new TimeSlot(3, 1, 1, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis3)/1000),
                 1, 2, 3, 3, 1);
 
-        TimeSlot tmp4 = new TimeSlot(4, 1, 4, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
+        TimeSlot tmp4 = new TimeSlot(4, 1, 1, -1091801636, (int) (System.currentTimeMillis()/1000), (int) ((System.currentTimeMillis()+millis4)/1000),
                 1, 2, 3, 3, 1);
 
         Seat s1 = new Seat(1, 1);
@@ -192,9 +192,22 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         d.setTimeSlot(tmp4);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("history");
-        String key = databaseReference.push().getKey();
+
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put(key, tmp1);
+
+            String key = databaseReference.push().getKey();
+            hashMap.put(key, tmp1);
+
+         key = databaseReference.push().getKey();
+        hashMap.put(key, tmp2);
+
+         key = databaseReference.push().getKey();
+        hashMap.put(key, tmp3);
+
+         key = databaseReference.push().getKey();
+        hashMap.put(key, tmp4);
+
+
         databaseReference.setValue(hashMap);
 //        databaseReference.setValue(tmp2);
 //        databaseReference.setValue(tmp3);

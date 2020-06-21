@@ -13,7 +13,7 @@ public class TimeSlot {
     Integer tempBackTime;
     Integer state;
     String key;
-
+    String userName;
 
     public TimeSlot() {}
     public TimeSlot(Integer id, Integer placeId, Integer seatId, Integer userId, Integer bookStartTime,
@@ -30,6 +30,14 @@ public class TimeSlot {
         this.tempLeaveTime = tempLeaveTime;
         this.tempBackTime = tempBackTime;
         this.state = state;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getKey() {
