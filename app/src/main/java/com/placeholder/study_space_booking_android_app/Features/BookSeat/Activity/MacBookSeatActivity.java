@@ -314,13 +314,13 @@ public class MacBookSeatActivity extends AppCompatActivity implements
         else if(v instanceof Button) {
             final Integer seatId = seatMap.get(v);
             if(occupiedSeats.contains(seatId) || occupiedSeats == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
                 builder.setCancelable(true);
                 builder.setTitle("Seat" + seatId.toString());
                 builder.setMessage("The seat is occupied");
                 builder.show();
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
 
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {

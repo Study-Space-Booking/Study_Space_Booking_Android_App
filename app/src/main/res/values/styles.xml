@@ -20,6 +20,9 @@
 
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColorPrimary">@color/textSecondary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
