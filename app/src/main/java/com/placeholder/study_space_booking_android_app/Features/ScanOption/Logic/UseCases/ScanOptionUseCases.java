@@ -7,6 +7,7 @@ import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
 import com.placeholder.study_space_booking_android_app.Core.Beans.TimeSlot;
 import com.placeholder.study_space_booking_android_app.Core.Beans.User;
 import com.placeholder.study_space_booking_android_app.Features.ScanOption.Data.Sources.ScanOptionLocalSource;
+import com.placeholder.study_space_booking_android_app.Features.ScanOption.Data.Sources.ScanOptionRemoteSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +15,19 @@ import java.util.List;
 public class ScanOptionUseCases {
     private static volatile ScanOptionUseCases instance;
     private final ScanOptionLocalSource scanOptionLocalSource;
+    private final ScanOptionRemoteSource scanOptionRemoteSource;
     public static User user = null;
 
-    private ScanOptionUseCases(ScanOptionLocalSource scanOptionLocalSource) {
+    private ScanOptionUseCases(ScanOptionLocalSource scanOptionLocalSource, ScanOptionRemoteSource scanOptionRemoteSource) {
         this.scanOptionLocalSource = scanOptionLocalSource;
+        this.scanOptionRemoteSource = scanOptionRemoteSource;
     }
 
     public static ScanOptionUseCases getInstance() {
         Log.d("debug", "scan user cases get instance");
         if(instance == null) {
-            instance = new ScanOptionUseCases(ScanOptionLocalSource.getInstance());
+            instance = new ScanOptionUseCases(ScanOptionLocalSource.getInstance(),
+                    ScanOptionRemoteSource.getInstance());
         }
         return instance;
     }

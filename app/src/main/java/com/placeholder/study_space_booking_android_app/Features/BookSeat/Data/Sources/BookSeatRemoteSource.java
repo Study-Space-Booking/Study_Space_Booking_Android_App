@@ -55,7 +55,6 @@ public class BookSeatRemoteSource {
     public Result<List<TimeSlot>> getAllBooking(final Integer startTime, final Integer endTime, final Integer placeId, final BookSeatListener bookSeatListener) {
         try {
 
-
             valueEventListener = databaseReference.addValueEventListener(
                     new ValueEventListener() {
                         @Override
@@ -98,7 +97,8 @@ public class BookSeatRemoteSource {
     public Result<List<Integer>> getAllSeatId (final Integer placeId, final BookSeatListener bookSeatListener){
         try {
             Log.d("remote", "get information");
-            seatdatabaseReference.addValueEventListener(
+            Query query = seatdatabaseReference.orderByChild("placeId").equalTo(placeId);
+            query.addListenerForSingleValueEvent(
                     new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -300,15 +300,15 @@ public class PCBookSeatActivity extends AppCompatActivity implements
             }
         }
         else if(v instanceof Button) {
-            final Integer seatId = seatMap.get(v);
+            final Integer seatId = seatMap.get(v);                                                  // get seat id from seatMap
             if(occupiedSeats.contains(seatId) || occupiedSeats == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
                 builder.setCancelable(true);
                 builder.setTitle("Seat" + seatId.toString());
                 builder.setMessage("The seat is occupied");
                 builder.show();
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
 //                LayoutInflater inflater = this.getLayoutInflater();
 //                builder.setView(inflater.inflate(R.layout.dialogue_confirm_booking, null));
 
@@ -401,7 +401,6 @@ public class PCBookSeatActivity extends AppCompatActivity implements
         this.seats = seats;
         Log.d("debug", "get all seats debugging!!!   " + seats.size());
         for(int i = 0; i < seatButtons.length; i = i + 1) {
-
             seatMap.put(seatButtons[i], seats.get(i));
             buttonMap.put(seats.get(i), seatButtons[i]);
         }

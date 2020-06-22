@@ -68,6 +68,7 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         toolbar = findViewById(R.id.toolbar_sign_in);
 
 
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.title_activity_sign_in);
 
@@ -121,6 +122,7 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
                 }
         );
 
+        writeButton.setEnabled(false);
         writeButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
