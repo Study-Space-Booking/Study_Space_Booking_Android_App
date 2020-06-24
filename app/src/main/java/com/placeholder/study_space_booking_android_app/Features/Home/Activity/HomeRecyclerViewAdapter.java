@@ -20,6 +20,7 @@ import com.placeholder.study_space_booking_android_app.R;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -42,14 +43,19 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
+        long startTime = bookings.get(position).getBookStartTime();
+        startTime = startTime * 1000;
+        long endTime = bookings.get(position).getBookEndTime();
+        endTime = endTime * 1000;
+        Date startDate = new Date(startTime);
+        Date endDate = new Date(endTime);
+
         Calendar calendar = Calendar.getInstance();
-        long time = bookings.get(position).getBookStartTime();
-        time *= 1000;
-        calendar.setTimeInMillis(time);
+
+        calendar.setTime(startDate);
         String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
-        long time2 = bookings.get(position).getBookEndTime();
-        time2 *= 1000;
-        calendar.setTimeInMillis(time2);
+        calendar.setTime(endDate);
+
         String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
         String place;
         if (bookings.get(position).getPlaceId() == 1) {

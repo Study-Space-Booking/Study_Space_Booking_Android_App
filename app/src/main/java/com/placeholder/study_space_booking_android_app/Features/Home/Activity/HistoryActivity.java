@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.common.StringUtils;
 import com.placeholder.study_space_booking_android_app.Core.Beans.NormalUser;
 import com.placeholder.study_space_booking_android_app.Core.Beans.Result;
@@ -56,6 +58,19 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("History");
 
+        user = (NormalUser) SignInUseCases.user;
+
+        /*
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("history");
+        String key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
+        key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
+        key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
+        key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
+        */
 
 //        if (SignInUseCases.user instanceof NormalUser) {
 //            searchView.setVisibility(View.GONE);
