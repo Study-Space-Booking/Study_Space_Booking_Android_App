@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment implements HomeListener {
 
         progressBar = (ProgressBar)view.findViewById(R.id.progress_bar_home);
 
-        currentCredit.setText(SignInUseCases.user.getUserName()+"'s Credit : " + ((NormalUser) SignInUseCases.user).getCredit().toString());
+        currentCredit.setText(SignInUseCases.user.getUserName().substring(0, 8)+"'s Credit : " + ((NormalUser) SignInUseCases.user).getCredit().toString());
 
         homeUseCases = HomeUseCases.getInstance();
 

@@ -43,9 +43,13 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(bookings.get(position).getPlaceId());
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(bookings.get(position).getBookStartTime() * 1000);
+        long time = bookings.get(position).getBookStartTime();
+        time *= 1000;
+        calendar.setTimeInMillis(time);
         String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
-        calendar.setTimeInMillis(bookings.get(position).getBookEndTime() * 1000);
+        long time2 = bookings.get(position).getBookEndTime();
+        time2 *= 1000;
+        calendar.setTimeInMillis(time2);
         String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
         String place;
         if (bookings.get(position).getPlaceId() == 1) {

@@ -263,6 +263,8 @@ public class MacBookSeatActivity extends AppCompatActivity implements
             Log.d("EndTime", String.valueOf(endTime));
 
 
+            BookSeatUseCases.getInstance().getMyBookings((NormalUser) SignInUseCases.user, this);
+
             // check if time is correct
             if (startTime >= endTime) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
@@ -280,7 +282,7 @@ public class MacBookSeatActivity extends AppCompatActivity implements
                 }
             }
 
-            BookSeatUseCases.getInstance().getMyBookings((NormalUser) SignInUseCases.user, this);
+
 
 //            occupiedSeats.clear();
 //            for (Button button : seatButtons) {
