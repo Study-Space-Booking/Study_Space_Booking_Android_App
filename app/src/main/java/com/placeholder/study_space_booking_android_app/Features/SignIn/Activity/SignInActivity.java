@@ -85,6 +85,17 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         //SignInRepository repository = new RepositoryImplementation(localSourceImplementation, null);
         final SignInUseCases signInUseCases = SignInUseCases.getInstance();
 
+        /*
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("user").child("administrator");
+        String key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(
+                new Admin(
+                        key.hashCode(),
+                        "e0375939@u.nus.edu",
+                        "a1234567"
+                )
+        );
+        */
 
         editUserName = (EditText)findViewById(R.id.username_sign_in);
         editPassword = (EditText)findViewById(R.id.password_sign_in);
@@ -93,6 +104,12 @@ public class SignInActivity extends AppCompatActivity implements SignInListener 
         showButton = (Button) findViewById(R.id.button_show);
         writeButton = (Button) findViewById(R.id.writedatabase);
         showDBButton = (Button) findViewById(R.id.showDBbutton);
+
+        showButton.setVisibility(View.INVISIBLE);
+
+        writeButton.setVisibility(View.INVISIBLE);
+
+        showDBButton.setVisibility(View.INVISIBLE);
 
         textView.setOnClickListener(
                 new View.OnClickListener() {

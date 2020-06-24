@@ -54,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
         editConfirmPassword = (EditText)findViewById(R.id.confirm_password_register);
         registerButton = (Button)findViewById(R.id.button_register);
         showButton = (Button)findViewById(R.id.button_register_show);
+        showButton.setVisibility(View.INVISIBLE);
 
         registerButton.setOnClickListener(
                 new View.OnClickListener() {

@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_first_place"
-        android:title="first place" />
+        android:title="Mac Commons" />
     <item
         android:id="@+id/item_second_place"
-        android:title="second place" />
+        android:title="PC Commons" />
 </menu>
