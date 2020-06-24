@@ -35,9 +35,13 @@ public class HistoryAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        long startTime = history.get(position).getBookStartTime();
+        startTime = startTime * 1000;
+        long endTime = history.get(position).getBookEndTime();
+        endTime = endTime * 1000;
 
-        Date startDate = new Date(history.get(position).getBookStartTime() * 1000);
-        Date endDate = new Date(history.get(position).getBookEndTime() * 1000);
+        Date startDate = new Date(startTime);
+        Date endDate = new Date(endTime);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
         String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
