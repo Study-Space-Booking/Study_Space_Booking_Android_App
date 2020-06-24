@@ -96,10 +96,12 @@
         android:layout_width="122dp"
         android:layout_height="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:background="@drawable/button_background"
         android:text="submit photo"
         android:textColor="@color/textSecondary"
-        app:layout_constraintStart_toStartOf="@+id/problem_report_chosen_seat"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/problem_report_chosen_seat" />
 
     <Button
