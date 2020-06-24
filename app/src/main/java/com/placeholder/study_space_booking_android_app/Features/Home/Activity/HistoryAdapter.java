@@ -39,14 +39,24 @@ public class HistoryAdapter extends ArrayAdapter {
         startTime = startTime * 1000;
         long endTime = history.get(position).getBookEndTime();
         endTime = endTime * 1000;
+        long arrivalTime = history.get(position).getInTime();
+        arrivalTime = arrivalTime * 1000;
+        long outTime = history.get(position).getOutTime();
+        outTime = outTime * 1000;
 
         Date startDate = new Date(startTime);
         Date endDate = new Date(endTime);
+        Date inDate = new Date(arrivalTime);
+        Date outDate = new Date(outTime);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
         String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
         calendar.setTime(endDate);
         String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        calendar.setTime(inDate);
+        String arriveString = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        calendar.setTime(outDate);
+        String outString = DateFormat.getDateTimeInstance().format(calendar.getTime());
 
         String placeString;
         if (history.get(position).getPlaceId() == 1) {
@@ -57,8 +67,8 @@ public class HistoryAdapter extends ArrayAdapter {
         String seatString = " Seat: " +  history.get(position).getSeatId();
         String timeString = " From " + startTimeString + "\n To " + endTimeString;
         // String stateString = "state: " + history.get(position).getState();
-        String arrivalString = " Arrival at " + history.get(position).getInTime();
-        String signOutString = " Sign out at " + history.get(position).getOutTime();
+        String arrivalString = " Arrival at " + arriveString;
+        String signOutString = " Sign out at " + outString;
         //Result<String> result = HomeFragment.HOME_USE_CASES.getPlaceName(history.get(position).getPlaceId());
 
         //LinearLayout view;
