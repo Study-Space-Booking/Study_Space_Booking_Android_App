@@ -15,6 +15,7 @@ import com.placeholder.study_space_booking_android_app.R;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HistoryAdapter extends ArrayAdapter {
@@ -35,10 +36,12 @@ public class HistoryAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        Date startDate = new Date(history.get(position).getBookStartTime() * 1000);
+        Date endDate = new Date(history.get(position).getBookEndTime() * 1000);
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(history.get(position).getBookStartTime() * 1000);
+        calendar.setTime(startDate);
         String startTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
-        calendar.setTimeInMillis(history.get(position).getBookEndTime() * 1000);
+        calendar.setTime(endDate);
         String endTimeString = DateFormat.getDateTimeInstance().format(calendar.getTime());
 
         String placeString;
