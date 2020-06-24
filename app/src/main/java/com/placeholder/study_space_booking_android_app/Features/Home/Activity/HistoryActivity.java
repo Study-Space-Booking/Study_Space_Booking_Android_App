@@ -59,6 +59,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
         getSupportActionBar().setTitle("History");
 
         user = (NormalUser) SignInUseCases.user;
+
+        /*
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("history");
         String key = databaseReference.push().getKey();
         databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
@@ -68,6 +70,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
         databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
         key = databaseReference.push().getKey();
         databaseReference.child(key).setValue(new TimeSlot(1, 1, 1, user.getId(), 83394534, 91342356, 83394534, 91342356, 0, 0, 1));
+        */
+
 //        if (SignInUseCases.user instanceof NormalUser) {
 //            searchView.setVisibility(View.GONE);
 //            v.setVisibility(View.GONE);
