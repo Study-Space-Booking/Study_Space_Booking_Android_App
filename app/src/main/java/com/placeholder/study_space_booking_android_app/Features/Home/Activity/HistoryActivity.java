@@ -58,7 +58,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("History");
 
-        user = (NormalUser) SignInUseCases.user;
+
 
         /*
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("history");
@@ -90,6 +90,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryListene
 
 
         if (SignInUseCases.user instanceof NormalUser) {
+            user = (NormalUser) SignInUseCases.user;
             credit.setVisibility(View.GONE);
             change.setVisibility(View.GONE);
             username.setVisibility(View.GONE);
