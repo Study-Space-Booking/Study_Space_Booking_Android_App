@@ -162,7 +162,7 @@ public class SignOutCaptureActivity extends AppCompatActivity implements ZXingSc
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
         builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scannerView.resumeCameraPreview(SignOutCaptureActivity.this);
@@ -174,7 +174,13 @@ public class SignOutCaptureActivity extends AppCompatActivity implements ZXingSc
                 scanSignOut(myResult);
             }
         });
-        builder.setMessage(result.getText());
+        String text;
+        if (myResult.charAt(0) == '1') {
+            text = "Mac Commons Seat " + myResult.substring(1);
+        } else {
+            text = "PC Commons Seat " + myResult.substring(1);
+        }
+        builder.setMessage(text);
         AlertDialog alert1 = builder.create();
         alert1.show();
     }
