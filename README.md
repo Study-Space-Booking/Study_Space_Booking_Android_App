@@ -1,8 +1,16 @@
-# Study_Space_Booking_Android_App
-Project hours:
+# PLACEHOLDER
 
-**PLACEHOLDER - Milestone 2**
+This is our [User Guide][user_guide_link]
 
+[user_guide_link]: https://docs.google.com/document/d/1FMXvJDfR317MMvIS8GhGa767Y2BGIKwghsiiBjQqe7o/edit?usp=sharing
+
+This is our [Developer Documentation][developer_documentation_link]
+
+[developer_documentation_link]: https://docs.google.com/document/d/1rDCk5b-37iUtC_ukMMJ9mBYUjD_7yZ-IznuXTgZLnm4/edit?usp=sharing
+
+This is our [Video Demo][video_demo_link]
+
+[video_demo_link]: https://drive.google.com/file/d/1xGY41ib1i0ZD5jimIeJ3P79FQWMW8nM1/view?usp=sharing
 **Project scope:**
 
 **Short version:** A study space booking application on android platform
@@ -164,10 +172,6 @@ Testing log:
 2. Optimize the performance of our application, especially regarding the writing and retrieval of information from the internet
 
 3. Do more user testing
-
-4. Integrate google sign in and email verification for registration
-
-5. Build the find password service
 
 ## **Entity-Relationship Diagram:**
 
