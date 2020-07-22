@@ -236,15 +236,6 @@ All of the users gave a rating of 7 or higher. Most of the users think the appli
 
 According to the statistics, there is a high demand for an application that allows users to book seats in advance and submit problem report regarding maintenance issues when necessary, as is shown by the pre survey. The post survey shows that the placeholder application is able to satisfy these demands at least on a basic level. However, there are still many issues affecting the user experience, such as lack of user profile, and problems regarding the user interface. These issues will be addressed in the progress of further testing and adjustment.
 
-
-**Plan for the next phase:**
-
-1. Do more system testing to find possible loopholes in our application and improve its stability
-
-2. Optimize the performance of our application, especially regarding the writing and retrieval of information from the internet
-
-3. Do more user testing
-
 ## **Entity-Relationship Diagram:**
 
 https://drive.google.com/file/d/1Wu5GDG2Y-l6dHqrbQRWGOF2S_3v68o44/view?usp=sharing
