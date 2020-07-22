@@ -42,7 +42,7 @@ The project is a study space booking android application developed for students 
 
 1. Sign in
 
-<img src="images/picture1.png" height="600" width = "300">
+<img src="images/picture1.png" height="400" width = "200">
 
 2. Register
 
