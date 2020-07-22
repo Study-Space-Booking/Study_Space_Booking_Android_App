@@ -149,9 +149,11 @@ The problem report should be related to the maintenance issue in the study space
 6. Firebase
 
 **Testing:**
+
 The testing used so far is primarily system testing, which means many of the testings are done by the developers. However, we have also invited ten NUS student users to have done alpha testing for our application.
 
-System testing:
+**System testing:**
+
 Testing log:
 1. It was found that there could be duplicate user accounts with the same school email address. This problem is addressed by imposing more restrictions on the registration and sign-in process.
 2. The time format for the pending bookings shown in the user home page is previously not correct. The booking start time and booking end time are stored in the database in the form of an offset of seconds from a specific time point in the past. It was found that there was an overflow issue when the time in the database is retrieved and converted to milliseconds. This problem is solved by using long integer instead of a normal integer.
@@ -166,11 +168,12 @@ Testing log:
 
 
 **Qualitative testing:**
+
 The qualitative testing aims to evaluate the user experience of the application and find potential space for improvement by collecting data using a pre survey form and post survey form. 
 The pre survey form requires the user to indicate the problems they encountered in campus study space, as well as their demand and expectation for an application that aims to solve these problems. The consent for collection of personal information is given by the users at the beginning of the pre survey form.
 The post survey form aims to collect information regarding the user experience and suggestions on how the application can be improved. 
 
-*Result and analysis:
+*Result and analysis:*
 
 Pre survey:
 
@@ -229,7 +232,7 @@ Some of the users also think that the user interface for the authentication can 
 ![picture](images/picture39.png)
 All of the users gave a rating of 7 or higher. Most of the users think the application is useful. Some of the users suggested additional features such as user profile and customized user photo. There are also suggestions on the user interface regarding the color palette and alignment as indicated in the comment section of this question.
 
-*Summary:
+*Summary:*
 
 According to the statistics, there is a high demand for an application that allows users to book seats in advance and submit problem report regarding maintenance issues when necessary, as is shown by the pre survey. The post survey shows that the placeholder application is able to satisfy these demands at least on a basic level. However, there are still many issues affecting the user experience, such as lack of user profile, and problems regarding the user interface. These issues will be addressed in the progress of further testing and adjustment.
 
