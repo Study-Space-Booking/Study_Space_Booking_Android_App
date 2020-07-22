@@ -149,11 +149,10 @@ The problem report should be related to the maintenance issue in the study space
 6. Firebase
 
 **Testing:**
-
 The testing used so far is primarily system testing, which means many of the testings are done by the developers. However, we have also invited ten NUS student users to have done alpha testing for our application.
 
+System testing:
 Testing log:
-
 1. It was found that there could be duplicate user accounts with the same school email address. This problem is addressed by imposing more restrictions on the registration and sign-in process.
 2. The time format for the pending bookings shown in the user home page is previously not correct. The booking start time and booking end time are stored in the database in the form of an offset of seconds from a specific time point in the past. It was found that there was an overflow issue when the time in the database is retrieved and converted to milliseconds. This problem is solved by using long integer instead of a normal integer.
 3. For the retrieval of problem report from firebase, it was found that firebase methods work asynchronously, and the result returned sequentially after the method call will have empty content. This problem is solved by using the listener.
@@ -164,6 +163,93 @@ Testing log:
 8. For the bookings list views, users suggested that instead of plain text, we can also add a picture of the library that the seat is located at. This is convenient for some users who might not be so familiar with the library. Thus, we have implemented a photo of the specific library that match the location of the booking.
 9. As for the admin activities, we also faced a privacy issue. As admins could look up the using history of a certain seat. Users might not want admins to directly see their student numbers by looking up the history of a certain seat. Thus, we let admins only see user IDs instead of user names. We have also rewrite the user searching activity so that admins can also deduct points of a certain user if either user ID or user name is known.
 10. For the UI of the application. At first, we used the default UI design, however, we found that a darker UI seems to be a better design. The dark colour theme looks better. Thus we tried out different colour combinations and decided to implement the dark colour theme instead.
+
+
+**Qualitative testing:**
+The qualitative testing aims to evaluate the user experience of the application and find potential space for improvement by collecting data using a pre survey form and post survey form. 
+The pre survey form requires the user to indicate the problems they encountered in campus study space, as well as their demand and expectation for an application that aims to solve these problems. The consent for collection of personal information is given by the users at the beginning of the pre survey form.
+The post survey form aims to collect information regarding the user experience and suggestions on how the application can be improved. 
+
+*Result and analysis:
+
+Pre survey:
+
+1.
+
+The tested users come from School of Computing, Faculty of Engineering, and Business School. This may introduce some biases since the demand for study space in University Town may differ among faculties.
+
+2.
+
+Over half of the tested users are freshmen.
+
+3.
+
+The statistics show that the most of the users have demand for using the study space in University Town.
+
+
+
+
+4.
+
+Most of the users seem to have encountered difficulties in finding available seats. The possible reasons can be overcrowdedness and seat chopping.
+
+5.
+Most of the users indicate that they have encountered seat chopping at a relevant frequency. Combined with question  3 and question 4, it can be seen that there seems to be a high demand for a study space booking application, which can prevent the problems of seat chopping and making it easier to find seats. 
+
+
+
+
+
+
+6.
+
+Half of the users have encountered equipment maintenance problems in the study space, which is a quite significant percentage. This indicates that there is a real need for an application that allows users to submit problem reports.
+
+7.
+Almost all the users agree that seat finding and seat booking is necessary, which verifies the high demand for the seat booking functionality. Additionally, most of the users agree that the problem report functionality is necessary, which shows a relevant need for users to be able submit report in the application.
+
+
+
+
+
+
+8.
+
+Most of the users agree to use the application for study space booking on campus.
+
+
+Post survey:
+
+1.
+
+All the users agree that it is easy to get started with the application.
+
+2.
+
+All if the users gave a rate of 7 or higher. Most of the users give high ratings because they think the seat booking functionality is useful and convenient, as indicated in the comment section of this question.
+
+
+
+
+
+
+
+3.
+
+All of the users gave a rating of 7 or higher. Most of the users think the problem report functionality gives the study space managers a brief and comprehensive description of the maintenance problem as indicated in the comment section of this question. 
+
+4.
+
+Nearly half of the users think that the user interface can be better. Many of them suggested that an alternative colour palette, such as the NUS palette.
+Some of the users also think that the user interface for the authentication can be improved. 
+
+5.
+All of the users gave a rating of 7 or higher. Most of the users think the application is useful. Some of the users suggested additional features such as user profile and customized user photo. There are also suggestions on the user interface regarding the color palette and alignment as indicated in the comment section of this question.
+
+*Summary:
+
+According to the statistics, there is a high demand for an application that allows users to book seats in advance and submit problem report regarding maintenance issues when necessary, as is shown by the pre survey. The post survey shows that the placeholder application is able to satisfy these demands at least on a basic level. However, there are still many issues affecting the user experience, such as lack of user profile, and problems regarding the user interface. These issues will be addressed in the progress of further testing and adjustment.
+
 
 **Plan for the next phase:**
 
