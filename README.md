@@ -50,7 +50,7 @@ Students need to register with the school email address
 
 The password needs to have at least 1 character and 1 digit
 
-![](RackMultipart20200625-4-1kg5i8r_html_8c7fcdfd705da6d4.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_9d5dc8744f53cd37.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_40c231734838a584.jpg)
+<img src="images/picture2.png" height="400" width = "200"> <img src="images/picture3.png" height="400" width = "200"> <img src="images/picture3.png" height="400" width = "200">
 
 3. Select a certain study space, such as PC Commons in University Town, and set the start time and end time for their booking to view the vacancies in that particular study space and time slot.
 
