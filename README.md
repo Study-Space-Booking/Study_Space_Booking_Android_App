@@ -26,5 +26,5 @@ Project hours:
 | 21.	| Move the PC/MAC commons bookseat, scan QR, admin seat and admin user activities to firebase, and testing firebase cloud function | 16/6 - 21/6 | 19	| | Changing the source used by the repository of the service |
 | 22. | Creating the survey and spreading the survey to tested users to collect results | 10/7 - 16/7 | 5 | 5 | Preparing the materials and instructions for users during their testing|
 | 23. | Creating the developer guide | 17/7 - 18/7 | 6 | 6 | Using diagram to facilitate the user understanding in the developer guide |
-| 24. | Analyze the survey results | 19/7 - 20/7 | 6 | 6 | Summarizing the survey reuslts in the document |
+| 24. | Analyzing the survey results | 19/7 - 20/7 | 6 | 6 | Summarizing the survey reuslts in the document |
 
