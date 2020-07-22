@@ -175,7 +175,7 @@ The post survey form aims to collect information regarding the user experience a
 Pre survey:
 
 1.
-
+![picture](images/picture27.png)
 The tested users come from School of Computing, Faculty of Engineering, and Business School. This may introduce some biases since the demand for study space in University Town may differ among faculties.
 
 2.
