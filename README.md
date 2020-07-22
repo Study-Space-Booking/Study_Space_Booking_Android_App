@@ -42,7 +42,7 @@ The project is a study space booking android application developed for students 
 
 1. Sign in
 
-![](RackMultipart20200625-4-1kg5i8r_html_ca36daedc199e5af.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_3e869c5e5ed8dc48.jpg)
+![picture1](https://user-images.githubusercontent.com/54735123/88140848-15cf8800-cc25-11ea-98d3-b08106a08a9d.png)
 
 2. Register
 
