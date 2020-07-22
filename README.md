@@ -179,71 +179,54 @@ Pre survey:
 The tested users come from School of Computing, Faculty of Engineering, and Business School. This may introduce some biases since the demand for study space in University Town may differ among faculties.
 
 2.
-
+![picture](images/picture28.png)
 Over half of the tested users are freshmen.
 
 3.
-
+![picture](images/picture29.png)
 The statistics show that the most of the users have demand for using the study space in University Town.
 
-
-
-
 4.
-
+![picture](images/picture30.png)
 Most of the users seem to have encountered difficulties in finding available seats. The possible reasons can be overcrowdedness and seat chopping.
 
 5.
+![picture](images/picture31.png)
 Most of the users indicate that they have encountered seat chopping at a relevant frequency. Combined with question  3 and question 4, it can be seen that there seems to be a high demand for a study space booking application, which can prevent the problems of seat chopping and making it easier to find seats. 
 
-
-
-
-
-
 6.
-
+![picture](images/picture32.png)
 Half of the users have encountered equipment maintenance problems in the study space, which is a quite significant percentage. This indicates that there is a real need for an application that allows users to submit problem reports.
 
 7.
+![picture](images/picture33.png)
 Almost all the users agree that seat finding and seat booking is necessary, which verifies the high demand for the seat booking functionality. Additionally, most of the users agree that the problem report functionality is necessary, which shows a relevant need for users to be able submit report in the application.
 
-
-
-
-
-
 8.
-
+![picture](images/picture34.png)
 Most of the users agree to use the application for study space booking on campus.
-
 
 Post survey:
 
 1.
-
+![picture](images/picture35.png)
 All the users agree that it is easy to get started with the application.
 
 2.
-
+![picture](images/picture36.png)
 All if the users gave a rate of 7 or higher. Most of the users give high ratings because they think the seat booking functionality is useful and convenient, as indicated in the comment section of this question.
 
-
-
-
-
-
-
 3.
-
+![picture](images/picture37.png)
 All of the users gave a rating of 7 or higher. Most of the users think the problem report functionality gives the study space managers a brief and comprehensive description of the maintenance problem as indicated in the comment section of this question. 
 
 4.
-
+![picture](images/picture38.png)
 Nearly half of the users think that the user interface can be better. Many of them suggested that an alternative colour palette, such as the NUS palette.
 Some of the users also think that the user interface for the authentication can be improved. 
 
 5.
+![picture](images/picture39.png)
 All of the users gave a rating of 7 or higher. Most of the users think the application is useful. Some of the users suggested additional features such as user profile and customized user photo. There are also suggestions on the user interface regarding the color palette and alignment as indicated in the comment section of this question.
 
 *Summary:
