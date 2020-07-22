@@ -11,6 +11,10 @@ This is our [Developer Documentation][developer_documentation_link]
 This is our [Video Demo][video_demo_link]
 
 [video_demo_link]: https://drive.google.com/file/d/1xGY41ib1i0ZD5jimIeJ3P79FQWMW8nM1/view?usp=sharing
+
+This is the [Entity-Relationship Diagram][er_diagram] of our application
+
+[er_diagram]: https://drive.google.com/file/d/1Wu5GDG2Y-l6dHqrbQRWGOF2S_3v68o44/view?usp=sharing
 **Project scope:**
 
 **Short version:** A study space booking application on android platform
@@ -130,10 +134,6 @@ The problem report should be related to the maintenance issue in the study space
 
 <img src="images/picture25.png" height="400" width = "200"> <img src="images/picture26.png" height="400" width = "200">
 
-**User Guide:**
-
-[https://docs.google.com/document/d/1FMXvJDfR317MMvIS8GhGa767Y2BGIKwghsiiBjQqe7o/edit?usp=sharing](https://docs.google.com/document/d/1FMXvJDfR317MMvIS8GhGa767Y2BGIKwghsiiBjQqe7o/edit?usp=sharing)
-
 **Necessary Technologies Involved:**
 
 1: Git
@@ -235,7 +235,3 @@ All of the users gave a rating of 7 or higher. Most of the users think the appli
 *Summary:*
 
 According to the statistics, there is a high demand for an application that allows users to book seats in advance and submit problem report regarding maintenance issues when necessary, as is shown by the pre survey. The post survey shows that the placeholder application is able to satisfy these demands at least on a basic level. However, there are still many issues affecting the user experience, such as lack of user profile, and problems regarding the user interface. These issues will be addressed in the progress of further testing and adjustment.
-
-## **Entity-Relationship Diagram:**
-
-https://drive.google.com/file/d/1Wu5GDG2Y-l6dHqrbQRWGOF2S_3v68o44/view?usp=sharing
