@@ -24,4 +24,7 @@ Project hours:
 | 19.	| implement the scan QR code and tmpleave/back logic func and user log-out func | 6/6-9/6	| 9	| | implement the logic to signin/out/templeave/back using QR code on Local Sqlite database |
 | 20.	| implement admin search seat history	| 12/6-14/6	| 9	| | Implementing the admin view seat history activities |
 | 21.	| Move the PC/MAC commons bookseat, scan QR, admin seat and admin user activities to firebase, and testing firebase cloud function | 16/6 - 21/6 | 19	| | Changing the source used by the repository of the service |
+| 22. | Creating the survey and spreading the survey to tested users to collect results | 10/7 - 16/7 | 5 | 5 | Preparing the materials and instructions for users during their testing|
+| 23. | Creating the developer guide | 17/7 - 18/7 | 6 | 6 | Using diagram to facilitate the user understanding in the developer guide |
+| 24. | Analyze the survey results | 19/7 - 20/7 | 6 | 6 | Summarizing the survey reuslts in the document |
 
