@@ -42,7 +42,7 @@ The project is a study space booking android application developed for students 
 
 1. Sign in
 
-<img src="images/picture1.png" height="400" width = "200">
+<img src="images/picture1.png" height="400" width = "200"> <img src="images/picture2.png" height="400" width = "200">
 
 2. Register
 
@@ -50,25 +50,25 @@ Students need to register with the school email address
 
 The password needs to have at least 1 character and 1 digit
 
-<img src="images/picture3.png" height="400" width = "200"> <img src="images/picture2.png" height="400" width = "200"> <img src="images/picture4.png" height="400" width = "200">
+<img src="images/picture3.png" height="400" width = "200"> <img src="images/picture4.png" height="400" width = "200"> <img src="images/picture5.png" height="400" width = "200">
 
 3. Select a certain study space, such as PC Commons in University Town, and set the start time and end time for their booking to view the vacancies in that particular study space and time slot.
 
 The user can only book one seat during a period of time.
 
-![](RackMultipart20200625-4-1kg5i8r_html_e1edcc19f14176fd.jpg)
+<img src="images/picture6.png" height="400" width = "200">
 
-![](RackMultipart20200625-4-1kg5i8r_html_df399b3c784c2361.png) ![](RackMultipart20200625-4-1kg5i8r_html_34d7b9c69864b333.png)
+<img src="images/picture7.png" height="400" width = "200"> <img src="images/picture8.png" height="400" width = "200">
 
-![](RackMultipart20200625-4-1kg5i8r_html_2308e8109934e300.png) ![](RackMultipart20200625-4-1kg5i8r_html_8ce13399f44bc0fe.png)
+<img src="images/picture9.png" height="400" width = "200"> <img src="images/picture10.png" height="400" width = "200">
 
 4. Choose a vacant seat and make a booking based on the seat and timeslot selected, and confirm the booking
 
-![](RackMultipart20200625-4-1kg5i8r_html_f99648eb39444711.png)
+<img src="images/picture11.png" height="400" width = "200">
 
 5. Sign in to the booked seat within 15 minutes of the scheduled starting time of the booking by scanning QR code. If the signing in is too late, the booking will be eliminated by the system.
 
-![](RackMultipart20200625-4-1kg5i8r_html_cea1cf2e900675e9.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_f58f9433ef122a0b.jpg)
+<img src="images/picture12.png" height="400" width = "200"> <img src="images/picture13.png" height="400" width = "200">
 
 6. Sign out to the booked seat within 30 minutes of the scheduled end time of the booking by scanning QR code
 
@@ -76,27 +76,27 @@ The user can only book one seat during a period of time.
 
 8. View future bookings to remind the students to sign in to the seat on time, and call off the booking if necessary
 
-![](RackMultipart20200625-4-1kg5i8r_html_917b447ec4989079.jpg)
+<img src="images/picture14.png" height="400" width = "200">
 
 9. View the credit record
 
 10. View the booking history
 
-![](RackMultipart20200625-4-1kg5i8r_html_e10e1fbcf9893f55.jpg)
+<img src="images/picture15.png" height="400" width = "200">
 
 11. Submit a problem report with a photo and a short description within 50 words.
 
 The problem report should be related to the maintenance of equipment in the study space.
 
-![](RackMultipart20200625-4-1kg5i8r_html_4c12e9f46dca235e.jpg)
+<img src="images/picture16.png" height="400" width = "200">
 
 12. View all the problem report posted and leave a comment if necessary
 
 The problem report should be related to the maintenance issue in the study space. The example below is only for demonstration.
 
-![](RackMultipart20200625-4-1kg5i8r_html_c64dcafe8ae69790.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_2c3d068a8cea0fcb.jpg)
+<img src="images/picture17.png" height="400" width = "200"> <img src="images/picture18.png" height="400" width = "200">
 
-![](RackMultipart20200625-4-1kg5i8r_html_ff9d6cdcb579cc.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_37c5c249c58c0671.jpg)
+<img src="images/picture19.png" height="400" width = "200"> <img src="images/picture20.png" height="400" width = "200">
 
 **Credit System:**
 
@@ -118,17 +118,17 @@ The problem report should be related to the maintenance issue in the study space
 
 2. Search for a user to see the credit record and booking history according to the name of the user
 
-![](RackMultipart20200625-4-1kg5i8r_html_c537440b5757b7b8.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_6f21eb643d4a584b.png)
+<img src="images/picture21.png" height="400" width = "200"> <img src="images/picture22.png" height="400" width = "200">
 
 3. Search for a user to see the credit record and booking history according to the id of the user
 
 4. View the problem reports, change the status of the report, leave a comment, and delete the report if necessary
 
-![](RackMultipart20200625-4-1kg5i8r_html_a5896a21fd57a5a.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_e9169adddb98714b.jpg)
+<img src="images/picture23.png" height="400" width = "200"> <img src="images/picture24.png" height="400" width = "200">
 
 5. Search for a seat to see the booking history of the seat according to the id of the seat
 
-![](RackMultipart20200625-4-1kg5i8r_html_14b21b00d587d864.jpg) ![](RackMultipart20200625-4-1kg5i8r_html_b50ee8d0cb1aaca1.png)
+<img src="images/picture25.png" height="400" width = "200"> <img src="images/picture26.png" height="400" width = "200">
 
 **User Guide:**
 
