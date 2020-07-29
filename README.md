@@ -42,7 +42,7 @@ The project is a study space booking android application developed for students 
 
 **Core features:**
 
-**Students** :
+**Students:**
 
 1. Sign in
 
