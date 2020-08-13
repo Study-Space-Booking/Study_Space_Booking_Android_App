@@ -10,7 +10,7 @@ This is our [Developer Documentation][developer_documentation_link]
 
 This is our [Video Demo][video_demo_link]
 
-[video_demo_link]: https://drive.google.com/file/d/1xGY41ib1i0ZD5jimIeJ3P79FQWMW8nM1/view?usp=sharing
+[video_demo_link]: https://youtu.be/prnHBllxngA
 
 This is the [Entity-Relationship Diagram][er_diagram] of our application
 
