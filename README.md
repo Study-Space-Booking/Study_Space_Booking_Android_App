@@ -17,10 +17,6 @@ This is the [Entity-Relationship Diagram][er_diagram] of our application
 [er_diagram]: https://drive.google.com/file/d/1Wu5GDG2Y-l6dHqrbQRWGOF2S_3v68o44/view?usp=sharing
 
 
-[![Orbital-Poster.jpg](https://i.postimg.cc/T3XBfC99/Orbital-Poster.jpg)](https://postimg.cc/9rJLBPsR)
-
-[![lastest-poster.jpg](https://i.postimg.cc/yYR2MwFx/lastest-poster.jpg)](https://postimg.cc/PPt6ZVVn)
-
 **Project scope:**
 
 **Short version:** A study space booking application on android platform
